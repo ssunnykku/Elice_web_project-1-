@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 import { Card, InputGroup, Form, Button, Row, Col } from "react-bootstrap";
 
-import * as Api from "../api";
-import axios from 'axios';
-
 
 function ProjectForm({ projectList, setIsEditing, setProjectList}) {
 
@@ -61,8 +58,6 @@ function ProjectForm({ projectList, setIsEditing, setProjectList}) {
           <Form.Group as={Row} className="mt-3 text-center">
           <Col sm={{ span: 20 }}>
           <Button variant="primary" type="submit" className="me-3" onClick={()=>{
-            axios.get()
-
               setProjectList([...projectList, {
                 title : title,
                 description : description,
