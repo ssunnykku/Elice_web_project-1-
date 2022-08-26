@@ -1,24 +1,29 @@
-import { User } from "../db"; // from을 폴더(db) 로 설정 시, 디폴트로 index.js 로부터 import함.
-import bcrypt from "bcrypt";
-import { v4 as uuidv4 } from "uuid";
-import jwt from "jsonwebtoken";
+import { Education } from "../db/models/Education";
+import mongoose from "mongoose";
 
-class userEducationService {
-  static async postEducationInfo({ school, major, edu }) {
-    const newEducationinfo = { school, major, edu };
+class educationService {
+  static async postEducationInfo({ user_id, school, major, degree }) {
+    
+    
+    const newEducation = { user_id, school, major, degree };
 
-    const createNewEducationInfo = await User.create({ newEducationinfo });
-    createNewEducationInfo.errorMessage = null; // 문제 없이 db 저장 완료되었으므로 에러가 없음.
-    return createNewEducationInfo;
+    const createdEducation = await Education.create({ newEducation });
+
+    return createdEducation;
   }
 
-  static async getUsers() {
-    const users = await User.findAll();
-    return users;
+  static async getEducations({ edu_id }) {
+    const educations = await Education.findAll({ edu_id });
+
+    if (!educations) {
+      const errorMessage = "내용이 없습니다.";
+      return { errorMessage };
+    }
+    return educations;
   }
 
   static async getUserInfo({ user_id }) {
-    const user = await User.findById({ user_id });
+    const user = await Education.findById({ user_id });
 
     // db에서 찾지 못한 경우, 에러 메시지 반환
     if (!user) {
@@ -31,4 +36,4 @@ class userEducationService {
   }
 }
 
-export { userEducationService };
+export { educationService };
