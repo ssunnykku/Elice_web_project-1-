@@ -1,8 +1,8 @@
-import { Schema, model } from "mongoose";
+import mongoose, { Schema, model } from "mongoose";
 
 const EducationSchema = new Schema(
   {
-    id: {
+    user_id: {
       type: String,
       required: true,
     },
@@ -14,8 +14,8 @@ const EducationSchema = new Schema(
       type: String,
       required: true,
     },
-    edu: {
-      type: string, //?확실하지 않음. 버튼 클릭한 내용을 받아온다는거 어떻게
+    degree: {
+      type: String,
       required: true,
     },
   },
@@ -24,6 +24,6 @@ const EducationSchema = new Schema(
   }
 );
 
-const educationModel = model("Education", EducationSchema);
+const EducationModel = model("Education", EducationSchema);
 
-export { educationModel };
+export { EducationModel };
