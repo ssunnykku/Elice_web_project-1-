@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Card, InputGroup, Form, Button, Row, Col } from "react-bootstrap";
 
 
-function ProjectForm({ projectList, setIsEditing, setProjectList}) {
+function ProjectAddForm({ projectList, setIsEditing, setProjectList}) {
 
     const [inputs, setInputs] = useState({
       title: '',
@@ -75,4 +75,4 @@ function ProjectForm({ projectList, setIsEditing, setProjectList}) {
     }
 
 
-export default ProjectForm;
+export default ProjectAddForm;

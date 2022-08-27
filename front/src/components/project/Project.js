@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Card, Button, Form, Row, Col } from "react-bootstrap";
 import ProjectEditForm from "./ProjectEditForm"
-import ProjectForm from "./ProjectForm"
+import ProjectAddForm from "./ProjectAddForm"
 
 function ProjectCard() {
     const [isEditing, setIsEditing] = useState(false);
@@ -33,10 +33,8 @@ function ProjectCard() {
         <h5>프로젝트</h5>
         {
           isEditing ? <ProjectEditForm 
-                      IsEditing={isEditing}
                       setIsEditing={setIsEditing}
-                      setProjectList={setProjectList}
-                      projectList={projectList}/> 
+                      setProjectList={setProjectList}/> 
           : 
             (projectList.map((x,i) => {
 
@@ -60,8 +58,7 @@ function ProjectCard() {
           }
 
         {isEditing2 == true ? 
-        <ProjectForm 
-              projectList={projectList} 
+        <ProjectAddForm 
               setProjectList={setProjectList}
               setIsEditing={setIsEditing2} /> : null}
         <Form.Group className="mt-3 text-center">
