@@ -6,7 +6,7 @@ import ProjectAddForm from "./ProjectAddForm"
 function ProjectCard() {
     const [isEditing, setIsEditing] = useState(false);
 
-    const [isEditing2, setIsEditing2] = useState(false);
+    const [openAddForm, setOpenAddForm] = useState(false);
 
     const [projectList, setProjectList] = useState([
       {
@@ -57,13 +57,14 @@ function ProjectCard() {
             } ))
           }
 
-        {isEditing2 == true ? 
+        {openAddForm == true ? 
         <ProjectAddForm 
+              projectList={projectList}
               setProjectList={setProjectList}
-              setIsEditing={setIsEditing2} /> : null}
+              setOpenAddForm={setOpenAddForm} /> : null}
         <Form.Group className="mt-3 text-center">
         <Button variant="primary" className="mt-3" onClick={()=>{
-          setIsEditing2(true) 
+          setOpenAddForm(true) 
         }}>+</Button>
         </Form.Group>
       </Card.Body>
