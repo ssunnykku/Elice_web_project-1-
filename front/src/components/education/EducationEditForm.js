@@ -1,18 +1,25 @@
 import React, {useState} from "react";
 import { Form, Button } from "react-bootstrap";
+import * as Api from "../../api";
 
 
-// 학력 추가탭
-function EducationEditForm ({setIsEditing, isEditing}) {
-    const [school, setSchool] = useState("");
-    const [major, setMajor] = useState("");
-    const [degree, setDegree]
+
+function EducationEditForm ({isEditing, school, major, degree}) {
+    const [school, setSchool] = useState(school);
+    const [major, setMajor] = useState(major);
+    const [degree, setDegree] = useState(degree)
     const [thisisEditing, setThisIsEditing] = useState(isEditing);
 
     function handleSubmit (e) {
         e.preventDefault();
         
-        //데이터 post
+        //데이터 put
+        // Api.put('',{
+        //     school,
+        //     major,
+        //     degree,
+        //     thisisEditing
+        // })
 
 
     }
@@ -35,6 +42,7 @@ function EducationEditForm ({setIsEditing, isEditing}) {
                     onChange={(e) => setMajor(e.target.value)} 
                 />
             </Form.Group>
+            {/* map 필요없는 것 없애거나 map사용하는 방법으로 고쳐보기 */}
             <Form.Group>
             {['radio'].map((type) => (
                 <div key={`inline-${type}`} className="mb-3">
@@ -44,7 +52,9 @@ function EducationEditForm ({setIsEditing, isEditing}) {
                     name="group1"
                     type={type}
                     id={`inline-${type}-1`}
-                    checked
+                    defaultChecked
+                    value="재학중"
+                    onChange={(e)=>(setDegree(e.target.value))}
                 />
                 <Form.Check
                     inline
@@ -52,6 +62,8 @@ function EducationEditForm ({setIsEditing, isEditing}) {
                     name="group1"
                     type={type}
                     id={`inline-${type}-2`}
+                    value="학사졸업"
+                    onChange={(e)=>(setDegree(e.target.value))}
                 />
                 <Form.Check
                     inline
@@ -59,6 +71,8 @@ function EducationEditForm ({setIsEditing, isEditing}) {
                     name="group1"
                     type={type}
                     id={`inline-${type}-3`}
+                    value="석사졸업"
+                    onChange={(e)=>(setDegree(e.target.value))}
                 />
                 <Form.Check
                     inline
@@ -66,6 +80,8 @@ function EducationEditForm ({setIsEditing, isEditing}) {
                     name="group1"
                     type={type}
                     id={`inline-${type}-3`}
+                    value="박사졸업"
+                    onChange={(e)=>(setDegree(e.target.value))}
                 />                
                 </div>
             ))}

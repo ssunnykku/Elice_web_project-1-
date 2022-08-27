@@ -3,27 +3,27 @@ import { Form, Button } from "react-bootstrap";
 import * as Api from "../../api";
 
 
-// 학력 추가탭
+// 학력 추가 컴포넌트
 function EducationAddForm ({setIsAddingEducation}) {
     const [school, setSchool] = useState("");
     const [major, setMajor] = useState("");
     const [degree, setDegree] = useState("재학중");
-
+    const isEditing = false
 
     function handleSubmit (e) {
         e.preventDefault();
         
-        //입력한 값 post하기
-        const educationlist = []
+        // post하기
+        // const educationlist = []
 
    
-        // //데이터 post 보내기
-        // Api.post (`education/add`, function (req, res) {
-        //     school,
-        //     major,
-        //     degree,
-        //     isEditing:
-        // });
+        //입력한 값 post 보내기
+        Api.post (`education/add`, {
+            school,
+            major,
+            degree,
+            isEditing
+        });
 
         setIsAddingEducation(false)
 
@@ -48,6 +48,7 @@ function EducationAddForm ({setIsAddingEducation}) {
                     onChange={(e) => setMajor(e.target.value)} 
                 />
             </Form.Group>
+            {/* map 필요없는 것 없애거나 map사용하는 방법으로 고쳐보기 */}
             <Form.Group>
             {['radio'].map((type) => (
                 <div key={`inline-${type}`} className="mb-3">
@@ -58,7 +59,7 @@ function EducationAddForm ({setIsAddingEducation}) {
                     type={type}
                     id={`inline-${type}-1`}
                     defaultChecked
-                    value={"재학중"}
+                    value="재학중"
                     onChange={(e)=>(setDegree(e.target.value))}
                 />
                 <Form.Check

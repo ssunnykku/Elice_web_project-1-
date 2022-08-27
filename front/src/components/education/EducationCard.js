@@ -1,12 +1,16 @@
 import React from "react"
 import {Form, Button, Col, Row} from "react-bootstrap";
+import * as Api from "../../api";
 
 
 function EducationCard ({isEditing, school, major, degree}) {
     
     const [thisisEditing, setThisIsEditing] = useState(isEditing);
 
-    //보내기
+    //편집상태 isEditing 바꿔주기
+    // Api.put('',{
+    //     thisisEditing
+    // })
     
 
     return (

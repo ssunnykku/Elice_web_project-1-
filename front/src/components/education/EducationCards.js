@@ -1,10 +1,12 @@
 import React,{useState} from "react"
 import EducationCard from "./EducationCard"
 import EducationEditForm from "./EducationEditForm"
+import * as Api from "../../api";
 
 function EducationCards () {
 
-    //불러오기
+    //get 불러오기
+    //Api.get('', )
     const educationlist = [{
                         school: "ㅇㅇ대",
                         major: "컴공",
@@ -22,13 +24,16 @@ function EducationCards () {
     return educationlist.map((i) => (i.isEditing ? (
                                     <EducationEditForm
                                         isEditing={i.isEditing}
-                                    />
-                                ) : (
-                                    <EducationCard
                                         school = {i.school}
                                         major = {i.major}
                                         degree = {i.degree}
-                                        isEditing={i.isEditing}      
+                                    />
+                                ) : (
+                                    <EducationCard
+                                        isEditing={i.isEditing}    
+                                        school = {i.school}
+                                        major = {i.major}
+                                        degree = {i.degree}
                                     />
     )))
     
