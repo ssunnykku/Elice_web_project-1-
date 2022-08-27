@@ -18,12 +18,12 @@ function EducationAddForm ({setIsAddingEducation}) {
 
    
         //입력한 값 post 보내기
-        Api.post (`education/add`, {
-            school,
-            major,
-            degree,
-            isEditing
-        });
+        // Api.post (`education/add`, {
+        //     school,
+        //     major,
+        //     degree,
+        //     isEditing
+        // });
 
         setIsAddingEducation(false)
 

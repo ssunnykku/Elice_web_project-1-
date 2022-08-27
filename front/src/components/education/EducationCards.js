@@ -14,26 +14,26 @@ function EducationCards () {
                         isEditing: false
                         },
                         {    
-                        school: "ㅇㅇ대",
+                        school: "ㅁㅁ대",
                         major: "미술",
                         degree: "재학중",
-                        isEditing: false
+                        isEditing: true
                         }
                         ]
                         
     return educationlist.map((i) => (i.isEditing ? (
-                                    <EducationEditForm
-                                        isEditing={i.isEditing}
-                                        school = {i.school}
-                                        major = {i.major}
-                                        degree = {i.degree}
+                                    <EducationEditForm 
+                                        IsEditing={i.isEditing}
+                                        School = {i.school}
+                                        Major = {i.major}
+                                        Degree = {i.degree}
                                     />
                                 ) : (
-                                    <EducationCard
-                                        isEditing={i.isEditing}    
-                                        school = {i.school}
-                                        major = {i.major}
-                                        degree = {i.degree}
+                                    <EducationCard 
+                                        IsEditing={i.isEditing}
+                                        School = {i.school}
+                                        Major = {i.major}
+                                        Degree = {i.degree}
                                     />
     )))
     

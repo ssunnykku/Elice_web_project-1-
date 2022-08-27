@@ -1,27 +1,27 @@
-import React from "react"
+import React,{useState} from "react"
 import {Form, Button, Col, Row} from "react-bootstrap";
 import * as Api from "../../api";
 
 
-function EducationCard ({isEditing, school, major, degree}) {
+function EducationCard ({IsEditing, School, Major, Degree}) {
     
-    const [thisisEditing, setThisIsEditing] = useState(isEditing);
+    const [isEditing, setIsEditing] = useState(IsEditing);
 
-    //편집상태 isEditing 바꿔주기
+    //편집상태 isEditing 바뀐것 put해서 컴포넌트 닫기
     // Api.put('',{
-    //     thisisEditing
+    //     isEditing
     // })
     
 
     return (
-        <Form style={{ textAlign: "left" }}>
+        <Form className="mb-4" style={{ textAlign: "left" }}>
             <Row>
                 <Col xs={11} class="d-flex flex-column mb-3">
-                    <div>{school}</div>
-                    <div>{major} {degree}</div>
+                    <div>{School}</div>
+                    <div>{Major} ({Degree})</div>
                 </Col>
                 <Col xs={1} class="align-self-center col-xs-6">
-                    <Button size="sm" variant="outline-info" onClick={() => setThisIsEditing(true)}>편집</Button> 
+                    <Button size="sm" variant="outline-info" onClick={() => setIsEditing(true)}>편집</Button> 
                 </Col>  
             </Row>
         </Form>

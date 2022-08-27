@@ -4,21 +4,21 @@ import * as Api from "../../api";
 
 
 
-function EducationEditForm ({isEditing, school, major, degree}) {
-    const [school, setSchool] = useState(school);
-    const [major, setMajor] = useState(major);
-    const [degree, setDegree] = useState(degree)
-    const [thisisEditing, setThisIsEditing] = useState(isEditing);
+function EducationEditForm ({IsEditing, School, Major, Degree}) {
+    const [school, setSchool] = useState(School);
+    const [major, setMajor] = useState(Major);
+    const [degree, setDegree] = useState(Degree)
+    const [isEditing, setIsEditing] = useState(IsEditing);
 
     function handleSubmit (e) {
         e.preventDefault();
         
-        //데이터 put
+        //바뀐 값 put
         // Api.put('',{
         //     school,
         //     major,
         //     degree,
-        //     thisisEditing
+        //     isEditing
         // })
 
 
@@ -87,7 +87,7 @@ function EducationEditForm ({isEditing, school, major, degree}) {
             ))}
             </Form.Group>
             <Button variant="primary" className="mb-3" type="submit">확인</Button>{' '}
-            <Button variant="secondary" className="mb-3" onClick={() => setThisIsEditing(false)}>취소</Button>
+            <Button variant="secondary" className="mb-3" onClick={() => setIsEditing(false)}>취소</Button>
         </Form>
     )
 }
