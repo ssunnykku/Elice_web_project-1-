@@ -3,29 +3,15 @@ import { Card, Button, Form, Row, Col } from "react-bootstrap";
 import ProjectEditForm from "./ProjectEditForm"
 import ProjectAddForm from "./ProjectAddForm"
 
-function ProjectCard() {
+function Project() {
     const [isEditing, setIsEditing] = useState(false);
 
     const [openAddForm, setOpenAddForm] = useState(false);
 
-    const [projectList, setProjectList] = useState([
-      {
-      title : "웹프로젝트",
-      description : "포트폴리오 웹사이트 제작",
-      from : "2022-08-23",
-      to : "2022-09-12",
-      },
-     {
-      title : "웹프로젝트",
-      description : "포트폴리오 웹사이트 제작",
-      from : "2022-08-23",
-      to : "2022-09-12",
-      },
-    
-    ]);  
-    // let a = useSelector((state) => state.user ) 
-    // console.log(a)
+    const [projectList, setProjectList] = useState(null);  
+
     console.log(projectList)
+
     return <>
 
      <Card style={{ width: '40rem' }}>
@@ -35,18 +21,18 @@ function ProjectCard() {
           isEditing ? <ProjectEditForm 
                       setIsEditing={setIsEditing}
                       setProjectList={setProjectList}/> 
-          : 
-            (projectList.map((x,i) => {
+          : (
+            (!projectList) ? null :  (projectList.map((x,i) => {
 
               return(
-            <Form style={{ textAlign: "left" }}>
+            <Form style={{ textAlign: "left" }} key={i}>
               <Row>
-              <Col xs={11} class="align-self-center col-xs-6">
+              <Col xs={11} className="align-self-center col-xs-6">
                 <h6>{projectList[i].title}</h6>
                 <p className="mb-2 text-muted">{projectList[i].description}</p>
                 <p className="mb-2 text-muted">{projectList[i].from} ~ {projectList[i].to}</p>
                   </Col>
-                  <Col xs={1} class="align-self-center col-xs-6">
+                  <Col xs={1} className="align-self-center col-xs-6">
                   <Button variant="outline-info" size="sm" onClick={()=>{
                       setIsEditing(true)
                   }}>편집</Button>
@@ -55,6 +41,8 @@ function ProjectCard() {
               </Form>
                   )
             } ))
+          )
+           
           }
 
         {openAddForm == true ? 
@@ -72,4 +60,4 @@ function ProjectCard() {
     </>
 }
 
-export default ProjectCard;
+export default Project;

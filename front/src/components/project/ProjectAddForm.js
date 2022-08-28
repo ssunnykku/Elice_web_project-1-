@@ -24,20 +24,25 @@ function ProjectAddForm({ projectList, setOpenAddForm, setProjectList}) {
 
     const handleSubmit = async (e) => {
       e.preventDefault()
-      
       try{
-        const res = await Api.post(`project/add`,  setProjectList([...projectList, {
-          title : title,
-          description : description,
-          from : from,
-          to : to
-        }]));
-        const project = res.data;
-        console.log(project)
-      } catch (err) {
+         await Api.post(`project/add`, {
+          title,
+          description,
+          from,
+          to,
+          id
+        })
+      } catch (e) {
         console.log("실패");
       }
+
+      await Api.get(`project/current/{projectId}`)
+      .then((res)=>{
+        setProjectList(res.data)
+      })
+  
     }
+
 
   return <>
       <Card.Body>
