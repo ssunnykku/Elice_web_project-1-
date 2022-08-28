@@ -1,41 +1,33 @@
-import React,{useState} from "react"
-import EducationCard from "./EducationCard"
-import EducationEditForm from "./EducationEditForm"
+import React, { useState } from "react";
+import EducationCard from "./EducationCard";
+import EducationEditForm from "./EducationEditForm";
 import * as Api from "../../api";
 
-function EducationCards () {
+function EducationCards({educationData, setEducationData}) {
 
-    //get 불러오기
-    //Api.get('', )
-    const educationlist = [{
-                        school: "ㅇㅇ대",
-                        major: "컴공",
-                        degree: "재학중",
-                        isEditing: false
-                        },
-                        {    
-                        school: "ㅁㅁ대",
-                        major: "미술",
-                        degree: "재학중",
-                        isEditing: true
-                        }
-                        ]
-                        
-    return educationlist.map((i) => (i.isEditing ? (
-                                    <EducationEditForm 
-                                        IsEditing={i.isEditing}
-                                        School = {i.school}
-                                        Major = {i.major}
-                                        Degree = {i.degree}
+
+  //객체의 _id값을 이용해 편집 상태 관리할 배열 만들기 => ex) IsEditingList = {0: false, 1: false }
+  let IsEditingList = {};
+  educationData.map((obj) => (IsEditingList[obj._id] = false));
+
+  const [isEditingList, setIsEditingList] = useState(IsEditingList);
+
+  return educationData.map((i) => isEditingList[i._id] ? ( 
+                                    <EducationEditForm
+                                            educationData={educationData}
+                                            setEducationData={setEducationData}
+                                            isEditingList={isEditingList}
+                                            setIsEditingList={setIsEditingList}
+                                            educationId = {i._id}
                                     />
-                                ) : (
+                                    ) : (
                                     <EducationCard 
-                                        IsEditing={i.isEditing}
-                                        School = {i.school}
-                                        Major = {i.major}
-                                        Degree = {i.degree}
+                                            educationData={educationData}
+                                            isEditingList={isEditingList}
+                                            setIsEditingList={setIsEditingList}
+                                            educationId = {i._id} 
                                     />
-    )))
-    
+                                    )
+  );
 }
-    export default EducationCards
+export default EducationCards;
