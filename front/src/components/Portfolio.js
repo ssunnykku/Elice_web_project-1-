@@ -8,6 +8,7 @@ import User from "./user/User";
 
 import Project from "./project/Project"
 import Education from "./education/Education";
+import Award from "./award/Award";
 
 function Portfolio() {
   const navigate = useNavigate();
@@ -67,8 +68,8 @@ function Portfolio() {
         <Col>
 
           <div style={{ textAlign: "center" }}>
-            학력 목록, 수상이력 목록, 프로젝트 목록, 자격증 목록 만들기
             <Education />
+            <Award/>
             <Project />
           </div>
           
