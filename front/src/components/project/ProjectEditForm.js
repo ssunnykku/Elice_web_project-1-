@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Card, InputGroup, Form, Button, Row, Col } from "react-bootstrap";
 
-function ProjectEditForm({ setIsEditing, projectList, setProjectList }) {
+function ProjectEditForm({ setIsEditing, projectList }) {
 
     const [inputs, setInputs] = useState({
         title: '',
@@ -57,14 +57,6 @@ function ProjectEditForm({ setIsEditing, projectList, setProjectList }) {
       <Form.Group as={Row} className="mt-3 text-center">
       <Col sm={{ span: 20 }}>
         <Button variant="primary" type="submit" className="me-3"
-         onClick={()=>{
-        setProjectList([...projectList, {
-          title : title,
-          description : description,
-          from : from,
-          to : to
-        }])
-        }}
         >확인</Button>
       <Button variant="secondary" onClick={()=>{
         setIsEditing(false)
