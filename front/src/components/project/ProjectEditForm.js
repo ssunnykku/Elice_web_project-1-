@@ -1,13 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Card, InputGroup, Form, Button, Row, Col } from "react-bootstrap";
+import * as Api from "../../api";
 
-function ProjectEditForm({ setIsEditing, projectList }) {
+
+function ProjectEditForm({ setIsEditing, projects }) {
 
     const [inputs, setInputs] = useState({
         title: '',
         description: '',
         from: '',
-        to: ''
+        to: '',
+
       });
   
       const { title, description, from, to } = inputs;
@@ -20,9 +23,27 @@ function ProjectEditForm({ setIsEditing, projectList }) {
         });
       };
 
+      const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        const res = await Api.put(`project/${inputs._id}`, 
+        {
+          title,
+          description,
+          from,
+          to
+        });
+
+        const updateProject = res.data;
+        
+        setInputs(updateProject);
+        setIsEditing(false);
+      }
+
     return (
         <>
     <Card.Body>
+    <Form onSubmit={handleSubmit}>
     <InputGroup className="mb-3">
       <Form.Control
         aria-label="Default"
@@ -63,6 +84,7 @@ function ProjectEditForm({ setIsEditing, projectList }) {
       }}>취소</Button>
       </Col>
       </Form.Group>
+      </Form>
     </Card.Body>
     </>
     )

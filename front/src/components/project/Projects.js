@@ -1,35 +1,36 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Card, Button, Form, Row, Col } from "react-bootstrap";
-import ProjectEditForm from "./ProjectEditForm"
 import ProjectAddForm from "./ProjectAddForm"
 import Project from "./Project"
+import * as Api from "../../api";
 
-function Projects() {
+function Projects({ portfolioOwnerId }) {
 
-    const [openAddForm, setOpenAddForm] = useState(true);
+    const [isEditing, setIsEditing] = useState(true);
 
-    const [projectList, setProjectList] = useState([
-      {
-      title : "웹프로젝트",
-      description : "포트폴리오 웹사이트 제작",
-      from : "2022-08-23",
-      to : "2022-09-12",
-      _id: 0,
-      },
-     {
-      title : "웹프로젝트",
-      description : "포트폴리오 웹사이트 제작",
-      from : "2022-08-23",
-      to : "2022-09-12",
-      _id: 1,
-      },
+    const [projects, setProjects] = useState([
+    //   {
+    //   title : "웹프로젝트",
+    //   description : "포트폴리오 웹사이트 제작",
+    //   from : "2022-08-23",
+    //   to : "2022-09-12",
+    //   _id: 0,
+    //   },
+    //  {
+    //   title : "웹프로젝트",
+    //   description : "포트폴리오 웹사이트 제작",
+    //   from : "2022-08-23",
+    //   to : "2022-09-12",
+    //   _id: 1,
+    //   },
     
     ]
-);  
+);
 
-    const [isEditing, setIsEditing] = useState(false);
+  useEffect(() => {
+    Api.get(`project/projects`, portfolioOwnerId).then((res) => setProjects(res.data));
+  }, [portfolioOwnerId]);
 
-    console.log(projectList)
 
     return <>
 
@@ -40,21 +41,23 @@ function Projects() {
         {/* 편집Form 설정 : isEditing이 False면 편집창이 닫힘 */}
 
         {
-        (projectList.map((project) => {
+        (projects.map((project) => {
           return(
          
-          <Project project={project} key={project._id}/>
-                  )
-            } ))
-          }
+          <Project project={project}
+                   key={project._id}
+                   />    
+            )} 
+          ))
+        }
 
         {/* ProjectAddForm 설정 ( + 버튼 ) */}
 
-        {openAddForm === true && 
+        {isEditing && 
         <ProjectAddForm 
-              projectList={projectList}
-              setProjectList={setProjectList}
-              setOpenAddForm={setOpenAddForm} />}
+              projects={projects}
+              setProjects={setProjects}
+              setIsEditing={setIsEditing} />}
         <Form.Group className="mt-3 text-center">
         <Button variant="primary" className="mt-3" onClick={()=>{
           setOpenAddForm(true) 

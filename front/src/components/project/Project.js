@@ -8,23 +8,28 @@ function Project({ project }){
 
     return(
         <div>
-            {isEditing===true
+            {isEditing === true
             ?    <ProjectEditForm 
-                       setIsEditing={setIsEditing}/> 
+                       setIsEditing={setIsEditing}
+                       /> 
            : 
              <Form style={{ textAlign: "left" }}>
                <Row>
-               <Col xs={11} className="align-self-center col-xs-6">
-                 <h6>{project.title}</h6>
-                 <p className="mb-2 text-muted">{project.description}</p>
-                 <p className="mb-2 text-muted">{project.from} ~ {project.to}</p>
-                   </Col>
-                   <Col xs={1} className="align-self-center col-xs-6">
+                <Col xs={10} className="align-self-center col-xs-6">
+                    <h6>{project.title}</h6>
+                    <p className="mb-2 text-muted">{project.description}</p>
+                    <p className="mb-2 text-muted">{project.from} ~ {project.to}</p>
+                </Col>
+
+                <Col xs={2} sm={{ span: 20 }} >
                    <Button variant="outline-info" size="sm" onClick={()=>{
                        setIsEditing(true)
                    }}>편집</Button>
-                   </Col>
-                 </Row>
+                   <Button variant="outline-info" size="sm" onClick={()=>{
+                    handleDelete}}>삭제</Button>
+                </Col>
+
+            </Row>
                </Form>}
         </div>
     )

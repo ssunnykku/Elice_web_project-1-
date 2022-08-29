@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Card, InputGroup, Form, Button, Row, Col } from "react-bootstrap";
 
 import * as Api from "../../api";
 
-function ProjectAddForm({ projectList, setProjectList, setOpenAddForm, }) {
+function ProjectAddForm({ projects, setProjects, setIsEditing }) {
 
     const [inputs, setInputs] = useState({
       title: '',
@@ -33,22 +33,12 @@ function ProjectAddForm({ projectList, setProjectList, setOpenAddForm, }) {
         })
         .then((res)=>{
           let data = res.data
-          setProjectList([...projectList, data])})
+          setProjects([...projects, data])})
 
       } catch (e) {
         console.log("실패");
       }
     }
-
-      // await Api.get(`project/current/projectId`)
-      // .then((res)=>{
-      //   setProjectList(res.data)
-      // })
-  
-
-      // await Api.get(`project/current/projectId`).then((res)=>{
-      //     let add = [...projectList, ...res.data]
-      //     setProjectList(add)
 
   return <>
       <Card.Body>
@@ -91,7 +81,7 @@ function ProjectAddForm({ projectList, setProjectList, setOpenAddForm, }) {
           <Col sm={{ span: 20 }}>
           <Button variant="primary" type="submit" className="me-3">확인</Button>
           <Button variant="secondary" onClick={(e)=>{
-            setOpenAddForm(false)
+            setIsEditing(false)
           }}>취소</Button>
           </Col>
           </Form.Group>
