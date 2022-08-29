@@ -8,7 +8,6 @@ const educationRouter = Router();
 
 educationRouter.post("/add", login_required, async function (req, res, next) {
   try {
-    console.log("1번", req.body);
     if (is.emptyObject(req.body)) {
       throw new Error("정보를 입력해 주세요");
     }
@@ -45,6 +44,9 @@ educationRouter.get(
       const user_id = req.params.userId;
       const information = await educationService.getEducations({ user_id });
 
+      if (information.errorMessage) {
+        throw new Error(information.errorMessage);
+      }
       res.status(200).send(information);
     } catch (error) {
       next(error);
@@ -52,36 +54,43 @@ educationRouter.get(
   }
 );
 
-educationRouter.put("/:eduId", login_required, async function (req, res, next) {
-  try {
-    // URI로부터 사용자 id를 추출함.
-    const edu_id = req.params.eduId;
-    // body data 로부터 업데이트할 사용자 정보를 추출함.
-    const school = req.body.school ?? null;
-    const major = req.body.major ?? null;
-    const degree = req.body.degree ?? null;
-
-    const toUpdate = { edu_id, school, major, degree };
-
-    // 해당 사용자 아이디로 사용자 정보를 db에서 찾아 업데이트함. 업데이트 요소가 없을 시 생략함
-    const updatedUser = await userAuthService.setUser({ edu_id, toUpdate });
-
-    if (updatedUser.errorMessage) {
-      throw new Error(updatedUser.errorMessage);
-    }
-
-    res.status(200).json(updatedUser);
-  } catch (error) {
-    next(error);
-  }
-});
-
-educationRouter.get(
-  "/usereducation/:id",
+educationRouter.put(
+  "/:userId",
   login_required,
   async function (req, res, next) {
     try {
-      const user_id = req.params.id;
+      // URI로부터 사용자 id를 추출함.
+      const user_id = req.params.userId;
+      // body data 로부터 업데이트할 사용자 정보를 추출함.
+      const school = req.body.school ?? null;
+      const major = req.body.major ?? null;
+      const degree = req.body.degree ?? null;
+
+      const toUpdate = { school, major, degree };
+
+      // 해당 사용자 아이디로 사용자 정보를 db에서 찾아 업데이트함. 업데이트 요소가 없을 시 생략함
+      const updatedEducation = await educationService.getUserInfo({
+        user_id,
+        toUpdate,
+      });
+
+      if (updatedEducation.errorMessage) {
+        throw new Error(updatedEducation.errorMessage);
+      }
+
+      res.status(200).json(updatedEducation);
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
+educationRouter.get(
+  "/info/:userId",
+  login_required,
+  async function (req, res, next) {
+    try {
+      const user_id = req.params.userId;
       const currentUserInfo = await userAuthService.getUserInfo({ user_id });
 
       if (currentUserInfo.errorMessage) {
