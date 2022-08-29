@@ -3,7 +3,7 @@ import { Card, InputGroup, Form, Button, Row, Col } from "react-bootstrap";
 
 import * as Api from "../../api";
 
-function ProjectAddForm({ projectList, setOpenAddForm, setProjectList}) {
+function ProjectAddForm({ projectList, setProjectList, setOpenAddForm, }) {
 
     const [inputs, setInputs] = useState({
       title: '',
@@ -26,23 +26,29 @@ function ProjectAddForm({ projectList, setOpenAddForm, setProjectList}) {
       e.preventDefault()
       try{
          await Api.post(`project/add`, {
-          title,
-          description,
-          from,
-          to,
-          id
+          title: title,
+          description: description,
+          from: from,
+          to: to
         })
+        .then((res)=>{
+          let data = res.data
+          setProjectList([...projectList, data])})
+
       } catch (e) {
         console.log("실패");
       }
-
-      await Api.get(`project/current/{projectId}`)
-      .then((res)=>{
-        setProjectList(res.data)
-      })
-  
     }
 
+      // await Api.get(`project/current/projectId`)
+      // .then((res)=>{
+      //   setProjectList(res.data)
+      // })
+  
+
+      // await Api.get(`project/current/projectId`).then((res)=>{
+      //     let add = [...projectList, ...res.data]
+      //     setProjectList(add)
 
   return <>
       <Card.Body>
@@ -83,7 +89,7 @@ function ProjectAddForm({ projectList, setOpenAddForm, setProjectList}) {
           <Form.Group as={Row} className="mt-3 text-center">
 
           <Col sm={{ span: 20 }}>
-          <Button variant="primary" type="submit" className="me-3" onClick={()=>{handleSubmit}}>확인</Button>
+          <Button variant="primary" type="submit" className="me-3">확인</Button>
           <Button variant="secondary" onClick={(e)=>{
             setOpenAddForm(false)
           }}>취소</Button>

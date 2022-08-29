@@ -45,7 +45,7 @@ function Project() {
            
           }
 
-        {openAddForm == true ? 
+        {openAddForm === true ? 
         <ProjectAddForm 
               projectList={projectList}
               setProjectList={setProjectList}
