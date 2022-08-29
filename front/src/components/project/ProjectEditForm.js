@@ -56,15 +56,16 @@ function ProjectEditForm({ setIsEditing, projectList, setProjectList }) {
       <br/>
       <Form.Group as={Row} className="mt-3 text-center">
       <Col sm={{ span: 20 }}>
-        <Button variant="primary" type="submit" className="me-3" onClick={()=>{
+        <Button variant="primary" type="submit" className="me-3"
+         onClick={()=>{
         setProjectList([...projectList, {
           title : title,
           description : description,
           from : from,
           to : to
         }])
-
-      }}>확인</Button>
+        }}
+        >확인</Button>
       <Button variant="secondary" onClick={()=>{
         setIsEditing(false)
       }}>취소</Button>

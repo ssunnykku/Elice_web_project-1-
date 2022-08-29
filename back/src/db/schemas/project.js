@@ -16,11 +16,11 @@ const ProjectSchema = new Schema(
             default: "프로젝트 내용을 생성해주세요.",
         },
         from: {
-            type: Date,
+            type: String,
             required: true,
         },
         to: {
-            type: Date,
+            type: String,
             required: true,
         },
     },

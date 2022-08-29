@@ -4,11 +4,35 @@ import ProjectEditForm from "./ProjectEditForm"
 import ProjectAddForm from "./ProjectAddForm"
 
 function Project() {
+
+    const [openAddForm, setOpenAddForm] = useState(true);
+
+    const [projectList, setProjectList] = useState([
+      {
+      title : "웹프로젝트",
+      description : "포트폴리오 웹사이트 제작",
+      from : "2022-08-23",
+      to : "2022-09-12",
+      _id: 0,
+      },
+     {
+      title : "웹프로젝트",
+      description : "포트폴리오 웹사이트 제작",
+      from : "2022-08-23",
+      to : "2022-09-12",
+      _id: 1,
+      },
+    
+    ]
+);  
+
     const [isEditing, setIsEditing] = useState(false);
+      
+    // let isEditList = projectList.map((a, i)=> { 
+    //   return {id: projectList[i]._id}})
 
-    const [openAddForm, setOpenAddForm] = useState(false);
-
-    const [projectList, setProjectList] = useState(null);  
+    //   console.log(isEditList)
+      
 
     console.log(projectList)
 
@@ -17,15 +41,18 @@ function Project() {
      <Card style={{ width: '40rem' }}>
       <Card.Body>
         <h5>프로젝트</h5>
+
+        {/* 편집Form 설정 : isEditing이 False면 편집창이 닫힘 */}
+
         {
-          isEditing ? <ProjectEditForm 
+        (projectList.map((x,i) => {
+          return(
+          isEditing==true
+           ?    <ProjectEditForm 
                       setIsEditing={setIsEditing}
                       setProjectList={setProjectList}/> 
-          : (
-            (!projectList) ? null :  (projectList.map((x,i) => {
-
-              return(
-            <Form style={{ textAlign: "left" }} key={i}>
+          : 
+            <Form style={{ textAlign: "left" }} key={projectList._id}>
               <Row>
               <Col xs={11} className="align-self-center col-xs-6">
                 <h6>{projectList[i].title}</h6>
@@ -41,15 +68,15 @@ function Project() {
               </Form>
                   )
             } ))
-          )
-           
           }
 
-        {openAddForm === true ? 
+        {/* ProjectAddForm 설정 ( + 버튼 ) */}
+
+        {openAddForm === true && 
         <ProjectAddForm 
               projectList={projectList}
               setProjectList={setProjectList}
-              setOpenAddForm={setOpenAddForm} /> : null}
+              setOpenAddForm={setOpenAddForm} />}
         <Form.Group className="mt-3 text-center">
         <Button variant="primary" className="mt-3" onClick={()=>{
           setOpenAddForm(true) 
