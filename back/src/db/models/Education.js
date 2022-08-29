@@ -6,8 +6,8 @@ class Education {
     return createdEducation;
   }
 
-  static async findById({ user_id }) {
-    const education = await EducationModel.findOne({ _id: user_id });
+  static async findById({ edu_id }) {
+    const education = await EducationModel.findOne({ _id: edu_id });
     return education;
   }
 
@@ -16,8 +16,8 @@ class Education {
     return educations;
   }
 
-  static async update({ user_id, fieldToUpdate, newValue }) {
-    const filter = { id: user_id };
+  static async update({ edu_id, fieldToUpdate, newValue }) {
+    const filter = { _id: edu_id };
     const update = { [fieldToUpdate]: newValue };
     const option = { returnOriginal: false };
 

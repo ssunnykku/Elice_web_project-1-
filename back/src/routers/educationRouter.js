@@ -54,36 +54,31 @@ educationRouter.get(
   }
 );
 
-educationRouter.put(
-  "/:userId",
-  login_required,
-  async function (req, res, next) {
-    try {
-      // URI로부터 사용자 id를 추출함.
-      const user_id = req.params.userId;
-      // body data 로부터 업데이트할 사용자 정보를 추출함.
-      const school = req.body.school ?? null;
-      const major = req.body.major ?? null;
-      const degree = req.body.degree ?? null;
+educationRouter.put("/:eduId", login_required, async function (req, res, next) {
+  try {
+    // URI로부터 사용자 id를 추출함.
+    const edu_id = req.params.eduId;
+    // body data 로부터 업데이트할 사용자 정보를 추출함.
+    const school = req.body.school ?? null;
+    const major = req.body.major ?? null;
+    const degree = req.body.degree ?? null;
 
-      const toUpdate = { school, major, degree };
+    const toUpdate = { school, major, degree };
+    // 해당 사용자 아이디로 사용자 정보를 db에서 찾아 업데이트함. 업데이트 요소가 없을 시 생략함
+    const updatedEducation = await educationService.eduInfo({
+      edu_id,
+      toUpdate,
+    });
 
-      // 해당 사용자 아이디로 사용자 정보를 db에서 찾아 업데이트함. 업데이트 요소가 없을 시 생략함
-      const updatedEducation = await educationService.getUserInfo({
-        user_id,
-        toUpdate,
-      });
-
-      if (updatedEducation.errorMessage) {
-        throw new Error(updatedEducation.errorMessage);
-      }
-
-      res.status(200).json(updatedEducation);
-    } catch (error) {
-      next(error);
+    if (updatedEducation.errorMessage) {
+      throw new Error(updatedEducation.errorMessage);
     }
+
+    res.status(200).json(updatedEducation);
+  } catch (error) {
+    next(error);
   }
-);
+});
 
 educationRouter.get(
   "/info/:userId",
@@ -98,6 +93,28 @@ educationRouter.get(
       }
 
       res.status(200).send(currentUserInfo);
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
+educationRouter.delete(
+  "/:eduId",
+  login_required,
+  async function (req, res, next) {
+    try {
+      const deletedEducation = await EducationModel.remove({
+        _id: req.params.eduId,
+      });
+
+      if (!deletedEducation) {
+        throw new Error(deletedEducation.errorMessage);
+      }
+
+      res.status(200).json({
+        message: "It's deleted!",
+      });
     } catch (error) {
       next(error);
     }

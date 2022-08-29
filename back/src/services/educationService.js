@@ -10,7 +10,7 @@ class educationService {
   }
 
   static async getEducations({ user_id }) {
-    const educations = await Education.findById({ user_id });
+    const educations = await Education.findAll({ user_id });
 
     if (!educations) {
       const errorMessage = "내용이 없습니다.";
@@ -19,8 +19,8 @@ class educationService {
     return educations;
   }
 
-  static async getUserInfo({ user_id, toUpdate }) {
-    const education = await Education.findById({ user_id });
+  static async eduInfo({ edu_id, toUpdate }) {
+    let education = await Education.findById({ edu_id });
 
     // db에서 찾지 못한 경우, 에러 메시지 반환
     if (!education) {
@@ -31,19 +31,19 @@ class educationService {
     if (toUpdate.school) {
       const fieldToUpdate = "school";
       const newValue = toUpdate.school;
-      education = await Education.update({ user_id, fieldToUpdate, newValue });
+      education = await Education.update({ edu_id, fieldToUpdate, newValue });
     }
 
     if (toUpdate.major) {
       const fieldToUpdate = "major";
       const newValue = toUpdate.major;
-      education = await Education.update({ user_id, fieldToUpdate, newValue });
+      education = await Education.update({ edu_id, fieldToUpdate, newValue });
     }
 
     if (toUpdate.degree) {
       const fieldToUpdate = "degree";
       const newValue = toUpdate.degree;
-      education = await Education.update({ user_id, fieldToUpdate, newValue });
+      education = await Education.update({ edu_id, fieldToUpdate, newValue });
     }
 
     return education;
