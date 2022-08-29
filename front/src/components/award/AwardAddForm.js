@@ -4,23 +4,28 @@ import * as Api from "../../api";
 
 
 // 학력 추가 컴포넌트
-function AwardAddForm ({setIsAddingAward}) {
+function AwardAddForm ({setIsAddingAward, awardData, setAwardData}) {
     const [award, setAward] = useState("");
     const [detail, setDetail] = useState("");
-    const isEditing = false
 
-    function handleSubmit (e) {
+    async function handleSubmit (e) {
         e.preventDefault();
         
         //입력한 값 post 보내기
-        Api.post (`award/add`, {
-            award,
-            detail,
-            isEditing
-        });
+        // const res = await Api.post (`award/add`, {
+        //     award,
+        //     detail
+        // });
 
+        const resdata = {
+            award: "aa상",
+            detail: "요롱롱거함",
+            _id: "1ㅂㄷㅈㄷ1",
+        }
+        const newAwardData = [...awardData, resdata]
+        setAwardData(newAwardData)
+        //award 추가하는 창닫기
         setIsAddingAward(false)
-
     }
 
     return (

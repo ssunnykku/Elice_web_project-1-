@@ -1,27 +1,27 @@
 import React,{useState} from "react"
 import {Form, Button, Col, Row} from "react-bootstrap";
-import * as Api from "../../api";
 
 
-function AwardCard ({IsEditing, Award, Detail}) {
+function AwardCard ({awardData, isEditingList, setIsEditingList, awardId}) {
     
-    const [isEditing, setIsEditing] = useState(IsEditing);
+    const getData = awardData.find((obj) => obj._id === awardId)
 
-    //편집상태 isEditing 바뀐것 put해서 컴포넌트 닫기
-    // Api.put('',{
-    //     isEditing
-    // })
+    function openEdit () {
+        const newIsEditingList = {...isEditingList}
+        newIsEditingList[awardId] = true
+        setIsEditingList(newIsEditingList)
+    }
     
 
     return (
         <Form className="mb-4" style={{ textAlign: "left" }}>
             <Row>
                 <Col xs={11} class="d-flex flex-column mb-3">
-                    <div>{Award}</div>
-                    <div>{Detail}</div>
+                    <div>{getData.award}</div>
+                    <div>{getData.detail}</div>
                 </Col>
                 <Col xs={1} class="align-self-center col-xs-6">
-                    <Button size="sm" variant="outline-info" onClick={() => setIsEditing(true)}>편집</Button> 
+                    <Button size="sm" variant="outline-info" onClick={openEdit}>편집</Button> 
                 </Col>  
             </Row>
         </Form>

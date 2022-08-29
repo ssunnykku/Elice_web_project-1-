@@ -4,22 +4,42 @@ import * as Api from "../../api";
 
 
 
-function AwardEditForm ({IsEditing, Award, Detail}) {
-    const [award, setAward] = useState(Award);
-    const [detail, setDetail] = useState(Detail);
-    const [isEditing, setIsEditing] = useState(IsEditing);
+function AwardEditForm ({awardData, setAwardData, isEditingList, setIsEditingList, awardId}) {
 
-    function handleSubmit (e) {
+    //키값으로 해당 게시글 데이터 찾기
+    const getData = awardData.find(edu => edu._id === awardId)
+
+    const [award, setAward] = useState(getData.award);
+    const [detail, setDetail] = useState(getData.detail);
+
+    function closeAward () {
+        const newIsEditingList = {...isEditingList}
+        newIsEditingList[awardId] = false
+        setIsEditingList(newIsEditingList)
+    }
+
+    async function handleSubmit (e) {
         e.preventDefault();
         
         //바뀐 값 put
-        // Api.put('',{
+        // const res = await Api.put('award/{awardId}',{
         //     award,
-        //     detail,
-        //     isEditing
+        //     detail
         // })
+        // const newData = res.data
 
+        const newData = {
+                        award: "아차상",
+                        detail: "요론거함",
+                        _id: "1231"
+                        }
 
+        const newAwardData = [...awardData]
+        const findIndex = newAwardData.findIndex((obj) => obj._id === awardId);
+        newAwardData[findIndex] = newData;
+        setAwardData(newAwardData);
+        
+        closeAward();
     }
 
     return (
@@ -41,7 +61,7 @@ function AwardEditForm ({IsEditing, Award, Detail}) {
                 />
             </Form.Group>
             <Button variant="primary" className="mb-3" type="submit">확인</Button>{' '}
-            <Button variant="secondary" className="mb-3" onClick={() => setIsEditing(false)}>취소</Button>
+            <Button variant="secondary" className="mb-3" onClick={closeAward}>취소</Button>
         </Form>
     )
 }

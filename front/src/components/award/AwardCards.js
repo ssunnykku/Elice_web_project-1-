@@ -1,35 +1,30 @@
-import React from "react"
+import React, {useState} from "react"
 import AwardCard from "./AwardCard"
 import AwardEditForm from "./AwardEditForm"
-import * as Api from "../../api";
 
-function AwardCards () {
+function AwardCards ({awardData, setAwardData}) {
 
-    //get 불러오기
-    //Api.get('', )
-    const awardList = [{
-                        award: "ㅇㅇ상",
-                        detail: "블라블라 나잘함",
-                        isEditing: false
-                        },
-                        {    
-                        award: "ㅁㅁ상",
-                        detail: "나는 짱임",
-                        isEditing: true
-                        }
-                        ]
-                        
-    return awardList.map((i) => (i.isEditing ? (
+
+    //편집상태관리
+    let IsEditingList = {}
+    awardData.map((obj) => (IsEditingList[obj._id] = false))
+
+    const [isEditingList, setIsEditingList] = useState(IsEditingList);
+
+    return awardData.map((i) => (isEditingList[i._id] ? (
                                     <AwardEditForm 
-                                        IsEditing={i.isEditing}
-                                        Award = {i.award}
-                                        Detail = {i.detail}
+                                        awardData ={awardData}
+                                        setAwardData = {setAwardData}
+                                        isEditingList = {isEditingList}
+                                        setIsEditingList = {setIsEditingList}
+                                        awardId = {i._id}
                                     />
                                 ) : (
                                     <AwardCard 
-                                        IsEditing={i.isEditing}
-                                        Award = {i.award}
-                                        Detail = {i.detail}
+                                        awardData ={awardData}
+                                        isEditingList = {isEditingList}
+                                        setIsEditingList = {setIsEditingList}
+                                        awardId = {i._id}
                                     />
     )))
     
