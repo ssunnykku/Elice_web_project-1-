@@ -16,7 +16,7 @@ const CertificateSchema = new Schema(
             default: "상세 내역",
         },
         date: {
-            type: Date,
+            type: String,
             required: true,
         },
     },

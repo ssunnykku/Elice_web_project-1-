@@ -60,15 +60,31 @@ certificateRouter.get(
 )
 
 // Update
-// certificateRouter.put(
-//     "/:certificateId",
-//     login_required,
-//     async function (req, res, next) {
-//         const cer_id = req.params.certificateId;
+certificateRouter.put(
+    "/:certificateId",
+    login_required,
+    async function (req, res, next) {
+        try {
+            const cer_id = req.params.certificateId;
         
-        
-//     }
-// )
+            const title = req.body.title ?? null;
+            const description = req.body.description ?? null;
+            const date = req.body.date ?? null;
+            
+            const toUpdate = { title, description, date}
+            const updatedCertificate = await certificateService.updateCertificate({ cer_id, toUpdate })
+            
+            console.log("결과 :",  updatedCertificate)
+            if (updatedCertificate.errorMessage) {
+                throw new Error(updatedCertificate.errorMessage)
+            }
+    
+            res.status(200).json(updatedCertificate)
+        } catch (err) {
+            next(err)
+        }
+    }
+)
 
 certificateRouter.delete(
     "/:certificateId",

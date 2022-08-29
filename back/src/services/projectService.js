@@ -42,7 +42,7 @@ class projectService {
           return { errorMessage };
         }
     
-        // 업데이트 대상에 name이 있다면, 즉 name 값이 null 이 아니라면 업데이트 진행
+        // 업데이트 대상에 title, desciption, from, to가 null이 아니라면 아래의 if 문을 실행
         if (toUpdate.title) {
           const fieldToUpdate = "title";
           const newValue = toUpdate.title;
