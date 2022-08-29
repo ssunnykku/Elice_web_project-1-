@@ -36,6 +36,7 @@ function EducationAddForm ({educationData, setEducationData, setIsAddingEducatio
         }
         const newEducationData = [...educationData, resdata]
         setEducationData(newEducationData)
+        
         setIsAddingEducation(false)
 
     }

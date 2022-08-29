@@ -23,6 +23,7 @@ function EducationCards({educationData, setEducationData}) {
                                     ) : (
                                     <EducationCard 
                                             educationData={educationData}
+                                            setEducationData={setEducationData}
                                             isEditingList={isEditingList}
                                             setIsEditingList={setIsEditingList}
                                             educationId = {i._id} 

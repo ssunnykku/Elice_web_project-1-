@@ -45,6 +45,7 @@ function Education () {
                             setEducationData={setEducationData}/>
                     
                     <Button className="mb-3" variant="primary" onClick={() => setIsAddingEducation(true)}>+</Button>
+                    
                     {isAddingEducation && (
                         <EducationAddForm
                             setIsAddingEducation={setIsAddingEducation}

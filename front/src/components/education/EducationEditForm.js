@@ -10,7 +10,8 @@ function EducationEditForm ({educationData, setEducationData, isEditingList, set
 
     // _id(educationId) 키값으로 배열에서 해당 education 객체찾기
     const getData = educationData.find(edu => edu._id === educationId)
-
+    
+    
     // const [formData, setFormData] = useState({
     //                                             school: getData.school,
     //                                             major: getData.major,
