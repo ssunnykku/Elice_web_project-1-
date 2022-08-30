@@ -62,7 +62,7 @@ function Projects({ portfolioOwnerId }) {
               setIsEditing={setIsEditing} />}
         <Form.Group className="mt-3 text-center">
         <Button variant="primary" className="mt-3" onClick={()=>{
-          setOpenAddForm(true) 
+          setIsEditing(true) 
         }}>+</Button>
         </Form.Group>
       </Card.Body>

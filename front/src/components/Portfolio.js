@@ -74,7 +74,6 @@ function Portfolio() {
             <Award
               portfolioOwnerId={portfolioOwner.id}
               />
-
             <Projects 
               portfolioOwnerId={portfolioOwner.id} 
               />

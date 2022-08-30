@@ -7,11 +7,11 @@ function Project({ project, setProjects, projects }){
 
     const [isEditing, setIsEditing] = useState(false)
 
-    const deletePost = async (e) => {
+    const deletePost = async () => {
         await Api.delete(`project/${project._id}`);
-        setInputs(
-          projects.filter((project) => {
-             project._id !== id;
+        setProjects(
+          projects.filter((obj) => {
+             obj._id !== project._id;
           })
         )
       }
