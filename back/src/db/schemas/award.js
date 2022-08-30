@@ -23,4 +23,3 @@ const AwardSchema = new Schema(
 const AwardModel = model("Education", AwardSchema);
 
 export { AwardModel };
-//
