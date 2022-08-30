@@ -3,40 +3,58 @@ import { Form, Button } from "react-bootstrap";
 import * as Api from "../../api";
 
 
-// 학력 추가 컴포넌트
-function CertificateAddForm ({setIsAddingCertificate}) {
-    const [school, setSchool] = useState("");
-    const [major, setMajor] = useState("");
-    const [degree, setDegree] = useState("재학중");
-    const isEditing = false
+function CertificateAddForm ({setIsAddingCertificate, certificateData, setCertificateData}) {
+    const [certificate, setCertificate] = useState("");
+    const [information, setInformation] = useState("");
+    const [date, setDate] = useState("");
 
-    function handleSubmit (e) {
-        e.preventDefault();
-        
-        setIsAddingCertificate(false)
+    //폼이 제출 됐을때,
+    async function handleSubmit(e) {
+    e.preventDefault();
 
+    //입력한 값 post 보내기
+    const res = await Api.post(`certificate/add`, {
+      certificate,
+      information,
+      date,
+    });
+
+    //받은 데이터 certificateData에 추가하기
+    const updateCertificate = res.data;
+    const newCertificateData = [...certificateData, updateCertificate];
+    setCertificateData(newCertificateData);
+
+    //추가창 닫기
+    setIsAddingCertificate(false);
     }
 
     return (
         <Form onSubmit={handleSubmit}>
-            <Form.Group className="mb-3" controlId="schoolName">
+            <Form.Group className="mb-3" controlId="certificateName">
                 <Form.Control 
                     type="text" 
                     placeholder="자격증 이름"
-                    value={school}
-                    onChange={(e) => setSchool(e.target.value)
+                    value={certificate}
+                    onChange={(e) => setCertificate(e.target.value)
                     } 
                 />
             </Form.Group>
-            <Form.Group className="mb-3" controlId="major">
+            <Form.Group className="mb-3" controlId="information">
                 <Form.Control 
                     type="text" 
                     placeholder="상세내역"
-                    value={major}
-                    onChange={(e) => setMajor(e.target.value)} 
+                    value={information}
+                    onChange={(e) => setInformation(e.target.value)} 
                 />
             </Form.Group>
-            {/* map 필요없는 것 없애거나 map사용하는 방법으로 고쳐보기 */}
+            
+            <Form.Group className="mb-3">
+            <input type="date" 
+                onChange={(e) => setDate(e.target.value)}
+                name="date"
+                value={date}/>
+            <br/>
+            </Form.Group>
             
             <Button variant="primary" type="submit" >확인</Button>{' '}
             <Button variant="secondary" onClick={() => setIsAddingCertificate(false) }>취소</Button>
