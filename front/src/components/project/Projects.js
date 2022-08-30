@@ -6,7 +6,7 @@ import * as Api from "../../api";
 
 function Projects({ portfolioOwnerId }) {
 
-    const [isEditing, setIsEditing] = useState(true);
+    const [isEditing, setIsEditing] = useState(false);
 
     const [projects, setProjects] = useState([
     //   {
