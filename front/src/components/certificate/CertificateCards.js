@@ -1,6 +1,6 @@
 import React,{useState} from "react"
 import CertificateCard from "./CertificateCard"
-import CertificateEditForm from ".CertificateEditForm"
+import CertificateEditForm from "./CertificateEditForm"
 import * as Api from "../../api";
 
 function CertificateCards () {
@@ -8,15 +8,15 @@ function CertificateCards () {
     //get 불러오기
     //Api.get('', )
     const Certificatelist = [{
-                        school: "ㅇㅇ대",
-                        major: "컴공",
-                        degree: "재학중",
-                        isEditing: false
+                        school: "정보처리기사",
+                        major: "컴퓨터",
+                        degree: "국가자격증",
+                        isEditing: true
                         },
                         {    
-                        school: "ㅁㅁ대",
-                        major: "미술",
-                        degree: "재학중",
+                        school: "",
+                        major: "",
+                        degree: "",
                         isEditing: true
                         }
                         ]

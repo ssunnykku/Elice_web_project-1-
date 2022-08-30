@@ -7,12 +7,6 @@ function CertificateCard ({IsEditing, School, Major, Degree}) {
     
     const [isEditing, setIsEditing] = useState(IsEditing);
 
-    //편집상태 isEditing 바뀐것 put해서 컴포넌트 닫기
-    // Api.put('',{
-    //     isEditing
-    // })
-    
-
     return (
         <Form className="mb-4" style={{ textAlign: "left" }}>
             <Row>
@@ -28,4 +22,4 @@ function CertificateCard ({IsEditing, School, Major, Degree}) {
     )
 }
 
-export default CertificateCard
+export default CertificateCard 

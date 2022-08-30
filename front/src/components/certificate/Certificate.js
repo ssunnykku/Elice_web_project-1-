@@ -14,7 +14,7 @@ function Certificate () {
         <>
             <Card className="mb-2 ms-3 mr-5">
                 <Card.Body>
-                    <Card.Title>학?????력</Card.Title>
+                    <Card.Title>자격증</Card.Title>
             
                     <CertificateCards/>
                     
