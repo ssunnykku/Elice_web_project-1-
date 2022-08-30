@@ -4,8 +4,8 @@ import * as Api from "../../api";
 
 
 function CertificateAddForm ({setIsAddingCertificate, certificateData, setCertificateData}) {
-    const [certificate, setCertificate] = useState("");
-    const [information, setInformation] = useState("");
+    const [title, setTitle] = useState("");
+    const [description, setDescription] = useState("");
     const [date, setDate] = useState("");
 
     //폼이 제출 됐을때,
@@ -14,8 +14,8 @@ function CertificateAddForm ({setIsAddingCertificate, certificateData, setCertif
 
     //입력한 값 post 보내기
     const res = await Api.post(`certificate/add`, {
-      certificate,
-      information,
+      title,
+      description,
       date,
     });
 
@@ -30,21 +30,21 @@ function CertificateAddForm ({setIsAddingCertificate, certificateData, setCertif
 
     return (
         <Form onSubmit={handleSubmit}>
-            <Form.Group className="mb-3" controlId="certificateName">
+            <Form.Group className="mb-3" controlId="titleName">
                 <Form.Control 
                     type="text" 
                     placeholder="자격증 이름"
-                    value={certificate}
-                    onChange={(e) => setCertificate(e.target.value)
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)
                     } 
                 />
             </Form.Group>
-            <Form.Group className="mb-3" controlId="information">
+            <Form.Group className="mb-3" controlId="description">
                 <Form.Control 
                     type="text" 
                     placeholder="상세내역"
-                    value={information}
-                    onChange={(e) => setInformation(e.target.value)} 
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)} 
                 />
             </Form.Group>
             

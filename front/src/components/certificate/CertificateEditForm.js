@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, ModalTitle } from "react-bootstrap";
 import * as Api from "../../api";
 
 
@@ -11,8 +11,8 @@ function CertificateEditForm ({certificateData, setCertificateData, isEditingLis
     // _id(certificateId) 키값으로 배열에서 해당 certificate 객체찾기
     const getData = certificateData.find(certif => certif._id === certificateId)
     
-    const [certificate, setCertificate] = useState(getData.certificate);
-    const [information, setInformation] = useState(getData.information);
+    const [title, setTitle] = useState(getData.title);
+    const [description, setDescription] = useState(getData.description);
     const [date, setDate] = useState(getData.Date);
 
     //편집창 닫는 함수
@@ -27,8 +27,8 @@ function CertificateEditForm ({certificateData, setCertificateData, isEditingLis
         
         //바뀐 값 put
         const res = await Api.put((`certificate/${certificateId}`), {
-            certificate,
-            information,
+            title,
+            description,
             Date
         });
 
@@ -45,27 +45,27 @@ function CertificateEditForm ({certificateData, setCertificateData, isEditingLis
 
     return (
         <Form onSubmit={handleSubmit}>
-            <Form.Group className="mb-3" controlId="certificateName">
+            <Form.Group className="mb-3" controlId="titleName">
                 <Form.Control 
                     type="text" 
                     placeholder="자격증 이름"
-                    value={certificate}
-                    onChange={(e) => setCertificate(e.target.value)
+                    value={ModalTitle}
+                    onChange={(e) => setTitle(e.target.value)
                     } 
                 />
             </Form.Group>
-            <Form.Group className="mb-3" controlId="information">
+            <Form.Group className="mb-3" controlId="description">
                 <Form.Control 
                     type="text" 
                     placeholder="상세내역"
-                    value={information}
-                    onChange={(e) => setInformation(e.target.value)} 
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)} 
                 />
             </Form.Group>
             
             <Form.Group className="mb-3">
             <input type="date" 
-                onChange={(e) => setCertificate(e.target.value)} 
+                onChange={(e) => setTitle(e.target.value)} 
                 name="date"
                 value={date}/>
             <br/>

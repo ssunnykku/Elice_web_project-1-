@@ -71,7 +71,8 @@ function Portfolio() {
             학력 목록, 수상이력 목록, 프로젝트 목록, 자격증 목록 만들기
             <Education />
             <Project />
-            <Certificate />
+            <Certificate 
+            portfolioOwnerId={portfolioOwner.id}/>
           </div>
           
           

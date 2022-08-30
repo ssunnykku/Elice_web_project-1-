@@ -38,8 +38,8 @@ function CertificateCard ({certificateData, setCertificateData, isEditingList, s
         <Form className="mb-4" style={{ textAlign: "left" }}>
             <Row>
                 <Col xs={11} class="d-flex flex-column mb-3">
-                    <div>{getData.certificate}</div>
-                    <div>{getData.information}</div>
+                    <div>{getData.title}</div>
+                    <div>{getData.description}</div>
                     <div>{getData.date}</div>
                 </Col> 
                 <Col xs={1} class="align-self-center col-xs-6">
