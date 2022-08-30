@@ -69,14 +69,9 @@ function Portfolio() {
 
           <div style={{ textAlign: "center" }}>
 
-            <Education />
-              portfolioOwnerId={portfolioOwner.id}/>
-            <Award
-              portfolioOwnerId={portfolioOwner.id}
-              />
-            <Projects 
-              portfolioOwnerId={portfolioOwner.id} 
-              />
+            <Education portfolioOwnerId={portfolioOwner.id}/>
+            <Award portfolioOwnerId={portfolioOwner.id}/>
+            <Projects portfolioOwnerId={portfolioOwner.id} />
               
           </div>
           
