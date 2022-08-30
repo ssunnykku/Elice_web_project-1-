@@ -7,24 +7,27 @@ function AwardCards ({awardData, setAwardData}) {
 
     //편집상태관리
     let IsEditingList = {}
-    awardData.map((obj) => (IsEditingList[obj._id] = false))
+    awardData.map((awd) => (IsEditingList[awd._id] = false))
 
     const [isEditingList, setIsEditingList] = useState(IsEditingList);
 
-    return awardData.map((i) => (isEditingList[i._id] ? (
+    return awardData.map((awd) => (isEditingList[awd._id] ? (
                                     <AwardEditForm 
                                         awardData ={awardData}
                                         setAwardData = {setAwardData}
                                         isEditingList = {isEditingList}
                                         setIsEditingList = {setIsEditingList}
-                                        awardId = {i._id}
+                                        awardId = {awd._id}
+                                        key = {awd._id}
                                     />
                                 ) : (
                                     <AwardCard 
                                         awardData ={awardData}
+                                        setAwardData = {setAwardData}
                                         isEditingList = {isEditingList}
                                         setIsEditingList = {setIsEditingList}
-                                        awardId = {i._id}
+                                        awardId = {awd._id}
+                                        key = {awd._id}
                                     />
     )))
     

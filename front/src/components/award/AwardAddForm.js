@@ -11,19 +11,15 @@ function AwardAddForm ({setIsAddingAward, awardData, setAwardData}) {
     async function handleSubmit (e) {
         e.preventDefault();
         
-        //입력한 값 post 보내기
-        // const res = await Api.post (`award/add`, {
-        //     award,
-        //     detail
-        // });
+        // 입력한 값 post 보내기
+        const res = await Api.post (`award/add`, {
+            award,
+            detail
+        });
 
-        const resdata = {
-            award: "aa상",
-            detail: "요롱롱거함",
-            _id: "1ㅂㄷㅈㄷ1",
-        }
-        const newAwardData = [...awardData, resdata]
+        const newAwardData = [...awardData, res.data]
         setAwardData(newAwardData)
+        
         //award 추가하는 창닫기
         setIsAddingAward(false)
     }

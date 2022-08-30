@@ -12,33 +12,32 @@ function AwardEditForm ({awardData, setAwardData, isEditingList, setIsEditingLis
     const [award, setAward] = useState(getData.award);
     const [detail, setDetail] = useState(getData.detail);
 
+    //편집창 닫는 함수
     function closeAward () {
         const newIsEditingList = {...isEditingList}
         newIsEditingList[awardId] = false
         setIsEditingList(newIsEditingList)
     }
 
+    //폼 제출 했을 때
     async function handleSubmit (e) {
         e.preventDefault();
         
-        //바뀐 값 put
-        // const res = await Api.put('award/{awardId}',{
-        //     award,
-        //     detail
-        // })
-        // const newData = res.data
+        //바뀐 값 put하기
+        const res = await Api.put(`award/${awardId}`,{
+            award,
+            detail
+        })
 
-        const newData = {
-                        award: "아차상",
-                        detail: "요론거함",
-                        _id: "1231"
-                        }
+        //받은 데이터로 awardData 수정하기
+        const newData = res.data
 
         const newAwardData = [...awardData]
-        const findIndex = newAwardData.findIndex((obj) => obj._id === awardId);
+        const findIndex = newAwardData.findIndex((awd) => awd._id === awardId);
         newAwardData[findIndex] = newData;
         setAwardData(newAwardData);
         
+        //편집창 닫기
         closeAward();
     }
 

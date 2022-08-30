@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React,{useState, useEffect} from "react";
 import {Card, Button} from "react-bootstrap"
 import AwardAddForm from "./AwardAddForm";
 import AwardCards from "./AwardCards"
@@ -6,31 +6,17 @@ import * as Api from "../../api";
 
 
 
-function Award () {
+function Award ({portfolioOwnerId}) {
     
+    const [awardData, setAwardData] = useState([])
+    const [isAddingAward, setIsAddingAward] = useState(false);
     
     //전체 데이터 불러오기
-    Api.get('',)
-    const awardList = [
-        {
-            award: "ㅇㅇ상",
-            detail: "이런거함",
-            _id: "1",
-        },
-        {
-            award: "ㅁㅁ상",
-            detail: "이런이런거함",
-            _id: "213123",
-        },
-        {
-            award: "ㅎㅎ상",
-            detail: "이런이런이런거함",
-            _id: "1231",
-        }
-    ];
+    useEffect(() => {
+        // "users/유저id" 엔드포인트로 GET 요청을 하고, user를 response의 data로 세팅함.
+        Api.get("award/info", portfolioOwnerId).then((res) => setAwardData(res.data));
+      }, [portfolioOwnerId]);
 
-    const [awardData, setAwardData] = useState(awardList)
-    const [isAddingAward, setIsAddingAward] = useState(false);
     
     return (
         <>
