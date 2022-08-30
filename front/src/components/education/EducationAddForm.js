@@ -11,7 +11,7 @@ function EducationAddForm({educationData, setEducationData, setIsAddingEducation
 
   const radioList = ["재학중", "학사졸업", "석사졸업", "박사졸업"]; //라디오버튼 내역 관리
 
-  //폼이 제출 됐을때,
+  //폼이 제출 됐을때
   async function handleSubmit(e) {
     e.preventDefault();
 

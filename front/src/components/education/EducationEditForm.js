@@ -27,11 +27,12 @@ function EducationEditForm ({educationData, setEducationData, isEditingList, set
         newIsEditingList[educationId] = false
         setIsEditingList(newIsEditingList)
     }
-
+    
+    //폼이 제출 됐을 때
     const handleSubmit = async (e) => {
         e.preventDefault();
         
-        //바뀐 값 put
+        //바뀐 값 put하기
         const res = await Api.put((`education/${educationId}`), {
             school,
             major,
