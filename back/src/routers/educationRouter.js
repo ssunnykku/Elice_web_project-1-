@@ -6,14 +6,15 @@ import { educationService } from "../services/educationService";
 
 const educationRouter = Router();
 
+// 학업정보 등록 education/add로 들어왔을때
 educationRouter.post("/add", login_required, async function (req, res, next) {
   try {
     if (is.emptyObject(req.body)) {
       throw new Error("정보를 입력해 주세요");
     }
-
+    //user_id=사용자가 로그인할때 쓰는 그 id?
     const user_id = req.currentUserId;
-    // req (request) 에서 데이터 가져오기
+    // req (request) 에서 데이터 가져오기: school,major,degree
     const school = req.body.school;
     const major = req.body.major;
     const degree = req.body.degree;
@@ -35,7 +36,7 @@ educationRouter.post("/add", login_required, async function (req, res, next) {
     next(error);
   }
 });
-
+//유저의 모든 학력 정보를 가지고 올때.
 educationRouter.get(
   "/info/:userId",
   login_required,
@@ -53,7 +54,7 @@ educationRouter.get(
     }
   }
 );
-
+//유저가 한가지 학력 정보를 수정하려고 할때(한개의 학력정보 고유값을 eduId라고 지칭)
 educationRouter.put("/:eduId", login_required, async function (req, res, next) {
   try {
     // URI로부터 사용자 id를 추출함.
@@ -79,25 +80,6 @@ educationRouter.put("/:eduId", login_required, async function (req, res, next) {
     next(error);
   }
 });
-
-educationRouter.get(
-  "/info/:userId",
-  login_required,
-  async function (req, res, next) {
-    try {
-      const user_id = req.params.userId;
-      const currentUserInfo = await userAuthService.getUserInfo({ user_id });
-
-      if (currentUserInfo.errorMessage) {
-        throw new Error(currentUserInfo.errorMessage);
-      }
-
-      res.status(200).send(currentUserInfo);
-    } catch (error) {
-      next(error);
-    }
-  }
-);
 
 educationRouter.delete(
   "/:eduId",
