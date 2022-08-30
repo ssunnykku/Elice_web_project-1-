@@ -49,11 +49,11 @@ function CertificateAddForm ({setIsAddingCertificate, certificateData, setCertif
             </Form.Group>
             
             <Form.Group className="mb-3">
-            <input type="date" 
-                onChange={(e) => setDate(e.target.value)}
-                name="date"
-                value={date}/>
-            <br/>
+                <input type="date" 
+                    onChange={(e) => setDate(e.target.value)}
+                    name="date"
+                    value={date}/>
+                <br/>
             </Form.Group>
             
             <Button variant="primary" type="submit" >확인</Button>{' '}

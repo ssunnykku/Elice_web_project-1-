@@ -13,26 +13,22 @@ function CertificateCard ({certificateData, setCertificateData, isEditingList, s
         setIsEditingList(newIsEditingList)
     }
 
-    function deleteForm () {
-        const comfirnDelete = window.confirm("정말로 삭제하시겠습니까?")
-        if (comfirnDelete == true){
-            // Api.delete('',)
+    async function deleteForm () {
+        const comfirmDelete = window.confirm("정말로 삭제하시겠습니까?")
+        if (comfirmDelete == true){
+            const res = await Api.delete('certificate', certificateId)
 
-            const resdata = {
-                "message": "삭제되었습니다."
+
+            if (res.data.message === "It's deleted!") {
+                const newCertificateData= certificateData.filter((ctf) => ctf._id !== certificateId)
+                setCertificateData(newCertificateData)
+
+                alert("삭제되었습니다")
             }
-            
-            const newCertificateData= certificateData.filter((obj) => obj._id !== certificateId)
-            setCertificateData(newCertificateData)
-
-            alert(resdata.message)
         }
-    }
-        
+    }        
 
         
-
-    // }
 
     return (
         <Form className="mb-4" style={{ textAlign: "left" }}>
