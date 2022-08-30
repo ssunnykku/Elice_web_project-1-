@@ -34,7 +34,7 @@ function Projects({ portfolioOwnerId }) {
 
     return <>
 
-     <Card style={{ width: '40rem' }}>
+     <Card className="mb-2 ms-3 mr-5">
       <Card.Body>
         <h5>프로젝트</h5>
 
@@ -54,17 +54,17 @@ function Projects({ portfolioOwnerId }) {
         }
 
         {/* ProjectAddForm 설정 ( + 버튼 ) */}
-
-        {isEditing && 
-        <ProjectAddForm 
-              projects={projects}
-              setProjects={setProjects}
-              setIsEditing={setIsEditing} />}
         <Form.Group className="mt-3 text-center">
         <Button variant="primary" className="mt-3" onClick={()=>{
           setIsEditing(true) 
         }}>+</Button>
         </Form.Group>
+        {isEditing && 
+        <ProjectAddForm 
+              projects={projects}
+              setProjects={setProjects}
+              setIsEditing={setIsEditing} />}
+        
       </Card.Body>
     </Card>
     </>
