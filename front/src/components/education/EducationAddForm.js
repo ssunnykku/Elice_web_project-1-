@@ -17,28 +17,23 @@ function EducationAddForm ({educationData, setEducationData, setIsAddingEducatio
     const [major, setMajor] = useState("");
     const [degree, setDegree] = useState("재학중");
 
-    function handleSubmit (e) {
+    async function handleSubmit (e) {
         e.preventDefault();
         
         //입력한 값 post 보내기
-        // Api.post (`education/add`, {
-        //     school,
-        //     major,
-        //     degree,
-        // });
+        const res = await Api.post (`education/add`, {
+            school,
+            major,
+            degree,
+        });
 
         //받은 데이터 educationData에 추가하기
-        const resdata={
-                        school: "tt대",
-                        major: "사회복지",
-                        degree: "석사졸업",
-                        _id: "12232123342",
-        }
-        const newEducationData = [...educationData, resdata]
+        const updateEducation = res.data;
+        const newEducationData = [...educationData, updateEducation]
         setEducationData(newEducationData)
-        
-        setIsAddingEducation(false)
 
+        //추가창 닫기
+        setIsAddingEducation(false)
     }
 
     return (

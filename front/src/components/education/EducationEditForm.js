@@ -42,23 +42,23 @@ function EducationEditForm ({educationData, setEducationData, isEditingList, set
         e.preventDefault();
         
         //바뀐 값 put
-        // const res = await Api.put('education/{educationId}',{
-        //     school,
-        //     major,
-        //     degree
-        // })
+        const res = await Api.put((`education/${educationId}`), {
+            school,
+            major,
+            degree
+        });
 
         // 받은 데이터로 educationData 수정하기
-        // const newEducationData = res.data;
-        const resdata = { school: "ㅁㅁ대",
-                          major: "아동",
-                          degree: "학사졸업",
-                          id: 1231
-                        }
+        const editData = res.data;
+        // const resdata = { school: "ㅁㅁ대",
+        //                   major: "아동",
+        //                   degree: "학사졸업",
+        //                   id: 1231
+        //                 }
 
         const newEducationData = [...educationData]
         const findobj = newEducationData.findIndex((obj) => obj._id == educationId); //_id로 해당 객체 위치 찾기
-        newEducationData[findobj] = resdata //해당 객체 데이터 바꿔주기
+        newEducationData[findobj] = editData //해당 객체 데이터 바꿔주기
         setEducationData(newEducationData); //전체 데이터 바꿔주기
 
                         

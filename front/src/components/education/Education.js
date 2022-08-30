@@ -1,38 +1,24 @@
-import React,{useState} from "react";
+import React,{useState, useEffect} from "react";
 import {Card, Button} from "react-bootstrap"
 import EducationAddForm from "./EducationAddForm";
 import EducationCards from "./EducationCards"
+import * as Api from "../../api";
 
 
-
-function Education () {
+function Education ({portfolioOwnerId}) {
     
     const [isAddingEducation, setIsAddingEducation] = useState(false);
+    const [educationData, setEducationData] = useState([]);
     
     //전체 Education 데이터 불러오기
     //Api.get('', )
-    const educationList = [
-        {
-            school: "ㅇㅇ대",
-            major: "컴공",
-            degree: "재학중",
-            _id: "1",
-        },
-        {
-            school: "ㅁㅁ대",
-            major: "미술",
-            degree: "재학중",
-            _id: "213123",
-        },
-        {
-            school: "a대",
-            major: "생명공학",
-            degree: "박사졸업",
-            _id: "1231",
-        }
-      ];
 
-    const [educationData, setEducationData] = useState(educationList);
+    useEffect(() => {
+        // "users/유저id" 엔드포인트로 GET 요청을 하고, user를 response의 data로 세팅함.
+        Api.get("education/info", portfolioOwnerId).then((res) => setEducationData(res.data));
+      }, [portfolioOwnerId]);
+
+
 
     return (
         <>
