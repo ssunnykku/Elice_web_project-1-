@@ -2,7 +2,7 @@ import mongoose, { Schema, model } from "mongoose";
 
 const AwardSchema = new Schema(
   {
-    award_id: {
+    user_id: {
       type: String,
       required: true,
     },
@@ -20,6 +20,6 @@ const AwardSchema = new Schema(
   }
 );
 
-const AwardModel = model("Education", AwardSchema);
+const AwardModel = model("Award", AwardSchema);
 
 export { AwardModel };
