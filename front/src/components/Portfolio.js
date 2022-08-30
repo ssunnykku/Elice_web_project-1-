@@ -68,8 +68,9 @@ function Portfolio() {
         <Col>
 
           <div style={{ textAlign: "center" }}>
-            <Education />
 
+            <Education />
+              portfolioOwnerId={portfolioOwner.id}/>
             <Award
               portfolioOwnerId={portfolioOwner.id}
               />
@@ -77,7 +78,7 @@ function Portfolio() {
             <Projects 
               portfolioOwnerId={portfolioOwner.id} 
               />
-
+              
           </div>
           
           
