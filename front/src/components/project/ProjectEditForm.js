@@ -23,16 +23,25 @@ function ProjectEditForm({ setIsEditing, setProjects, projects, project }) {
         });
       };
 
-      const handleEdit = async (e) => {
+      const handleSubmit = async (e) => {
+        e.preventDefault();
       await Api.put(`project/${project._id}`, 
         {
           title,
           description,
           from,
           to
-        }).then((res) => setProjects(res.data))
+        }).then((res) => {
+          const newProjects = [...projects, res.data]
+          const findIndex = newProjects.findIndex((newProject)=>{
+            newProject._id === project._id
+          })
+          newProjects[findIndex] = res.data
+          setProjects(newProjects)
+        })
         setIsEditing(false)
       }
+
 
       // const handleEdit = async (e) =>{
       //   e.preventDefault()
@@ -56,7 +65,7 @@ function ProjectEditForm({ setIsEditing, setProjects, projects, project }) {
     <Card.Body>
     <Form 
       type="submit" 
-      onSubmit={handleEdit} 
+      onSubmit={handleSubmit} 
       key={project._id}>
     <InputGroup className="mb-3">
       <Form.Control

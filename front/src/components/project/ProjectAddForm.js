@@ -22,6 +22,7 @@ function ProjectAddForm({ projects, setProjects, setIsEditing }) {
       });
     };
 
+// Api.post로 입력된 데이터 전송하기
     const handleSubmit = async (e) => {
       e.preventDefault()
       try{
@@ -37,9 +38,14 @@ function ProjectAddForm({ projects, setProjects, setIsEditing }) {
           setProjects([...projects, data])})
 
       } catch (e) {
-        console.log("실패");
+        console.log("모두 입력해주세요");
+        setIsFormValid(<Form.Text className="text-success">
+        모두 입력해주세요.
+      </Form.Text>)
       }
     }
+
+    const [isFormValid, setIsFormValid] = useState()
 
   return <>
       <Card.Body>
@@ -78,7 +84,7 @@ function ProjectAddForm({ projects, setProjects, setIsEditing }) {
             value={to}/>
           <br/>
           <Form.Group as={Row} className="mt-3 text-center">
-
+          {isFormValid}
           <Col sm={{ span: 20 }}>
           <Button variant="primary" type="submit" className="me-3">확인</Button>
           <Button variant="secondary" onClick={(e)=>{
