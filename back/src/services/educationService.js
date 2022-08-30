@@ -1,19 +1,17 @@
 import { Education } from "../db/models/Education";
-import mongoose from "mongoose";
 
 class educationService {
+  //postEducationInfo: 학력정보 등록할때. 정보 입력 받으면 DB에 추가하는 용도
   static async postEducationInfo({ user_id, school, major, degree }) {
-    
-    
     const newEducation = { user_id, school, major, degree };
 
     const createdEducation = await Education.create({ newEducation });
 
     return createdEducation;
   }
-
-  static async getEducations({ edu_id }) {
-    const educations = await Education.findAll({ edu_id });
+  //getEducations: 한 사용자의 전체 학력정보(여러개) 가지고 올때
+  static async getEducations({ user_id }) {
+    const educations = await Education.findAll({ user_id });
 
     if (!educations) {
       const errorMessage = "내용이 없습니다.";
@@ -21,18 +19,35 @@ class educationService {
     }
     return educations;
   }
-
-  static async getUserInfo({ user_id }) {
-    const user = await Education.findById({ user_id });
+  //유저 정보 수정할때: 사용자 한가지 학령정보 수정하기 위해 고유edu_id값, toUpdate위한값
+  static async eduInfo({ edu_id, toUpdate }) {
+    let education = await Education.findById({ edu_id });
 
     // db에서 찾지 못한 경우, 에러 메시지 반환
-    if (!user) {
-      const errorMessage =
-        "해당 이메일은 가입 내역이 없습니다. 다시 한 번 확인해 주세요.";
+    if (!education) {
+      const errorMessage = "등록한 정보가 없습니다.";
       return { errorMessage };
     }
 
-    return user;
+    if (toUpdate.school) {
+      const fieldToUpdate = "school";
+      const newValue = toUpdate.school;
+      education = await Education.update({ edu_id, fieldToUpdate, newValue });
+    }
+
+    if (toUpdate.major) {
+      const fieldToUpdate = "major";
+      const newValue = toUpdate.major;
+      education = await Education.update({ edu_id, fieldToUpdate, newValue });
+    }
+
+    if (toUpdate.degree) {
+      const fieldToUpdate = "degree";
+      const newValue = toUpdate.degree;
+      education = await Education.update({ edu_id, fieldToUpdate, newValue });
+    }
+
+    return education;
   }
 }
 
