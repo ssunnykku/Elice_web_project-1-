@@ -31,6 +31,17 @@ function Projects({ portfolioOwnerId }) {
     Api.get(`project/projects`, portfolioOwnerId).then((res) => setProjects(res.data));
   }, [portfolioOwnerId]);
 
+  projects.map((project) => {
+
+    const deletePost = async () => {
+      await Api.delete(`${project._id}`);
+      setInputs(
+        projects.filter((project) => {
+           project._id !== id;
+        })
+      )
+    }
+  })
 
     return <>
 
@@ -46,6 +57,7 @@ function Projects({ portfolioOwnerId }) {
          
           <Project project={project}
                    key={project._id}
+                   deletePost={deletePost}
                    />    
             )} 
           ))

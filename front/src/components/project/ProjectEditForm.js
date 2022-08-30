@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Card, InputGroup, Form, Button, Row, Col } from "react-bootstrap";
 import * as Api from "../../api";
 
-
-function ProjectEditForm({ setIsEditing, projects }) {
+function ProjectEditForm({ setIsEditing, project, setProjects }) {
 
     const [inputs, setInputs] = useState({
         title: '',
@@ -23,27 +22,36 @@ function ProjectEditForm({ setIsEditing, projects }) {
         });
       };
 
-      const handleSubmit = async (e) => {
-        e.preventDefault();
+      // const handleEdit = async (e) => {
+      // await Api.put(`project/${project._id}`, 
+      //   {
+      //     title,
+      //     description,
+      //     from,
+      //     to
+      //   }).then((res) => setInputs(res.data))
+      //   setIsEditing(false)
+      // }
 
-        const res = await Api.put(`project/${inputs._id}`, 
-        {
-          title,
-          description,
-          from,
-          to
-        });
-
-        const updateProject = res.data;
-        
-        setInputs(updateProject);
-        setIsEditing(false);
+      const handleEdit = (e) =>{
+        e.preventDefault()
+      Api.put(`project/${project._id}`, 
+      {
+        title,
+        description,
+        from,
+        to
+      }).then((res) => setInputs(res.data))
+      .then(setIsEditing(false))
       }
 
     return (
         <>
     <Card.Body>
-    <Form onSubmit={handleSubmit}>
+    <Form 
+      type="submit" 
+      // onSubmit={handleEdit} 
+      key={project._id}>
     <InputGroup className="mb-3">
       <Form.Control
         aria-label="Default"
@@ -77,7 +85,8 @@ function ProjectEditForm({ setIsEditing, projects }) {
       <br/>
       <Form.Group as={Row} className="mt-3 text-center">
       <Col sm={{ span: 20 }}>
-        <Button variant="primary" type="submit" className="me-3"
+        <Button variant="primary" type="submit" className="me-3" 
+        onClick={handleEdit}
         >확인</Button>
       <Button variant="secondary" onClick={()=>{
         setIsEditing(false)
