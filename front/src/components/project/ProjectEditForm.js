@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Card, InputGroup, Form, Button, Row, Col } from "react-bootstrap";
 import * as Api from "../../api";
 
-function ProjectEditForm({ setIsEditing, project, setProjects }) {
+function ProjectEditForm({ setIsEditing, setProjects, projects, project }) {
 
     const [inputs, setInputs] = useState({
         title: '',
@@ -14,6 +14,7 @@ function ProjectEditForm({ setIsEditing, project, setProjects }) {
   
       const { title, description, from, to } = inputs;
   
+
       const onChange = (e) => {
         const { value, name } = e.target;
         setInputs({
@@ -22,35 +23,40 @@ function ProjectEditForm({ setIsEditing, project, setProjects }) {
         });
       };
 
-      // const handleEdit = async (e) => {
-      // await Api.put(`project/${project._id}`, 
-      //   {
-      //     title,
-      //     description,
-      //     from,
-      //     to
-      //   }).then((res) => setInputs(res.data))
-      //   setIsEditing(false)
-      // }
-
-      const handleEdit = (e) =>{
-        e.preventDefault()
-      Api.put(`project/${project._id}`, 
-      {
-        title,
-        description,
-        from,
-        to
-      }).then((res) => setInputs(res.data))
-      .then(setIsEditing(false))
+      const handleEdit = async (e) => {
+      await Api.put(`project/${project._id}`, 
+        {
+          title,
+          description,
+          from,
+          to
+        }).then((res) => setProjects(res.data))
+        setIsEditing(false)
       }
 
+      // const handleEdit = async (e) =>{
+      //   e.preventDefault()
+      //   try{
+      //     await Api.put(`project/${project._id}`,{
+      //       title: title,
+      //       description: description,
+      //       from: from,
+      //       to: to 
+      //     })
+      //     . then((res)=>{
+      //       setProjects(res.data)
+      //     })
+      //   } catch (e) {
+      //     console.log("편집 실패");
+      //   }
+      // }
+     
     return (
         <>
     <Card.Body>
     <Form 
       type="submit" 
-      // onSubmit={handleEdit} 
+      onSubmit={handleEdit} 
       key={project._id}>
     <InputGroup className="mb-3">
       <Form.Control
@@ -86,7 +92,6 @@ function ProjectEditForm({ setIsEditing, project, setProjects }) {
       <Form.Group as={Row} className="mt-3 text-center">
       <Col sm={{ span: 20 }}>
         <Button variant="primary" type="submit" className="me-3" 
-        onClick={handleEdit}
         >확인</Button>
       <Button variant="secondary" onClick={()=>{
         setIsEditing(false)

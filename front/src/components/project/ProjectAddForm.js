@@ -32,6 +32,7 @@ function ProjectAddForm({ projects, setProjects, setIsEditing }) {
           to: to
         })
         .then((res)=>{
+          
           let data = res.data
           setProjects([...projects, data])})
 
