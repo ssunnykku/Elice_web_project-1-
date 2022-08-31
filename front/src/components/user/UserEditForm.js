@@ -28,6 +28,14 @@ function UserEditForm({ user, setIsEditing, setUser }) {
     setIsEditing(false);
   };
 
+      // 필수값 입력 확인
+      const isNameValid = name.length > 0;
+      const isEmailValid = email.length > 0;
+      const isDescriptionValid = description.length > 0;
+  
+      //필수값 조건 동시에 만족되는지 확인
+      const isFormValid = isNameValid && isEmailValid && isDescriptionValid;
+
   return (
     <Card className="mb-2">
       <Card.Body>
@@ -39,6 +47,10 @@ function UserEditForm({ user, setIsEditing, setUser }) {
               value={name}
               onChange={(e) => setName(e.target.value)}
             />
+            {!isNameValid && (
+                <Form.Text className="text-success">
+                  수정사항을 입력해주세요.
+            </Form.Text>)}
           </Form.Group>
 
           <Form.Group controlId="userEditEmail" className="mb-3">
@@ -48,6 +60,10 @@ function UserEditForm({ user, setIsEditing, setUser }) {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
+            {!isEmailValid && (
+                <Form.Text className="text-success">
+                  수정사항을 입력해주세요.
+            </Form.Text>)}
           </Form.Group>
 
           <Form.Group controlId="userEditDescription">
@@ -57,11 +73,16 @@ function UserEditForm({ user, setIsEditing, setUser }) {
               value={description}
               onChange={(e) => setDescription(e.target.value)}
             />
+            {!isDescriptionValid && (
+                <Form.Text className="text-success">
+                  수정사항을 입력해주세요.
+            </Form.Text>)}
           </Form.Group>
 
           <Form.Group as={Row} className="mt-3 text-center">
             <Col sm={{ span: 20 }}>
-              <Button variant="primary" type="submit" className="me-3">
+              <Button variant="primary" type="submit" className="me-3"
+              disabled={!isFormValid} >
                 확인
               </Button>
               <Button variant="secondary" onClick={() => setIsEditing(false)}>
