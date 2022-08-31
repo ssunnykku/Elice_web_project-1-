@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Card, InputGroup, Form, Button, Row, Col } from "react-bootstrap";
 import * as Api from "../../api";
 
-function ProjectEditForm({ setIsEditing, setProjects, projects, project, key }) {
+function ProjectEditForm({ setIsEditing, setProjects, projects, project }) {
 
     const [inputs, setInputs] = useState({
         title: '',
@@ -22,10 +22,6 @@ function ProjectEditForm({ setIsEditing, setProjects, projects, project, key }) 
           [name]: value
         });
       };
-
-      // const getData = projects.findIndex((obj)=>{
-      //   obj._id === key
-      // }) 
 
       const handleSubmit = async (e) => {
         e.preventDefault();
@@ -47,37 +43,17 @@ function ProjectEditForm({ setIsEditing, setProjects, projects, project, key }) 
         setIsEditing(false)
       }
 
-
-      // const handleEdit = async (e) =>{
-      //   e.preventDefault()
-      //   try{
-      //     await Api.put(`project/${project._id}`,{
-      //       title: title,
-      //       description: description,
-      //       from: from,
-      //       to: to 
-      //     })
-      //     . then((res)=>{
-      //       setProjects(res.data)
-      //     })
-      //   } catch (e) {
-      //     console.log("편집 실패");
-      //   }
-      // }
-     
     return (
         <>
     <Card.Body>
     <Form 
-      type="submit" 
+      type="text" 
       onSubmit={handleSubmit} 
       key={project._id}>
     <InputGroup className="mb-3">
       <Form.Control
-        aria-label="Default"
-        aria-describedby="inputGroup-sizing-default"
+        type="text"
         placeholder="프로젝트 제목"
-        autoComplete="off"
         onChange={onChange}
         name="title"
         value={title}
@@ -85,10 +61,8 @@ function ProjectEditForm({ setIsEditing, setProjects, projects, project, key }) 
       </InputGroup>
       <InputGroup className="mb-3">
       <Form.Control
-        aria-label="Default"
-        aria-describedby="inputGroup-sizing-default"
+        type="text"
         placeholder="상세내역"
-        autoComplete="off"
         onChange={onChange}
         name="description"
         value={description}
@@ -105,9 +79,9 @@ function ProjectEditForm({ setIsEditing, setProjects, projects, project, key }) 
       <br/>
       <Form.Group as={Row} className="mt-3 text-center">
       <Col sm={{ span: 20 }}>
-        <Button variant="primary" type="submit" className="me-3" 
-        >확인</Button>
-      <Button variant="secondary" onClick={()=>{
+        <Button variant="primary" type="submit" className="mb-3" 
+        >확인</Button>{' '}
+      <Button variant="secondary" className="mb-3" onClick={()=>{
         setIsEditing(false)
       }}>취소</Button>
       </Col>

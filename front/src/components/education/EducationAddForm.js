@@ -79,7 +79,7 @@ function EducationAddForm({educationData, setEducationData, setIsAddingEducation
                             />;
                         })}
       </Form.Group>
-      <Button variant="primary" type="submit"  disabled={!isFormValid}>
+      <Button variant="primary" type="submit" disabled={!isFormValid}>
         확인
       </Button>{" "}
       <Button variant="secondary" onClick={() => setIsAddingEducation(false)}>

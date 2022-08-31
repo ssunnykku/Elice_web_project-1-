@@ -8,24 +8,7 @@ function Projects({ portfolioOwnerId }) {
 
     const [isEditing, setIsEditing] = useState(false);
 
-    const [projects, setProjects] = useState([
-    //   {
-    //   title : "웹프로젝트",
-    //   description : "포트폴리오 웹사이트 제작",
-    //   from : "2022-08-23",
-    //   to : "2022-09-12",
-    //   _id: 0,
-    //   },
-    //  {
-    //   title : "웹프로젝트",
-    //   description : "포트폴리오 웹사이트 제작",
-    //   from : "2022-08-23",
-    //   to : "2022-09-12",
-    //   _id: 1,
-    //   },
-    
-    ]
-);
+    const [projects, setProjects] = useState([]);
 
   useEffect(() => {
     Api.get(`project/projects`, portfolioOwnerId).then((res) => setProjects(res.data));
@@ -54,11 +37,12 @@ function Projects({ portfolioOwnerId }) {
         }
 
         {/* ProjectAddForm 설정 ( + 버튼 ) */}
-        <Form.Group className="mt-3 text-center">
-        <Button variant="primary" className="mt-3" onClick={()=>{
+        {/* <img src="https://img.icons8.com/windows/32/000000/plus.png"/> */}
+
+        <Button variant="Secondary" className="mb-3" onClick={()=>{
           setIsEditing(true) 
         }}>+</Button>
-        </Form.Group>
+
         {isEditing && 
         <ProjectAddForm 
               projects={projects}
