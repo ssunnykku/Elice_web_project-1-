@@ -48,6 +48,7 @@ function Project({ project, setProjects, projects, portfolioOwnerId }){
                 <Col xs={2} sm={{ span: 20 }} >
                    <Button 
                    variant="outline-info" size="sm" 
+                   style={{marginRight: 5}}
                    onClick={()=>{
                        setIsEditing(true)
                    }}>편집</Button>
@@ -55,7 +56,6 @@ function Project({ project, setProjects, projects, portfolioOwnerId }){
                    type="submit" variant="outline-info" size="sm" 
                    onClick={deletePost}>삭제</Button>
                 </Col>
-                {/* )} */}
 
             </Row>
         </Form>
