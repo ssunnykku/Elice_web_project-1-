@@ -16,10 +16,6 @@ function EducationEditForm ({educationData, setEducationData, isEditingList, set
     const [degree, setDegree] = useState(getData.degree);
 
     const radioList = ["재학중", "학사졸업", "석사졸업", "박사졸업"]; //라디오버튼 내역 관리
-    // let radioChoice = []
-    // const radioDefault = radioList.map((i) => radioChoice.push(false))
-    // const a = radioList.findIndex((radio) => radio === degree) //ex)2
-    // console.log(radioDefault)
 
     //편집창 닫는 함수
     function closeEdit () {
@@ -79,7 +75,7 @@ function EducationEditForm ({educationData, setEducationData, isEditingList, set
                                 type="radio"
                                 value={radio}
                                 onChange={(e) => setDegree(e.target.value)}
-                                // {({radio} == degree) && defaultChecked}
+                                defaultChecked={radio == degree} //작성할 때 선택했던 값 기본체크하기
                                 />;
                             })}
             </Form.Group>
