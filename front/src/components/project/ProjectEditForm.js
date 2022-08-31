@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Card, InputGroup, Form, Button, Row, Col } from "react-bootstrap";
 import * as Api from "../../api";
 
-function ProjectEditForm({ setIsEditing, setProjects, projects, project }) {
+function ProjectEditForm({ setIsEditing, setProjects, projects, project, key }) {
 
     const [inputs, setInputs] = useState({
         title: '',
@@ -23,6 +23,10 @@ function ProjectEditForm({ setIsEditing, setProjects, projects, project }) {
         });
       };
 
+      // const getData = projects.findIndex((obj)=>{
+      //   obj._id === key
+      // }) 
+
       const handleSubmit = async (e) => {
         e.preventDefault();
       await Api.put(`project/${project._id}`, 
@@ -32,13 +36,14 @@ function ProjectEditForm({ setIsEditing, setProjects, projects, project }) {
           from,
           to
         }).then((res) => {
-          const newProjects = [...projects, res.data]
+          const newProjects = [...projects]
           const findIndex = newProjects.findIndex((newProject)=>{
             newProject._id === project._id
           })
           newProjects[findIndex] = res.data
           setProjects(newProjects)
         })
+
         setIsEditing(false)
       }
 

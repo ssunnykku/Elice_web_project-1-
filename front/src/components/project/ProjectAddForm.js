@@ -20,9 +20,11 @@ function ProjectAddForm({ projects, setProjects, setIsEditing }) {
         ...inputs,
         [name]: value
       });
+      enableButton(e.target.value)
     };
 
 // Api.post로 입력된 데이터 전송하기
+// 모든 값이 입력되어 있지 않다면 "모두 입력해주세요" 안내 띄우기
     const handleSubmit = async (e) => {
       e.preventDefault()
       try{
@@ -38,14 +40,21 @@ function ProjectAddForm({ projects, setProjects, setIsEditing }) {
           setProjects([...projects, data])})
 
       } catch (e) {
-        console.log("모두 입력해주세요");
-        setIsFormValid(<Form.Text className="text-success">
+        console.log("실패");
+        setIsFormValid(
+        <Form.Text className="text-success">
         모두 입력해주세요.
-      </Form.Text>)
+        </Form.Text>)
       }
     }
 
     const [isFormValid, setIsFormValid] = useState()
+
+    const project = projects.forEach((project)=>{
+      return project
+    })
+
+    const [text, enableButton] = useState("");
 
   return <>
       <Card.Body>
@@ -62,6 +71,7 @@ function ProjectAddForm({ projects, setProjects, setIsEditing }) {
             value={title}
           />
           </InputGroup>
+      
 
           <InputGroup className="mb-3">
           <Form.Control
@@ -84,9 +94,23 @@ function ProjectAddForm({ projects, setProjects, setIsEditing }) {
             value={to}/>
           <br/>
           <Form.Group as={Row} className="mt-3 text-center">
+
+          {/* 모두 입력했는지 확인 */}
           {isFormValid}
+          {/* {
+          project.to.value > project.from.value ? 
+          (<Form.Text className="text-success">
+            기간 설정 다시해!!.
+           </Form.Text>) : null
+        } */}
+
           <Col sm={{ span: 20 }}>
-          <Button variant="primary" type="submit" className="me-3">확인</Button>
+          <Button 
+          variant="primary" 
+          type="submit" 
+          className="me-3"
+          disabled={!text}
+          >확인</Button>
           <Button variant="secondary" onClick={(e)=>{
             setIsEditing(false)
           }}>취소</Button>

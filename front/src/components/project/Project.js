@@ -7,16 +7,6 @@ function Project({ project, setProjects, projects, key }){
 
     const [isEditing, setIsEditing] = useState(false)
 
-    // 편집창 열기
-    // const openEdit = () =>{
-      
-    //   const compareId = projects.forEach((project)=>{
-    //     project._id === key
-
-    //   })
-    // }
-
-
     const deletePost = async(e) => {
       e.preventDefault()
       const confirmDelete = window.confirm("정말로 삭제하시겠습니까?")
@@ -32,9 +22,6 @@ function Project({ project, setProjects, projects, key }){
           alert("삭제되었습니다")
         }    
       }
-
-     
-       
       }
 
     return(
@@ -45,6 +32,7 @@ function Project({ project, setProjects, projects, key }){
                         projects={projects}
                         setProjects={setProjects}
                         project={project}
+                        key={key}
                        /> 
            : 
              <Form style={{ textAlign: "left" }}>
