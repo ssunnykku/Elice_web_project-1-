@@ -7,11 +7,10 @@ function Project({ project, setProjects, projects, key }){
 
     const [isEditing, setIsEditing] = useState(false)
 
-    const deletePost = async(e) => {
-      e.preventDefault()
+    const deletePost = async() => {
       const confirmDelete = window.confirm("정말로 삭제하시겠습니까?")
       if (confirmDelete == true){
-      const res = await Api.delete(`project/${project._id}`);
+      const res = await Api.delete(`project`,project._id);
       
         if (res.data.message === "It's deleted!") {
           setProjects(
