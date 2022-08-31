@@ -1,19 +1,22 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Card, InputGroup, Form, Button, Row, Col } from "react-bootstrap";
 import * as Api from "../../api";
 
-function ProjectEditForm({ setIsEditing, setProjects, projects, project }) {
+function ProjectEditForm({ 
+  setIsEditing, 
+  setProjects,
+  project, 
+  portfolioOwnerId }) {
 
     const [inputs, setInputs] = useState({
-        title: '',
-        description: '',
-        from: '',
-        to: '',
-
+        title: project.title,
+        description: project.description,
+        from: project.from,
+        to: project.to,
       });
   
       const { title, description, from, to } = inputs;
-  
+
 
       const onChange = (e) => {
         const { value, name } = e.target;
@@ -23,84 +26,99 @@ function ProjectEditForm({ setIsEditing, setProjects, projects, project }) {
         });
       };
 
-      const handleEdit = async (e) => {
+      const handleSubmit = async (e) => {
+        e.preventDefault();
       await Api.put(`project/${project._id}`, 
         {
           title,
           description,
           from,
           to
-        }).then((res) => setProjects(res.data))
+        })
+        await Api.get(`project/projects`, portfolioOwnerId)
+        .then((res) => setProjects(res.data));
+
         setIsEditing(false)
       }
 
-      // const handleEdit = async (e) =>{
-      //   e.preventDefault()
-      //   try{
-      //     await Api.put(`project/${project._id}`,{
-      //       title: title,
-      //       description: description,
-      //       from: from,
-      //       to: to 
-      //     })
-      //     . then((res)=>{
-      //       setProjects(res.data)
-      //     })
-      //   } catch (e) {
-      //     console.log("편집 실패");
-      //   }
-      // }
-     
+      
+        // 필수값 입력 확인
+        const isTitleValid = title.length > 0;
+        const isFromValid = from.length > 0;
+        const isToValid = to.length > 0;
+    
+        //필수값 조건 동시에 만족되는지 확인
+        const isFormValid = isTitleValid && isFromValid && isToValid;
+
+        // 날짜 입력 조건
+        const isDateValid = isFromValid && isToValid;
+
+        const durationValid = ()=>{
+          if (!isDateValid) {
+            return <Form.Text className="text-success">
+            필수 입력값입니다.
+                  </Form.Text> 
+          } else if (from > to) {
+            return  ( <Form.Text className="text-success">
+                  해당 기간의 조회가 불가능합니다.
+                  </Form.Text>)
+          }
+        }
+
+
+
     return (
-        <>
-    <Card.Body>
     <Form 
-      type="submit" 
-      onSubmit={handleEdit} 
+      onSubmit={handleSubmit} 
       key={project._id}>
-    <InputGroup className="mb-3">
+    <Form.Group className="mb-3">
       <Form.Control
-        aria-label="Default"
-        aria-describedby="inputGroup-sizing-default"
+        type="text"
         placeholder="프로젝트 제목"
-        autoComplete="off"
         onChange={onChange}
         name="title"
         value={title}
       />
-      </InputGroup>
-      <InputGroup className="mb-3">
+        {!isTitleValid && (
+          <Form.Text className="text-success">
+                필수 입력값입니다.
+          </Form.Text>)} 
+      </Form.Group>
+      <Form.Group className="mb-3">
       <Form.Control
-        aria-label="Default"
-        aria-describedby="inputGroup-sizing-default"
+        type="text"
         placeholder="상세내역"
-        autoComplete="off"
         onChange={onChange}
         name="description"
         value={description}
       />
-      </InputGroup>
+      </Form.Group>
+
       <input type="date" 
         onChange={onChange} 
         name="from"
         value={from}/>
+
       <input type="date" 
         onChange={onChange}
         name="to"
         value={to}/>
       <br/>
+      {durationValid()}
       <Form.Group as={Row} className="mt-3 text-center">
       <Col sm={{ span: 20 }}>
-        <Button variant="primary" type="submit" className="me-3" 
-        >확인</Button>
-      <Button variant="secondary" onClick={()=>{
+        <Button 
+        variant="primary" 
+        type="submit" 
+        className="mb-3" 
+        disabled={!isFormValid}
+        >확인</Button>{' '}
+      <Button variant="secondary" className="mb-3" onClick={()=>{
         setIsEditing(false)
       }}>취소</Button>
       </Col>
       </Form.Group>
       </Form>
-    </Card.Body>
-    </>
     )
 }
 

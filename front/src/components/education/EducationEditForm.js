@@ -6,8 +6,6 @@ import * as Api from "../../api";
 
 function EducationEditForm ({educationData, setEducationData, isEditingList, setIsEditingList, educationId}) {
 
-    
-
     // _id(educationId) 키값으로 배열에서 해당 education 객체찾기
     const getData = educationData.find(edu => edu._id === educationId)
     
@@ -48,6 +46,13 @@ function EducationEditForm ({educationData, setEducationData, isEditingList, set
 
     }
 
+    // 필수값 입력 확인
+    const isSchoolValid = school.length > 0;
+    const isMajorValid = major.length > 0;
+
+    //필수값 조건 동시에 만족되는지 확인
+    const isFormValid = isSchoolValid && isMajorValid;
+
     return (
         <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3" controlId="schoolName">
@@ -57,6 +62,10 @@ function EducationEditForm ({educationData, setEducationData, isEditingList, set
                     value={school}
                     onChange={(e) => setSchool(e.target.value)} 
                 />
+                { !isSchoolValid && (
+                <Form.Text className="text-success">
+                필수 입력값입니다.
+                </Form.Text>)}
             </Form.Group>
             <Form.Group className="mb-3" controlId="major">
                 <Form.Control 
@@ -65,6 +74,10 @@ function EducationEditForm ({educationData, setEducationData, isEditingList, set
                     value={major}
                     onChange={(e) => setMajor(e.target.value)} 
                 />
+                { !isMajorValid && (
+                <Form.Text className="text-success">
+                필수 입력값입니다.
+                </Form.Text>)}
             </Form.Group>
             <Form.Group className="mb-3">
                 {radioList.map((radio) => {
@@ -79,7 +92,7 @@ function EducationEditForm ({educationData, setEducationData, isEditingList, set
                                 />;
                             })}
             </Form.Group>
-            <Button variant="primary" className="mb-3" type="submit">확인</Button>{' '}
+            <Button variant="primary" className="mb-3" type="submit" disabled={!isFormValid}>확인</Button>{' '}
             <Button variant="secondary" className="mb-3" onClick={closeEdit}>취소</Button>
         </Form>
     )

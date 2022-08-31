@@ -11,6 +11,8 @@ import Award from "./award/Award";
 import Projects from "./project/Projects"
 import Certificate from "./certificate/Certificate";
 
+import styles from "./../styles.css";
+
 function Portfolio() {
   const navigate = useNavigate();
   const params = useParams();

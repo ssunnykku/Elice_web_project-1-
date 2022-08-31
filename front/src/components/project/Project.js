@@ -1,19 +1,30 @@
 import React, { useState } from 'react';
-import { Card, Button, Form, Row, Col } from "react-bootstrap";
+import { Button, Form, Row, Col } from "react-bootstrap";
 import ProjectEditForm from "./ProjectEditForm"
 import * as Api from "../../api";
 
+<<<<<<< HEAD
 function Project({ project, setProjects, projects, isEditable }){
+=======
+function Project({ project, setProjects, projects, portfolioOwnerId }){
+>>>>>>> frontend_enterValid
 
     const [isEditing, setIsEditing] = useState(false)
 
-    const deletePost = async () => {
-        await Api.delete(`project/${project._id}`);
-        setProjects(
-          projects.filter((obj) => {
-             obj._id !== project._id;
-          })
-        )
+    const deletePost = async(e) => {
+      e.preventDefault()
+      const confirmDelete = window.confirm("정말로 삭제하시겠습니까?")
+      if (confirmDelete == true){
+      const res = await Api.delete(`project`,project._id);
+      
+        if (res.data.message === "It's deleted!") {
+          alert("삭제되었습니다")
+      
+        await Api.get(`project/projects`, portfolioOwnerId)
+        .then((res) => setProjects(res.data)); 
+        }  
+      }
+
       }
 
     return(
@@ -24,6 +35,7 @@ function Project({ project, setProjects, projects, isEditable }){
                         projects={projects}
                         setProjects={setProjects}
                         project={project}
+                        portfolioOwnerId={portfolioOwnerId}
                        /> 
            : 
              <Form style={{ textAlign: "left" }}>
@@ -35,11 +47,20 @@ function Project({ project, setProjects, projects, isEditable }){
                 </Col>
 <<<<<<< HEAD
 
+<<<<<<< HEAD
                 {isEditable && (<Col xs={2} sm={{ span: 20 }} >
                    <Button variant="outline-info" size="sm" onClick={()=>{
+=======
+                <Col xs={2} sm={{ span: 20 }} >
+                   <Button 
+                   variant="outline-info" size="sm" 
+                   onClick={()=>{
+>>>>>>> frontend_enterValid
                        setIsEditing(true)
                    }}>편집</Button>
-                   <Button type="submit" variant="outline-info" size="sm" onClick={deletePost}>삭제</Button>
+                   <Button 
+                   type="submit" variant="outline-info" size="sm" 
+                   onClick={deletePost}>삭제</Button>
                 </Col>
                 )}
 
