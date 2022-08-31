@@ -4,7 +4,11 @@ import ProjectAddForm from "./ProjectAddForm"
 import Project from "./Project"
 import * as Api from "../../api";
 
-function Projects({ portfolioOwnerId, isEditable }) {
+//icon
+import Plus from '../icon/plus.png'
+
+function Projects({ 
+  portfolioOwnerId, isEditable }) {
 
     const [isEditing, setIsEditing] = useState(false);
     const [projects, setProjects] = useState([]);
@@ -16,7 +20,7 @@ function Projects({ portfolioOwnerId, isEditable }) {
 
     return <>
 
-     <Card className="mb-2 ms-3 mr-5" style={{padding: '35px 0'}}>
+     <Card className="mb-2 ms-3 mr-5" style={{padding: '25px'}}>
       <Card.Body>
       <Card.Title style={{paddingBottom: '35px', fontWeight: "bolder"}}>프로젝트</Card.Title>
 
@@ -37,10 +41,11 @@ function Projects({ portfolioOwnerId, isEditable }) {
           ))
         }
 
-        {/* ProjectAddForm 설정 ( + 버튼 ) */}
+        {/* ProjectAddForm 설정 ( + 버튼 누르면 상태 변화 ) */}
+
         {isEditable && (<Form.Group className="mt-3 text-center">
         <img 
-           src="https://img.icons8.com/ios-glyphs/40/000000/macos-maximize.png"
+           src={Plus}
            type="button"
            onClick={()=>{
             setIsEditing(true) 

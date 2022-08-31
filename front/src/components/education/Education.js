@@ -4,6 +4,8 @@ import EducationAddForm from "./EducationAddForm";
 import EducationCards from "./EducationCards"
 import * as Api from "../../api";
 
+//icon
+import Plus from '../icon/plus.png'
 
 function Education ({portfolioOwnerId, isEditable}) {
     
@@ -20,7 +22,7 @@ function Education ({portfolioOwnerId, isEditable}) {
 
     return (
         <>
-            <Card className="mb-2 ms-3 mr-5" style={{padding: '35px 0'}}>
+            <Card className="mb-2 ms-3 mr-5" style={{padding: '25px'}}>
                 <Card.Body>
                     <Card.Title
                         style={{paddingBottom: '35px', fontWeight: "bolder"}}>학력</Card.Title>
@@ -29,11 +31,12 @@ function Education ({portfolioOwnerId, isEditable}) {
                             educationData={educationData}
                             setEducationData={setEducationData}
                             isEditable={isEditable}/>
-                    
-                    {isEditable && (
-                        <Button className="mb-3" variant="primary" onClick={() => setIsAddingEducation(true)}>+</Button>
+                      {/* +버튼 */}
+                      {isEditable && (
+                        <img 
+                            src={Plus}
+                            type="button" onClick={() => setIsAddingEducation(true)}/>
                     )}
-                    
                     {isAddingEducation && (
                         <EducationAddForm
                             setIsAddingEducation={setIsAddingEducation}

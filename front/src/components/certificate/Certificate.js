@@ -4,6 +4,8 @@ import CertificateAddForm from "./CertificateAddForm";
 import CertificateCards from "./CertificateCards"
 import * as Api from "../../api";
 
+//icon
+import Plus from '../icon/plus.png'
 
 function Certificate ({portfolioOwnerId, isEditable}) {
     
@@ -18,7 +20,7 @@ function Certificate ({portfolioOwnerId, isEditable}) {
     
     return (
         <>
-            <Card className="mb-2 ms-3 mr-5" style={{padding: '35px 0'}}>
+            <Card className="mb-2 ms-3 mr-5" style={{padding: '25px'}}>
                 <Card.Body>
                     <Card.Title
                         style={{paddingBottom: '35px', fontWeight: "bolder"}}>자격증</Card.Title>
@@ -28,9 +30,11 @@ function Certificate ({portfolioOwnerId, isEditable}) {
                     setCertificateData={setCertificateData}
                     isEditable={isEditable}
                     />
-                    
+                    {/* +버튼 */}
                     {isEditable && (
-                        <Button className="mb-3" variant="primary" onClick={() => setIsAddingCertificate(true)}>+</Button>
+                        <img 
+                            src={Plus}
+                            type="button" onClick={() => setIsAddingCertificate(true)}/>
                     )}
                     {isAddingCertificate && (
                         <CertificateAddForm

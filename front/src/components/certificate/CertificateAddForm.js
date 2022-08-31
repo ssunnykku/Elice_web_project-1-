@@ -36,7 +36,8 @@ function CertificateAddForm ({setIsAddingCertificate, certificateData, setCertif
     const isFormValid = isTitleValid && isDateValid;
 
     return (
-        <Form onSubmit={handleSubmit}>
+        <Form onSubmit={handleSubmit}
+        style={{padding: '25px'}}>
             <Form.Group className="mb-3" controlId="titleName">
                 <Form.Control 
                     type="text" 
@@ -46,7 +47,8 @@ function CertificateAddForm ({setIsAddingCertificate, certificateData, setCertif
                     } 
                 />
                 {!isTitleValid && (
-                    <Form.Text className="text-success">
+                    <Form.Text 
+                    style={{color: 'tomato', fontWeight: 'bolder' }}>
                         필수 입력값입니다.
                     </Form.Text>)}
                 </Form.Group>
@@ -66,7 +68,8 @@ function CertificateAddForm ({setIsAddingCertificate, certificateData, setCertif
                     value={date}/>
                 <br/>
                 {!isDateValid && (
-                    <Form.Text className="text-success">
+                    <Form.Text 
+                    style={{color: 'tomato', fontWeight: 'bolder' }}>
                         필수 입력값입니다.
                     </Form.Text>)}
             </Form.Group>

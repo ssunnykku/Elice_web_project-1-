@@ -75,12 +75,13 @@ function RegisterForm() {
                 className={(isEmailDuplicate && "form-control is-invalid")}
               />
               {!isEmailValid && (
-                <Form.Text className="text-success">
+                <Form.Text 
+                style={{color: 'tomato', fontWeight: 'bolder'}}>
                   이메일 형식이 올바르지 않습니다.
                 </Form.Text>
               )}
               {isEmailDuplicate && (
-                <Form.Text className="text-danger">
+                <Form.Text style={{color: 'tomato', fontWeight: 'bolder'}}>
                   이미 사용중이거나 탈퇴한 이메일입니다.
                 </Form.Text>
               )}
@@ -95,7 +96,7 @@ function RegisterForm() {
                 onChange={(e) => setPassword(e.target.value)}
               />
               {!isPasswordValid && (
-                <Form.Text className="text-success">
+                <Form.Text style={{color: 'tomato', fontWeight: 'bolder'}}>
                   비밀번호는 4글자 이상으로 설정해 주세요.
                 </Form.Text>
               )}
@@ -125,7 +126,7 @@ function RegisterForm() {
                 onChange={(e) => setName(e.target.value)}
               />
               {!isNameValid && (
-                <Form.Text className="text-success">
+                <Form.Text style={{color: 'tomato', fontWeight: 'bolder'}}>
                   이름은 2글자 이상으로 설정해 주세요.
                 </Form.Text>
               )}

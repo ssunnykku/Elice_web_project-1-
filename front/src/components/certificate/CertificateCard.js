@@ -2,6 +2,9 @@ import React,{useState} from "react"
 import {Form, Button, Col, Row} from "react-bootstrap";
 import * as Api from "../../api";
 
+//icon 
+import Edit from '../icon/edit.png'
+import Delete from '../icon/delete.png'
 
 function CertificateCard ({certificateData, setCertificateData, isEditingList, setIsEditingList, certificateId, isEditable}) {
     // _id(certificateId) 키값으로 배열에서 해당 certificate 객체찾기
@@ -38,11 +41,16 @@ function CertificateCard ({certificateData, setCertificateData, isEditingList, s
                     <div>{getData.description}</div>
                     <div>{getData.date}</div>
                 </Col> 
-                {/* {isEditable &&( */}
+
                     <Col xs={2}>
-                        <Button variant="outline-info" size="sm" 
-                        style={{marginRight: 5}}  onClick={openEdit}>편집</Button> 
-                        <Button type="submit" variant="outline-info" size="sm" onClick={deleteForm} >삭제</Button> 
+                    {/* 편집 및 삭제버튼 */}
+                    <img 
+                        src={Edit} 
+                        type="button"
+                        style={{marginRight: 5}}  onClick={openEdit} />
+                    <img 
+                        src={Delete}
+                         type="submit"   variant="outline-info" size="sm" onClick={deleteForm} />
                     </Col>  
             </Row>
         </Form>

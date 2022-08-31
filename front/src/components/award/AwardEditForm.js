@@ -58,7 +58,7 @@ function AwardEditForm ({awardData, setAwardData, isEditingList, setIsEditingLis
                     onChange={(e) => setAward(e.target.value)} 
                 />
                 {!isAwardValid && (
-                    <Form.Text className="text-success">
+                    <Form.Text style={{color: 'tomato', fontWeight: 'bolder' }}>
                         필수 입력값입니다.
                     </Form.Text>)} 
             </Form.Group>
@@ -70,7 +70,7 @@ function AwardEditForm ({awardData, setAwardData, isEditingList, setIsEditingLis
                     onChange={(e) => setDetail(e.target.value)} 
                 />
                 {!isDetailValid && (
-                    <Form.Text className="text-success">
+                    <Form.Text style={{color: 'tomato', fontWeight: 'bolder' }}>
                         필수 입력값입니다.
                     </Form.Text>)}
             </Form.Group>

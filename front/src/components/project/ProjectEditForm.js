@@ -65,8 +65,6 @@ function ProjectEditForm({
           }
         }
 
-
-
     return (
     <Form 
     style={{padding: '25px'}}

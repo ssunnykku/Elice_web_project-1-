@@ -64,7 +64,8 @@ function CertificateEditForm ({certificateData, setCertificateData, isEditingLis
                     } 
                 />
                 {!isTitleValid && (
-                    <Form.Text className="text-success">
+                    <Form.Text 
+                    style={{color: 'tomato', fontWeight: 'bolder' }}>
                         필수 입력값입니다.
                     </Form.Text>)}
             </Form.Group>
@@ -85,7 +86,8 @@ function CertificateEditForm ({certificateData, setCertificateData, isEditingLis
                     value={date}/>
                 <br/>
                 {!isDateValid && (
-                    <Form.Text className="text-success">
+                    <Form.Text 
+                    style={{color: 'tomato', fontWeight: 'bolder' }}>
                         필수 입력값입니다.
                     </Form.Text>)}
             </Form.Group>

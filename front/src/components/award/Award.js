@@ -4,7 +4,8 @@ import AwardAddForm from "./AwardAddForm";
 import AwardCards from "./AwardCards"
 import * as Api from "../../api";
 
-
+//icon
+import Plus from '../icon/plus.png'
 
 function Award ({portfolioOwnerId, isEditable}) {
     
@@ -20,7 +21,7 @@ function Award ({portfolioOwnerId, isEditable}) {
     
     return (
         <>
-            <Card className="mb-2 ms-3 mr-5" style={{padding: '35px 0'}}>
+            <Card className="mb-2 ms-3 mr-5" style={{padding: '25px'}}>
                 <Card.Body>
                     <Card.Title
                         style={{paddingBottom: '35px', fontWeight: "bolder"}}>수상이력</Card.Title>
@@ -32,7 +33,11 @@ function Award ({portfolioOwnerId, isEditable}) {
                         />
                     
                     {isEditable && (
-                        <Button className="mb-3" variant="primary" onClick={() => setIsAddingAward(true)}>+</Button>
+                        <img 
+                        src={Plus}
+                        type="button"
+                        onClick={() => setIsAddingAward(true)}
+                        />
                     )}
                     {isAddingAward && (
                         <AwardAddForm

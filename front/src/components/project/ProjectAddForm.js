@@ -117,6 +117,7 @@ function ProjectAddForm({ setProjects, setIsEditing, portfolioOwnerId }) {
           <br/>
           <Form.Group as={Row} className="mt-3 text-center">
 
+            {/* 확인버튼 */}
           <Col sm={{ span: 20 }}>
           <Button 
           variant="primary" 
@@ -124,6 +125,7 @@ function ProjectAddForm({ setProjects, setIsEditing, portfolioOwnerId }) {
           className="mb-3"
           disabled={!isFormValid}
           >확인</Button>{' '}
+          {/* 취소버튼 */}
           <Button variant="secondary" className="mb-3" onClick={(e)=>{
             setIsEditing(false)
           }}>취소</Button>

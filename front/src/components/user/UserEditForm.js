@@ -48,7 +48,8 @@ function UserEditForm({ user, setIsEditing, setUser }) {
               onChange={(e) => setName(e.target.value)}
             />
             {!isNameValid && (
-                <Form.Text className="text-success">
+                <Form.Text 
+                style={{color: 'tomato', fontWeight: 'bolder' }}>
                   수정사항을 입력해주세요.
             </Form.Text>)}
           </Form.Group>
@@ -61,7 +62,8 @@ function UserEditForm({ user, setIsEditing, setUser }) {
               onChange={(e) => setEmail(e.target.value)}
             />
             {!isEmailValid && (
-                <Form.Text className="text-success">
+                <Form.Text 
+                style={{color: 'tomato', fontWeight: 'bolder' }}>
                   수정사항을 입력해주세요.
             </Form.Text>)}
           </Form.Group>
@@ -74,7 +76,8 @@ function UserEditForm({ user, setIsEditing, setUser }) {
               onChange={(e) => setDescription(e.target.value)}
             />
             {!isDescriptionValid && (
-                <Form.Text className="text-success">
+                <Form.Text 
+                style={{color: 'tomato', fontWeight: 'bolder' }}>
                   수정사항을 입력해주세요.
             </Form.Text>)}
           </Form.Group>

@@ -48,7 +48,8 @@ function EducationAddForm({educationData, setEducationData, setIsAddingEducation
           onChange={(e) => setSchool(e.target.value)}
         />
         { !isSchoolValid && (
-          <Form.Text className="text-success">
+          <Form.Text 
+          style={{color: 'tomato', fontWeight: 'bolder' }}>
           필수 입력값입니다.
           </Form.Text>)}
       </Form.Group>
@@ -61,7 +62,8 @@ function EducationAddForm({educationData, setEducationData, setIsAddingEducation
           onChange={(e) => setMajor(e.target.value)}
         />
         { !isMajorValid && (
-          <Form.Text className="text-success">
+          <Form.Text 
+          style={{color: 'tomato', fontWeight: 'bolder' }}>
           필수 입력값입니다.
           </Form.Text>)}
       </Form.Group>
