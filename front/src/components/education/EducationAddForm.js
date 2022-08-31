@@ -31,6 +31,13 @@ function EducationAddForm({educationData, setEducationData, setIsAddingEducation
     setIsAddingEducation(false);
   }
 
+  // 필수값 입력 확인
+  const isSchoolValid = school.length > 0;
+  const isMajorValid = major.length > 0;
+
+  //필수값 조건 동시에 만족되는지 확인
+  const isFormValid = isSchoolValid && isMajorValid;
+
   return (
     <Form onSubmit={handleSubmit}>
       <Form.Group className="mb-3" controlId="schoolName">
@@ -40,7 +47,12 @@ function EducationAddForm({educationData, setEducationData, setIsAddingEducation
           value={school}
           onChange={(e) => setSchool(e.target.value)}
         />
+        { !isSchoolValid && (
+          <Form.Text className="text-success">
+          필수 입력값입니다.
+          </Form.Text>)}
       </Form.Group>
+
       <Form.Group className="mb-3" controlId="major">
         <Form.Control
           type="text"
@@ -48,7 +60,12 @@ function EducationAddForm({educationData, setEducationData, setIsAddingEducation
           value={major}
           onChange={(e) => setMajor(e.target.value)}
         />
+        { !isMajorValid && (
+          <Form.Text className="text-success">
+          필수 입력값입니다.
+          </Form.Text>)}
       </Form.Group>
+
       <Form.Group className="mb-3">
         {radioList.map((radio) => {
                 return <Form.Check
@@ -62,7 +79,7 @@ function EducationAddForm({educationData, setEducationData, setIsAddingEducation
                             />;
                         })}
       </Form.Group>
-      <Button variant="primary" type="submit">
+      <Button variant="primary" type="submit"  disabled={!isFormValid}>
         확인
       </Button>{" "}
       <Button variant="secondary" onClick={() => setIsAddingEducation(false)}>
