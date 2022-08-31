@@ -46,6 +46,13 @@ function CertificateEditForm ({certificateData, setCertificateData, isEditingLis
 
     }
 
+    // 필수값 입력 확인
+    const isTitleValid = title.length > 0;
+    const isDateValid = date.length > 0;
+
+    //필수값 조건 동시에 만족되는지 확인
+    const isFormValid = isTitleValid && isDateValid;
+
     return (
         <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3" controlId="titleName">
@@ -56,6 +63,10 @@ function CertificateEditForm ({certificateData, setCertificateData, isEditingLis
                     onChange={(e) => setTitle(e.target.value)
                     } 
                 />
+                {!isTitleValid && (
+                    <Form.Text className="text-success">
+                        필수 입력값입니다.
+                    </Form.Text>)}
             </Form.Group>
             <Form.Group className="mb-3" controlId="description">
                 <Form.Control
@@ -73,9 +84,13 @@ function CertificateEditForm ({certificateData, setCertificateData, isEditingLis
                     name="date"
                     value={date}/>
                 <br/>
+                {!isDateValid && (
+                    <Form.Text className="text-success">
+                        필수 입력값입니다.
+                    </Form.Text>)}
             </Form.Group>
             
-            <Button variant="primary" type="submit" >확인</Button>{' '}
+            <Button variant="primary" type="submit" disabled={!isFormValid}>확인</Button>{' '}
             <Button variant="secondary" onClick={closeEdit}>취소</Button>
         </Form>
     )
