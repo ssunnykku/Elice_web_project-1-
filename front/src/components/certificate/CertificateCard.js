@@ -3,7 +3,7 @@ import {Form, Button, Col, Row} from "react-bootstrap";
 import * as Api from "../../api";
 
 
-function CertificateCard ({certificateData, setCertificateData, isEditingList, setIsEditingList, certificateId}) {
+function CertificateCard ({certificateData, setCertificateData, isEditingList, setIsEditingList, certificateId, isEditable}) {
     // _id(certificateId) 키값으로 배열에서 해당 certificate 객체찾기
     const getData = certificateData.find(certif => certif._id === certificateId)
 
@@ -38,10 +38,12 @@ function CertificateCard ({certificateData, setCertificateData, isEditingList, s
                     <div>{getData.description}</div>
                     <div>{getData.date}</div>
                 </Col> 
-                <Col xs={1} class="align-self-center col-xs-6">
-                    <Button size="sm" variant="outline-info" onClick={openEdit}>편집</Button> 
-                    <Button size="sm" variant="outline-info" onClick={deleteForm} >삭제</Button> 
-                </Col>  
+                {isEditable &&(
+                    <Col xs={1} class="align-self-center col-xs-6">
+                        <Button size="sm" variant="outline-info" onClick={openEdit}>편집</Button> 
+                        <Button size="sm" variant="outline-info" onClick={deleteForm} >삭제</Button> 
+                    </Col>  
+                )}
             </Row>
         </Form>
     )

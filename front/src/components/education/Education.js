@@ -5,7 +5,7 @@ import EducationCards from "./EducationCards"
 import * as Api from "../../api";
 
 
-function Education ({portfolioOwnerId}) {
+function Education ({portfolioOwnerId, isEditable}) {
     
     const [isAddingEducation, setIsAddingEducation] = useState(false);
     const [educationData, setEducationData] = useState([]);
@@ -26,9 +26,12 @@ function Education ({portfolioOwnerId}) {
             
                     <EducationCards
                             educationData={educationData}
-                            setEducationData={setEducationData}/>
+                            setEducationData={setEducationData}
+                            isEditable={isEditable}/>
                     
-                    <Button className="mb-3" variant="primary" onClick={() => setIsAddingEducation(true)}>+</Button>
+                    {isEditable && (
+                        <Button className="mb-3" variant="primary" onClick={() => setIsAddingEducation(true)}>+</Button>
+                    )}
                     
                     {isAddingEducation && (
                         <EducationAddForm

@@ -5,7 +5,7 @@ import CertificateCards from "./CertificateCards"
 import * as Api from "../../api";
 
 
-function Certificate ({portfolioOwnerId}) {
+function Certificate ({portfolioOwnerId, isEditable}) {
     
     const [isAddingCertificate, setIsAddingCertificate] = useState(false);
     const [certificateData, setCertificateData] = useState([]);
@@ -25,9 +25,12 @@ function Certificate ({portfolioOwnerId}) {
                     <CertificateCards
                     certificateData={certificateData}
                     setCertificateData={setCertificateData}
+                    isEditable={isEditable}
                     />
                     
-                    <Button className="mb-3" variant="primary" onClick={() => setIsAddingCertificate(true)}>+</Button>
+                    {isEditable && (
+                        <Button className="mb-3" variant="primary" onClick={() => setIsAddingCertificate(true)}>+</Button>
+                    )}
                     {isAddingCertificate && (
                         <CertificateAddForm
                             setIsAddingCertificate={setIsAddingCertificate}

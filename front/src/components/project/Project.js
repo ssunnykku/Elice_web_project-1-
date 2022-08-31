@@ -3,7 +3,7 @@ import { Card, Button, Form, Row, Col } from "react-bootstrap";
 import ProjectEditForm from "./ProjectEditForm"
 import * as Api from "../../api";
 
-function Project({ project, setProjects, projects }){
+function Project({ project, setProjects, projects, isEditable }){
 
     const [isEditing, setIsEditing] = useState(false)
 
@@ -34,12 +34,13 @@ function Project({ project, setProjects, projects }){
                     <p className="mb-2 text-muted">{project.from} ~ {project.to}</p>
                 </Col>
 
-                <Col xs={2} sm={{ span: 20 }} >
+                {isEditable && (<Col xs={2} sm={{ span: 20 }} >
                    <Button variant="outline-info" size="sm" onClick={()=>{
                        setIsEditing(true)
                    }}>편집</Button>
                    <Button type="submit" variant="outline-info" size="sm" onClick={deletePost}>삭제</Button>
                 </Col>
+                )}
 
             </Row>
         </Form>

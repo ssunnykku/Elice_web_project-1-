@@ -70,13 +70,21 @@ function Portfolio() {
 
           <div style={{ textAlign: "center" }}>
             <Education 
-              portfolioOwnerId={portfolioOwner.id}/>
+              portfolioOwnerId={portfolioOwner.id}
+              isEditable={portfolioOwner.id === userState.user?.id}
+              />
             <Award 
-              portfolioOwnerId={portfolioOwner.id}/>
+              portfolioOwnerId={portfolioOwner.id}
+              isEditable={portfolioOwner.id === userState.user?.id}
+              />
             <Projects 
-              portfolioOwnerId={portfolioOwner.id} />
+              portfolioOwnerId={portfolioOwner.id}
+              isEditable={portfolioOwner.id === userState.user?.id}
+              />
             <Certificate 
-              portfolioOwnerId={portfolioOwner.id}/>
+              portfolioOwnerId={portfolioOwner.id}
+              isEditable={portfolioOwner.id === userState.user?.id}
+              />
           </div>
           
           

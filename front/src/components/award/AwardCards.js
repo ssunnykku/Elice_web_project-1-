@@ -2,7 +2,7 @@ import React, {useState} from "react"
 import AwardCard from "./AwardCard"
 import AwardEditForm from "./AwardEditForm"
 
-function AwardCards ({awardData, setAwardData}) {
+function AwardCards ({awardData, setAwardData, isEditable}) {
 
 
     //편집상태관리
@@ -28,6 +28,7 @@ function AwardCards ({awardData, setAwardData}) {
                                         setIsEditingList = {setIsEditingList}
                                         awardId = {awd._id}
                                         key = {awd._id}
+                                        isEditable={isEditable}
                                     />
     )))
     
