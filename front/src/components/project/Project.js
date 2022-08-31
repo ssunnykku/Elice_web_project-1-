@@ -3,7 +3,7 @@ import { Button, Form, Row, Col } from "react-bootstrap";
 import ProjectEditForm from "./ProjectEditForm"
 import * as Api from "../../api";
 
-function Project({ project, setProjects, projects, key, portfolioOwnerId }){
+function Project({ project, setProjects, projects, portfolioOwnerId }){
 
     const [isEditing, setIsEditing] = useState(false)
 

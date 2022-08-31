@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Card, Button, Form, Row, Col } from "react-bootstrap";
+import { Card, Button } from "react-bootstrap";
 import ProjectAddForm from "./ProjectAddForm"
 import Project from "./Project"
 import * as Api from "../../api";
@@ -7,7 +7,6 @@ import * as Api from "../../api";
 function Projects({ portfolioOwnerId }) {
 
     const [isEditing, setIsEditing] = useState(false);
-
     const [projects, setProjects] = useState([]);
 
   useEffect(() => {
@@ -26,7 +25,7 @@ function Projects({ portfolioOwnerId }) {
         {
         (projects.map((project) => {
           return(
-         
+            
           <Project project={project}
                    key={project._id}
                    projects={projects}
@@ -38,11 +37,18 @@ function Projects({ portfolioOwnerId }) {
         }
 
         {/* ProjectAddForm 설정 ( + 버튼 ) */}
-        {/* <img src="https://img.icons8.com/windows/32/000000/plus.png"/> */}
 
-        <Button variant="Secondary" className="mb-3" onClick={()=>{
+        <Button 
+          variant="Secondary" 
+          className="mb-3" 
+          style={{
+            fontSize: '25px', 
+            fontWeight: 'bolder',
+            padding: '1px 8px 5px 8px'}}
+          onClick={()=>{
           setIsEditing(true) 
-        }}>+</Button>
+        }}
+           >+</Button>
 
         {isEditing && 
         <ProjectAddForm 

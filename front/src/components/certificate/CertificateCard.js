@@ -33,12 +33,12 @@ function CertificateCard ({certificateData, setCertificateData, isEditingList, s
     return (
         <Form className="mb-4" style={{ textAlign: "left" }}>
             <Row>
-                <Col xs={11} class="d-flex flex-column mb-3">
+                <Col xs={11} className="d-flex flex-column mb-3">
                     <div>{getData.title}</div>
                     <div>{getData.description}</div>
                     <div>{getData.date}</div>
                 </Col> 
-                <Col xs={1} class="align-self-center col-xs-6">
+                <Col xs={1} className="align-self-center col-xs-6">
                     <Button size="sm" variant="outline-info" onClick={openEdit}>편집</Button> 
                     <Button size="sm" variant="outline-info" onClick={deleteForm} >삭제</Button> 
                 </Col>  

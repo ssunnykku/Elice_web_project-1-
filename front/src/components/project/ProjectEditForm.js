@@ -1,8 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Card, InputGroup, Form, Button, Row, Col } from "react-bootstrap";
 import * as Api from "../../api";
 
-function ProjectEditForm({ setIsEditing, setProjects, projects, project, portfolioOwnerId }) {
+function ProjectEditForm({ 
+  setIsEditing, 
+  setProjects,
+  project, 
+  portfolioOwnerId }) {
 
     const [inputs, setInputs] = useState({
         title: project.title,
@@ -12,8 +16,7 @@ function ProjectEditForm({ setIsEditing, setProjects, projects, project, portfol
       });
   
       const { title, description, from, to } = inputs;
-      
-      console.log(to)
+
 
       const onChange = (e) => {
         const { value, name } = e.target;
@@ -38,14 +41,37 @@ function ProjectEditForm({ setIsEditing, setProjects, projects, project, portfol
         setIsEditing(false)
       }
 
+      
+        // 필수값 입력 확인
+        const isTitleValid = title.length > 0;
+        const isFromValid = from.length > 0;
+        const isToValid = to.length > 0;
+    
+        //필수값 조건 동시에 만족되는지 확인
+        const isFormValid = isTitleValid && isFromValid && isToValid;
+
+        // 날짜 입력 조건
+        const isDateValid = isFromValid && isToValid;
+
+        const durationValid = ()=>{
+          if (!isDateValid) {
+            return <Form.Text className="text-success">
+            필수 입력값입니다.
+                  </Form.Text> 
+          } else if (from > to) {
+            return  ( <Form.Text className="text-success">
+                  해당 기간의 조회가 불가능합니다.
+                  </Form.Text>)
+          }
+        }
+
+
+
     return (
-        <>
-    <Card.Body>
     <Form 
-      type="text" 
       onSubmit={handleSubmit} 
       key={project._id}>
-    <InputGroup className="mb-3">
+    <Form.Group className="mb-3">
       <Form.Control
         type="text"
         placeholder="프로젝트 제목"
@@ -53,8 +79,12 @@ function ProjectEditForm({ setIsEditing, setProjects, projects, project, portfol
         name="title"
         value={title}
       />
-      </InputGroup>
-      <InputGroup className="mb-3">
+        {!isTitleValid && (
+          <Form.Text className="text-success">
+                필수 입력값입니다.
+          </Form.Text>)} 
+      </Form.Group>
+      <Form.Group className="mb-3">
       <Form.Control
         type="text"
         placeholder="상세내역"
@@ -62,19 +92,26 @@ function ProjectEditForm({ setIsEditing, setProjects, projects, project, portfol
         name="description"
         value={description}
       />
-      </InputGroup>
+      </Form.Group>
+
       <input type="date" 
         onChange={onChange} 
         name="from"
         value={from}/>
+
       <input type="date" 
         onChange={onChange}
         name="to"
         value={to}/>
       <br/>
+      {durationValid()}
       <Form.Group as={Row} className="mt-3 text-center">
       <Col sm={{ span: 20 }}>
-        <Button variant="primary" type="submit" className="mb-3" 
+        <Button 
+        variant="primary" 
+        type="submit" 
+        className="mb-3" 
+        disabled={!isFormValid}
         >확인</Button>{' '}
       <Button variant="secondary" className="mb-3" onClick={()=>{
         setIsEditing(false)
@@ -82,8 +119,6 @@ function ProjectEditForm({ setIsEditing, setProjects, projects, project, portfol
       </Col>
       </Form.Group>
       </Form>
-    </Card.Body>
-    </>
     )
 }
 

@@ -3,7 +3,7 @@ import { Card, InputGroup, Form, Button, Row, Col } from "react-bootstrap";
 
 import * as Api from "../../api";
 
-function ProjectAddForm({ projects, setProjects, setIsEditing, portfolioOwnerId }) {
+function ProjectAddForm({ setProjects, setIsEditing, portfolioOwnerId }) {
 
     const [inputs, setInputs] = useState({
       title: '',
@@ -20,8 +20,7 @@ function ProjectAddForm({ projects, setProjects, setIsEditing, portfolioOwnerId 
         ...inputs,
         [name]: value
       });
-      enableButton(e.target.value)
-      setIsTitleValid({[title]: value})
+
     };
 
         // 필수값 입력 확인
@@ -31,6 +30,8 @@ function ProjectAddForm({ projects, setProjects, setIsEditing, portfolioOwnerId 
     
         //필수값 조건 동시에 만족되는지 확인
         const isFormValid = isTitleValid && isFromValid && isToValid;
+
+        // 날짜 입력 조건
         const isDateValid = isFromValid && isToValid;
 
 
@@ -64,24 +65,19 @@ function ProjectAddForm({ projects, setProjects, setIsEditing, portfolioOwnerId 
          })
       } catch (e) {
         console.log("실패");
-        // setIsFormValid(
-        // <Form.Text className="text-success">
-        // 모두 입력해주세요.
-        // </Form.Text>)
         
       }
       await Api.get(`project/projects`, portfolioOwnerId)
         .then((res) => setProjects(res.data)); 
+        setIsEditing(false)
     }
-
-    const [text, enableButton] = useState("");
-
+    
   return <>
-      <Form onSubmit={handleSubmit}>
+      <Form 
+        onSubmit={handleSubmit}>
         <Form.Group className="mb-3">
           <Form.Control
-            aria-label="Default"
-            aria-describedby="inputGroup-sizing-default"
+            type="text"
             placeholder="프로젝트 제목"
             onChange={onChange}
             name="title"
@@ -92,21 +88,21 @@ function ProjectAddForm({ projects, setProjects, setIsEditing, portfolioOwnerId 
                 필수 입력값입니다.
           </Form.Text>)} 
           </Form.Group>
-          <InputGroup className="mb-3">
+          <Form.Group className="mb-3">
           <Form.Control
-            aria-label="Default"
-            aria-describedby="inputGroup-sizing-default"
+            type="text"
             placeholder="상세내역"
             onChange={onChange}
             name="description"
             value={description}
           />
-          </InputGroup>
+          </Form.Group>
 
           <input type="date" 
             onChange={onChange} 
             name="from"
             value={from}/>
+            
           <input type="date" 
             onChange={onChange}
             name="to"
