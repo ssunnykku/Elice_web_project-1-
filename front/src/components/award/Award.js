@@ -6,7 +6,7 @@ import * as Api from "../../api";
 
 
 
-function Award ({portfolioOwnerId}) {
+function Award ({portfolioOwnerId, isEditable}) {
     
     const [awardData, setAwardData] = useState([])
     const [isAddingAward, setIsAddingAward] = useState(false);
@@ -27,9 +27,12 @@ function Award ({portfolioOwnerId}) {
                     <AwardCards
                         awardData={awardData}
                         setAwardData={setAwardData}
+                        isEditable={isEditable}
                         />
                     
-                    <Button className="mb-3" variant="primary" onClick={() => setIsAddingAward(true)}>+</Button>
+                    {isEditable && (
+                        <Button className="mb-3" variant="primary" onClick={() => setIsAddingAward(true)}>+</Button>
+                    )}
                     {isAddingAward && (
                         <AwardAddForm
                             setIsAddingAward={setIsAddingAward}
@@ -39,7 +42,6 @@ function Award ({portfolioOwnerId}) {
                     )}
                 </Card.Body>
             </Card>
-                        
         </>
     )
 }

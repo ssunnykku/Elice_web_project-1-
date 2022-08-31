@@ -4,7 +4,7 @@ import ProjectAddForm from "./ProjectAddForm"
 import Project from "./Project"
 import * as Api from "../../api";
 
-function Projects({ portfolioOwnerId }) {
+function Projects({ portfolioOwnerId, isEditable }) {
 
     const [isEditing, setIsEditing] = useState(false);
 
@@ -48,17 +48,19 @@ function Projects({ portfolioOwnerId }) {
                    key={project._id}
                    projects={projects}
                    setProjects={setProjects}
+                   isEditable={isEditable}
                    />    
             )} 
           ))
         }
 
         {/* ProjectAddForm 설정 ( + 버튼 ) */}
-        <Form.Group className="mt-3 text-center">
+        {isEditable && (<Form.Group className="mt-3 text-center">
         <Button variant="primary" className="mt-3" onClick={()=>{
           setIsEditing(true) 
         }}>+</Button>
         </Form.Group>
+        )}
         {isEditing && 
         <ProjectAddForm 
               projects={projects}

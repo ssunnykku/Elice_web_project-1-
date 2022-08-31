@@ -3,7 +3,7 @@ import {Form, Button, Col, Row} from "react-bootstrap";
 import * as Api from "../../api";
 
 
-function EducationCard ({educationData, setEducationData, isEditingList, setIsEditingList, educationId}) {
+function EducationCard ({educationData, setEducationData, isEditingList, setIsEditingList, educationId, isEditable}) {
     
     // _id(educationId) 키값으로 배열에서 해당 education 객체찾기
     const getData = educationData.find(edu => edu._id === educationId)
@@ -39,10 +39,12 @@ function EducationCard ({educationData, setEducationData, isEditingList, setIsEd
                     <div>{getData.school}</div>
                     <div>{getData.major} ({getData.degree})</div>
                 </Col>
+                {isEditable && (
                 <Col xs={1} class="align-self-center col-xs-6">
                     <Button size="sm" variant="outline-info" onClick={openEdit}>편집</Button> 
                     <Button size="sm" variant="outline-info" onClick={deleteForm} >삭제</Button> 
-                </Col>  
+                </Col>
+                )}
             </Row>
         </Form>
     )

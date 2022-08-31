@@ -3,7 +3,7 @@ import {Form, Button, Col, Row} from "react-bootstrap";
 import * as Api from "../../api";
 
 
-function AwardCard ({awardData, setAwardData, isEditingList, setIsEditingList, awardId}) {
+function AwardCard ({awardData, setAwardData, isEditingList, setIsEditingList, awardId, isEditable}) {
     // _id(awardId) 키값으로 배열에서 해당 award 객체찾기
     const getData = awardData.find((awd) => awd._id === awardId)
 
@@ -40,10 +40,12 @@ function AwardCard ({awardData, setAwardData, isEditingList, setIsEditingList, a
                     <div>{getData.award}</div>
                     <div>{getData.detail}</div>
                 </Col>
-                <Col xs={1} class="align-self-center col-xs-6">
-                    <Button size="sm" variant="outline-info" onClick={openEdit}>편집</Button> 
-                    <Button size="sm" variant="outline-info" onClick={deleteForm}>삭제</Button> 
-                </Col>  
+                {isEditable && (
+                    <Col xs={1} class="align-self-center col-xs-6">
+                        <Button size="sm" variant="outline-info" onClick={openEdit}>편집</Button> 
+                        <Button size="sm" variant="outline-info" onClick={deleteForm}>삭제</Button> 
+                    </Col>
+                )}
             </Row>
         </Form>
     )
