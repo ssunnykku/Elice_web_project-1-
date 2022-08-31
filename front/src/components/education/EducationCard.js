@@ -35,32 +35,20 @@ function EducationCard ({educationData, setEducationData, isEditingList, setIsEd
     return (
         <Form className="mb-4" style={{ textAlign: "left" }}>
             <Row>
-<<<<<<< HEAD
-                <Col xs={10}>
-                    <div>{getData.school}</div>
-                    <div>{getData.major} ({getData.degree})</div>
-                </Col>
-
-                {isEditable && (
-                <Col xs={1} class="align-self-center col-xs-6">
-=======
                 <Col xs={11} className="d-flex flex-column mb-3">
                     <div>{getData.school}</div>
                     <div>{getData.major} ({getData.degree})</div>
                 </Col>
                 <Col xs={1} className="align-self-center col-xs-6">
->>>>>>> frontend_enterValid
                     <Button size="sm" variant="outline-info" onClick={openEdit}>편집</Button> 
                     <Button size="sm" variant="outline-info" onClick={deleteForm} >삭제</Button> 
                 </Col>
-                )}
-
-                <Col>
+                {/* <Col>
                     <Button size="sm" variant="primary" onClick={openEdit}
                     className="btn btn-primary ms-5">편집</Button> 
                     <Button size="sm" variant="danger" onClick={deleteForm}
                     className="btn btn-danger ms-1">삭제</Button> 
-                </Col>  
+                </Col>   */}
 
             </Row>
         </Form>

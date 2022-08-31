@@ -36,11 +36,7 @@ function AwardCard ({awardData, setAwardData, isEditingList, setIsEditingList, a
     return (
         <Form className="mb-4" style={{ textAlign: "left" }}>
             <Row>
-<<<<<<< HEAD
-                <Col xs={10}>
-=======
                 <Col xs={11} className="d-flex flex-column mb-3">
->>>>>>> frontend_enterValid
                     <div>{getData.award}</div>
                     <div>{getData.detail}</div>
                 </Col>

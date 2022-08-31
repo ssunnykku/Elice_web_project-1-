@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Card, Button } from "react-bootstrap";
+import { Form, Card, Button } from "react-bootstrap";
 import ProjectAddForm from "./ProjectAddForm"
 import Project from "./Project"
 import * as Api from "../../api";
@@ -30,25 +30,20 @@ function Projects({ portfolioOwnerId, isEditable }) {
                    key={project._id}
                    projects={projects}
                    setProjects={setProjects}
-<<<<<<< HEAD
                    isEditable={isEditable}
-=======
                    portfolioOwnerId={portfolioOwnerId}
->>>>>>> frontend_enterValid
                    />    
             )} 
           ))
         }
 
         {/* ProjectAddForm 설정 ( + 버튼 ) */}
-<<<<<<< HEAD
         {isEditable && (<Form.Group className="mt-3 text-center">
         <Button variant="primary" className="mt-3" onClick={()=>{
           setIsEditing(true) 
         }}>+</Button>
         </Form.Group>
         )}
-=======
 
         <Button 
           variant="Secondary" 
@@ -62,7 +57,6 @@ function Projects({ portfolioOwnerId, isEditable }) {
         }}
            >+</Button>
 
->>>>>>> frontend_enterValid
         {isEditing && 
         <ProjectAddForm 
               projects={projects}

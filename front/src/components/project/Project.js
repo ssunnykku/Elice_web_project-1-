@@ -3,11 +3,7 @@ import { Button, Form, Row, Col } from "react-bootstrap";
 import ProjectEditForm from "./ProjectEditForm"
 import * as Api from "../../api";
 
-<<<<<<< HEAD
-function Project({ project, setProjects, projects, isEditable }){
-=======
 function Project({ project, setProjects, projects, portfolioOwnerId }){
->>>>>>> frontend_enterValid
 
     const [isEditing, setIsEditing] = useState(false)
 
@@ -45,30 +41,27 @@ function Project({ project, setProjects, projects, portfolioOwnerId }){
                     <p className="mb-2 text-muted">{project.description}</p>
                     <p className="mb-2 text-muted">{project.from} ~ {project.to}</p>
                 </Col>
-<<<<<<< HEAD
-
-<<<<<<< HEAD
+{/* 
                 {isEditable && (<Col xs={2} sm={{ span: 20 }} >
-                   <Button variant="outline-info" size="sm" onClick={()=>{
-=======
+                   <Button variant="outline-info" size="sm" onClick={()=>{ */}
+
                 <Col xs={2} sm={{ span: 20 }} >
                    <Button 
                    variant="outline-info" size="sm" 
                    onClick={()=>{
->>>>>>> frontend_enterValid
                        setIsEditing(true)
                    }}>편집</Button>
                    <Button 
                    type="submit" variant="outline-info" size="sm" 
                    onClick={deletePost}>삭제</Button>
                 </Col>
-                )}
+                {/* )} */}
 
             </Row>
         </Form>
         }
-=======
-                <Col>
+
+                {/* <Col>
                    <Button size="sm" variant="primary" onClick={()=>{setIsEditing(true)}} 
                    className="btn btn-primary ms-5">편집</Button>
                    <Button size="sm" variant="danger" onClick={deletePost}
@@ -76,8 +69,7 @@ function Project({ project, setProjects, projects, portfolioOwnerId }){
                 </Col>
               </Row>
             </Form>
-          }
->>>>>>> button_fr
+          } */}
         </div>
     )
 }
