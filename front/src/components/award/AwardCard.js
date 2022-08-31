@@ -36,13 +36,15 @@ function AwardCard ({awardData, setAwardData, isEditingList, setIsEditingList, a
     return (
         <Form className="mb-4" style={{ textAlign: "left" }}>
             <Row>
-                <Col xs={11} class="d-flex flex-column mb-3">
+                <Col xs={10}>
                     <div>{getData.award}</div>
                     <div>{getData.detail}</div>
                 </Col>
-                <Col xs={1} class="align-self-center col-xs-6">
-                    <Button size="sm" variant="outline-info" onClick={openEdit}>편집</Button> 
-                    <Button size="sm" variant="outline-info" onClick={deleteForm}>삭제</Button> 
+                <Col>
+                    <Button size="sm" variant="primary" onClick={openEdit}
+                    className="btn btn-primary ms-5">편집</Button> 
+                    <Button size="sm" variant="danger" onClick={deleteForm}
+                    className="btn btn-danger ms-1">삭제</Button> 
                 </Col>  
             </Row>
         </Form>

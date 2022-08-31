@@ -18,7 +18,7 @@ function Project({ project, setProjects, projects }){
 
     return(
         <div>
-            {isEditing === true
+          {isEditing === true
             ?    <ProjectEditForm  
                        setIsEditing={setIsEditing}
                         projects={projects}
@@ -28,22 +28,20 @@ function Project({ project, setProjects, projects }){
            : 
              <Form style={{ textAlign: "left" }}>
                <Row>
-                <Col xs={10} className="align-self-center col-xs-6">
+                <Col xs={10}>
                     <h6>{project.title}</h6>
                     <p className="mb-2 text-muted">{project.description}</p>
                     <p className="mb-2 text-muted">{project.from} ~ {project.to}</p>
                 </Col>
-
-                <Col xs={2} sm={{ span: 20 }} >
-                   <Button variant="outline-info" size="sm" onClick={()=>{
-                       setIsEditing(true)
-                   }}>편집</Button>
-                   <Button type="submit" variant="outline-info" size="sm" onClick={deletePost}>삭제</Button>
+                <Col>
+                   <Button size="sm" variant="primary" onClick={()=>{setIsEditing(true)}} 
+                   className="btn btn-primary ms-5">편집</Button>
+                   <Button size="sm" variant="danger" onClick={deletePost}
+                   className="btn btn-danger ms-1">삭제</Button>
                 </Col>
-
-            </Row>
-        </Form>
-        }
+              </Row>
+            </Form>
+          }
         </div>
     )
 }
