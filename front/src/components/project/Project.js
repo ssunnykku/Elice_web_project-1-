@@ -18,7 +18,7 @@ function Project({ project, setProjects, projects, isEditable }){
 
     return(
         <div>
-            {isEditing === true
+          {isEditing === true
             ?    <ProjectEditForm  
                        setIsEditing={setIsEditing}
                         projects={projects}
@@ -28,11 +28,12 @@ function Project({ project, setProjects, projects, isEditable }){
            : 
              <Form style={{ textAlign: "left" }}>
                <Row>
-                <Col xs={10} className="align-self-center col-xs-6">
+                <Col xs={10}>
                     <h6>{project.title}</h6>
                     <p className="mb-2 text-muted">{project.description}</p>
                     <p className="mb-2 text-muted">{project.from} ~ {project.to}</p>
                 </Col>
+<<<<<<< HEAD
 
                 {isEditable && (<Col xs={2} sm={{ span: 20 }} >
                    <Button variant="outline-info" size="sm" onClick={()=>{
@@ -45,6 +46,17 @@ function Project({ project, setProjects, projects, isEditable }){
             </Row>
         </Form>
         }
+=======
+                <Col>
+                   <Button size="sm" variant="primary" onClick={()=>{setIsEditing(true)}} 
+                   className="btn btn-primary ms-5">편집</Button>
+                   <Button size="sm" variant="danger" onClick={deletePost}
+                   className="btn btn-danger ms-1">삭제</Button>
+                </Col>
+              </Row>
+            </Form>
+          }
+>>>>>>> button_fr
         </div>
     )
 }
