@@ -31,6 +31,7 @@ function Projects({ portfolioOwnerId }) {
                    key={project._id}
                    projects={projects}
                    setProjects={setProjects}
+                   portfolioOwnerId={portfolioOwnerId}
                    />    
             )} 
           ))
@@ -47,7 +48,9 @@ function Projects({ portfolioOwnerId }) {
         <ProjectAddForm 
               projects={projects}
               setProjects={setProjects}
-              setIsEditing={setIsEditing} />}
+              setIsEditing={setIsEditing}
+              portfolioOwnerId={portfolioOwnerId} 
+              />}
         
       </Card.Body>
     </Card>

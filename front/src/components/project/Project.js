@@ -3,24 +3,24 @@ import { Button, Form, Row, Col } from "react-bootstrap";
 import ProjectEditForm from "./ProjectEditForm"
 import * as Api from "../../api";
 
-function Project({ project, setProjects, projects, key }){
+function Project({ project, setProjects, projects, key, portfolioOwnerId }){
 
     const [isEditing, setIsEditing] = useState(false)
 
-    const deletePost = async() => {
+    const deletePost = async(e) => {
+      e.preventDefault()
       const confirmDelete = window.confirm("정말로 삭제하시겠습니까?")
       if (confirmDelete == true){
       const res = await Api.delete(`project`,project._id);
       
         if (res.data.message === "It's deleted!") {
-          setProjects(
-            projects.filter((project) => {
-              project._id !== key;
-            })
-          ) 
           alert("삭제되었습니다")
-        }    
+      
+        await Api.get(`project/projects`, portfolioOwnerId)
+        .then((res) => setProjects(res.data)); 
+        }  
       }
+
       }
 
     return(
@@ -31,7 +31,7 @@ function Project({ project, setProjects, projects, key }){
                         projects={projects}
                         setProjects={setProjects}
                         project={project}
-                        key={key}
+                        portfolioOwnerId={portfolioOwnerId}
                        /> 
            : 
              <Form style={{ textAlign: "left" }}>

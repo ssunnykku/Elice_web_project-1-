@@ -2,18 +2,18 @@ import React, { useEffect, useState } from "react";
 import { Card, InputGroup, Form, Button, Row, Col } from "react-bootstrap";
 import * as Api from "../../api";
 
-function ProjectEditForm({ setIsEditing, setProjects, projects, project }) {
+function ProjectEditForm({ setIsEditing, setProjects, projects, project, portfolioOwnerId }) {
 
     const [inputs, setInputs] = useState({
-        title: '',
-        description: '',
-        from: '',
-        to: '',
-
+        title: project.title,
+        description: project.description,
+        from: project.from,
+        to: project.to,
       });
   
       const { title, description, from, to } = inputs;
-  
+      
+      console.log(to)
 
       const onChange = (e) => {
         const { value, name } = e.target;
@@ -31,14 +31,9 @@ function ProjectEditForm({ setIsEditing, setProjects, projects, project }) {
           description,
           from,
           to
-        }).then((res) => {
-          const newProjects = [...projects]
-          const findIndex = newProjects.findIndex((newProject)=>{
-            newProject._id === project._id
-          })
-          newProjects[findIndex] = res.data
-          setProjects(newProjects)
         })
+        await Api.get(`project/projects`, portfolioOwnerId)
+        .then((res) => setProjects(res.data));
 
         setIsEditing(false)
       }

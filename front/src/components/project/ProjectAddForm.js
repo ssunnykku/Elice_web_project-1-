@@ -3,7 +3,7 @@ import { Card, InputGroup, Form, Button, Row, Col } from "react-bootstrap";
 
 import * as Api from "../../api";
 
-function ProjectAddForm({ projects, setProjects, setIsEditing }) {
+function ProjectAddForm({ projects, setProjects, setIsEditing, portfolioOwnerId }) {
 
     const [inputs, setInputs] = useState({
       title: '',
@@ -60,15 +60,18 @@ function ProjectAddForm({ projects, setProjects, setIsEditing }) {
         .then((res)=>{
           
           let data = res.data
-          setProjects([...projects, data])})
+
+         })
       } catch (e) {
         console.log("실패");
-        setIsFormValid(
-        <Form.Text className="text-success">
-        모두 입력해주세요.
-        </Form.Text>)
+        // setIsFormValid(
+        // <Form.Text className="text-success">
+        // 모두 입력해주세요.
+        // </Form.Text>)
         
       }
+      await Api.get(`project/projects`, portfolioOwnerId)
+        .then((res) => setProjects(res.data)); 
     }
 
     const [text, enableButton] = useState("");
