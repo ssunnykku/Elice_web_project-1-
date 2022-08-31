@@ -34,42 +34,38 @@ function Project({ project, setProjects, projects, portfolioOwnerId }){
                         portfolioOwnerId={portfolioOwnerId}
                        /> 
            : 
-             <Form style={{ textAlign: "left" }}>
+             <Form style={{ textAlign: "left", padding: '0 20px' }}>
                <Row>
-                <Col xs={10}>
+                <Col xs={11} >
                     <h6>{project.title}</h6>
                     <p className="mb-2 text-muted">{project.description}</p>
                     <p className="mb-2 text-muted">{project.from} ~ {project.to}</p>
                 </Col>
-{/* 
-                {isEditable && (<Col xs={2} sm={{ span: 20 }} >
-                   <Button variant="outline-info" size="sm" onClick={()=>{ */}
-
-                <Col xs={2} sm={{ span: 20 }} >
-                   <Button 
+                <Col xs={1} sm={{ span: 20 }} >
+                  <img 
+                    src="https://img.icons8.com/external-regular-kawalan-studio/20/000000/external-edit-user-interface-regular-kawalan-studio.png"
+                    type="button"
+                    style={{marginRight: 5}}
+                    onClick={()=>{
+                      setIsEditing(true)
+                  }}
+                    />
+                   {/* <Button 
                    variant="outline-info" size="sm" 
                    style={{marginRight: 5}}
-                   onClick={()=>{
-                       setIsEditing(true)
-                   }}>편집</Button>
-                   <Button 
+                   >편집</Button> */}
+                   <img src="https://img.icons8.com/external-anggara-outline-color-anggara-putra/20/000000/external-delete-basic-user-interface-anggara-outline-color-anggara-putra.png"
+                   type="submit" variant="outline-info" size="sm"
+                   onClick={deletePost}
+                   />
+                   {/* <Button 
                    type="submit" variant="outline-info" size="sm" 
-                   onClick={deletePost}>삭제</Button>
+                   onClick={deletePost}>삭제</Button> */}
                 </Col>
 
             </Row>
         </Form>
         }
-
-                {/* <Col>
-                   <Button size="sm" variant="primary" onClick={()=>{setIsEditing(true)}} 
-                   className="btn btn-primary ms-5">편집</Button>
-                   <Button size="sm" variant="danger" onClick={deletePost}
-                   className="btn btn-danger ms-1">삭제</Button>
-                </Col>
-              </Row>
-            </Form>
-          } */}
         </div>
     )
 }

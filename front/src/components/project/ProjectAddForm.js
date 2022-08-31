@@ -37,11 +37,13 @@ function ProjectAddForm({ setProjects, setIsEditing, portfolioOwnerId }) {
 
         const durationValid = ()=>{
           if (!isDateValid) {
-            return <Form.Text className="text-success">
-            필수 입력값입니다.
-                  </Form.Text> 
+            return   <Form.Text 
+            style={{color: 'tomato', fontWeight: 'bolder' }}
+            >
+                  필수 입력값입니다.
+            </Form.Text> 
           } else if (from > to) {
-            return  ( <Form.Text className="text-success">
+            return  ( <Form.Text style={{color: 'tomato', fontWeight: 'bolder' }}>
                   해당 기간의 조회가 불가능합니다.
                   </Form.Text>)
           }
@@ -74,7 +76,8 @@ function ProjectAddForm({ setProjects, setIsEditing, portfolioOwnerId }) {
     
   return <>
       <Form 
-        onSubmit={handleSubmit}>
+        onSubmit={handleSubmit}
+        style={{padding: '25px'}}>
         <Form.Group className="mb-3">
           <Form.Control
             type="text"
@@ -84,7 +87,9 @@ function ProjectAddForm({ setProjects, setIsEditing, portfolioOwnerId }) {
             value={title}
           />
           {!isTitleValid && (
-          <Form.Text className="text-success">
+          <Form.Text 
+          style={{color: 'tomato', fontWeight: 'bolder' }}
+          >
                 필수 입력값입니다.
           </Form.Text>)} 
           </Form.Group>

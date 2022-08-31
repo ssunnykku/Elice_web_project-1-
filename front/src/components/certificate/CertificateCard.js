@@ -31,7 +31,7 @@ function CertificateCard ({certificateData, setCertificateData, isEditingList, s
         
 
     return (
-        <Form className="mb-4" style={{ textAlign: "left" }}>
+        <Form className="mb-4" style={{ textAlign: "left", paddingLeft: '20px' }}>
             <Row>
                 <Col xs={10} className="d-flex flex-column mb-3">
                     <div>{getData.title}</div>

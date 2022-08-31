@@ -16,9 +16,9 @@ function Projects({ portfolioOwnerId, isEditable }) {
 
     return <>
 
-     <Card className="mb-2 ms-3 mr-5">
+     <Card className="mb-2 ms-3 mr-5" style={{padding: '35px 0'}}>
       <Card.Body>
-        <h5>프로젝트</h5>
+      <Card.Title style={{paddingBottom: '35px', fontWeight: "bolder"}}>프로젝트</Card.Title>
 
         {/* 편집Form 설정 : isEditing이 False면 편집창이 닫힘 */}
 
@@ -39,23 +39,15 @@ function Projects({ portfolioOwnerId, isEditable }) {
 
         {/* ProjectAddForm 설정 ( + 버튼 ) */}
         {isEditable && (<Form.Group className="mt-3 text-center">
-        <Button variant="primary" className="mt-3" onClick={()=>{
-          setIsEditing(true) 
-        }}>+</Button>
+        <img 
+           src="https://img.icons8.com/ios-glyphs/40/000000/macos-maximize.png"
+           type="button"
+           onClick={()=>{
+            setIsEditing(true) 
+          }}
+           />
         </Form.Group>
         )}
-
-        <Button 
-          variant="Secondary" 
-          className="mb-3" 
-          style={{
-            fontSize: '25px', 
-            fontWeight: 'bolder',
-            padding: '1px 8px 5px 8px'}}
-          onClick={()=>{
-          setIsEditing(true) 
-        }}
-           >+</Button>
 
         {isEditing && 
         <ProjectAddForm 

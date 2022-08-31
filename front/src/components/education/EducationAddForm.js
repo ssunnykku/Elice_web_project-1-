@@ -39,7 +39,7 @@ function EducationAddForm({educationData, setEducationData, setIsAddingEducation
   const isFormValid = isSchoolValid && isMajorValid;
 
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit} style={{padding: '25px'}}>
       <Form.Group className="mb-3" controlId="schoolName">
         <Form.Control
           type="text"

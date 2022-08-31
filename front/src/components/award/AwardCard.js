@@ -34,15 +34,14 @@ function AwardCard ({awardData, setAwardData, isEditingList, setIsEditingList, a
     
 
     return (
-        <Form className="mb-4" style={{ textAlign: "left" }}>
+        <Form className="mb-4" style={{ textAlign: "left", paddingLeft: '20px' }}>
             <Row>
                 <Col xs={10}>
                     <div>{getData.award}</div>
                     <div>{getData.detail}</div>
                 </Col>
                 <Col xs={2} sm={{ span: 20 }}>
-                    <Button size="sm" variant="outline-info" 
-                    size="sm" 
+                    <Button size="sm" variant="outline-info" size="sm" 
                     style={{marginRight: 5}} 
                     onClick={openEdit}>편집</Button> 
                     <Button  type="submit" variant="outline-info" size="sm"

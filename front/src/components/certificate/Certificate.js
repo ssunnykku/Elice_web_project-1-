@@ -18,9 +18,10 @@ function Certificate ({portfolioOwnerId, isEditable}) {
     
     return (
         <>
-            <Card className="mb-2 ms-3 mr-5">
+            <Card className="mb-2 ms-3 mr-5" style={{padding: '35px 0'}}>
                 <Card.Body>
-                    <Card.Title>자격증</Card.Title>
+                    <Card.Title
+                        style={{paddingBottom: '35px', fontWeight: "bolder"}}>자격증</Card.Title>
             
                     <CertificateCards
                     certificateData={certificateData}

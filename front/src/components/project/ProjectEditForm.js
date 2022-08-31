@@ -59,7 +59,7 @@ function ProjectEditForm({
             필수 입력값입니다.
                   </Form.Text> 
           } else if (from > to) {
-            return  ( <Form.Text className="text-success">
+            return  ( <Form.Text style={{color: 'tomato', fontWeight: 'bolder' }}>
                   해당 기간의 조회가 불가능합니다.
                   </Form.Text>)
           }
@@ -69,6 +69,7 @@ function ProjectEditForm({
 
     return (
     <Form 
+    style={{padding: '25px'}}
       onSubmit={handleSubmit} 
       key={project._id}>
     <Form.Group className="mb-3">
@@ -80,9 +81,11 @@ function ProjectEditForm({
         value={title}
       />
         {!isTitleValid && (
-          <Form.Text className="text-success">
-                필수 입력값입니다.
-          </Form.Text>)} 
+           <Form.Text 
+           style={{color: 'tomato', fontWeight: 'bolder'}}
+           >
+                 필수 입력값입니다.
+           </Form.Text>)} 
       </Form.Group>
       <Form.Group className="mb-3">
       <Form.Control
