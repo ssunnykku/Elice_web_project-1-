@@ -38,6 +38,9 @@ function RegisterForm() {
   const isFormValid =
     isEmailValid && isPasswordValid && isPasswordSame && isNameValid;
 
+  //이메일 중복시 알려줌
+  const [isEmailDuplicate, setIsEmailDuplicate] = useState(false)
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -53,6 +56,7 @@ function RegisterForm() {
       navigate("/login");
     } catch (err) {
       console.log("회원가입에 실패하였습니다.", err);
+      setIsEmailDuplicate(true)
     }
   };
 
@@ -63,15 +67,21 @@ function RegisterForm() {
           <Form onSubmit={handleSubmit}>
             <Form.Group controlId="registerEmail">
               <Form.Label>이메일 주소</Form.Label>
-              <Form.Control
+              <Form.Control 
                 type="email"
                 autoComplete="off"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                className={(isEmailDuplicate && "form-control is-invalid")}
               />
               {!isEmailValid && (
                 <Form.Text className="text-success">
                   이메일 형식이 올바르지 않습니다.
+                </Form.Text>
+              )}
+              {isEmailDuplicate && (
+                <Form.Text className="text-danger">
+                  이미 사용중이거나 탈퇴한 이메일입니다.
                 </Form.Text>
               )}
             </Form.Group>
