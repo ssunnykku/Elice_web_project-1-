@@ -52,13 +52,13 @@ function EducationAddForm({educationData, setEducationData, setIsAddingEducation
       <Form.Group className="mb-3">
         {radioList.map((radio) => {
                 return <Form.Check
-                            // defaultChecked
                             inline
                             name="major"
                             label={radio}
                             type="radio"
                             value={radio}
                             onChange={(e) => setDegree(e.target.value)}
+                            defaultChecked={radio == "재학중"}
                             />;
                         })}
       </Form.Group>
