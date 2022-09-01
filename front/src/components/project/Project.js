@@ -38,7 +38,7 @@ function Project({ project, setProjects, projects, portfolioOwnerId, isEditable 
                         portfolioOwnerId={portfolioOwnerId}
                        /> 
            : 
-             <Form style={{ textAlign: "left", padding: '0 20px' }}>
+             <Form style={{ textAlign: "left", paddingLeft: '20px' }}>
                <Row>
                 <Col xs={10} >
                     <h6>{project.title}</h6>

@@ -20,7 +20,7 @@ function Projects({
 
     return <>
 
-     <Card className="mb-2 ms-3 mr-5" style={{padding: '25px'}}>
+     <Card className="mb-2 ms-3 mr-5" style={{padding: '0.6px'}}>
       <Card.Body>
       <Card.Title style={{paddingBottom: '35px', fontWeight: "bolder"}}>프로젝트</Card.Title>
 

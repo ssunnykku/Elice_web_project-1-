@@ -22,7 +22,7 @@ function Award ({portfolioOwnerId, isEditable}) {
     
     return (
         <>
-            <Card className="mb-2 ms-3 mr-5" style={{padding: '25px'}}>
+            <Card className="mb-2 ms-3 mr-5" style={{padding: '0.6px'}}>
                 <Card.Body>
                     <Card.Title
                         style={{paddingBottom: '35px', fontWeight: "bolder"}}>수상이력</Card.Title>
