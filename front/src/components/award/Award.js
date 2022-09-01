@@ -19,13 +19,12 @@ function Award ({portfolioOwnerId, isEditable}) {
         Api.get("award/info", portfolioOwnerId).then((res) => setAwardData(res.data));
       }, [portfolioOwnerId]);
 
-    
     return (
         <>
-            <Card className="mb-2 ms-3 mr-5" style={{padding: '0.6px'}}>
+            <Card className="mb-2 ms-3 mr-5">
                 <Card.Body>
-                    <Card.Title
-                        style={{paddingBottom: '35px', fontWeight: "bolder"}}>수상이력</Card.Title>
+                    <Card.Title 
+                        style={{padding: '35px', fontWeight: "bolder" }}>수상이력</Card.Title>
             
                     <AwardCards
                         awardData={awardData}
@@ -38,6 +37,7 @@ function Award ({portfolioOwnerId, isEditable}) {
                         src={Plus}
                         type="button"
                         onClick={() => setIsAddingAward(true)}
+                        style={{margin: '0 0 35px 10px' }}
                         />
                     )}
                     {isAddingAward && (
