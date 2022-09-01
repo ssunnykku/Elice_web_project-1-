@@ -49,7 +49,7 @@ function EducationCard ({educationData, setEducationData, isEditingList, setIsEd
                 <img 
                     src={Edit} 
                     type="button"
-                   style={{marginRight: '10px'}} onClick={openEdit} />
+                    style={{marginRight: '10px'}} onClick={openEdit} />
                 <img 
                     src={Delete}
                     type="submit"   variant="outline-info" size="sm"  onClick={deleteForm} /> 
