@@ -7,6 +7,7 @@ import * as Api from "../../api";
 //icon
 import Plus from '../icon/plus.png'
 
+
 function Award ({portfolioOwnerId, isEditable}) {
     
     const [awardData, setAwardData] = useState([])

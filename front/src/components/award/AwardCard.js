@@ -34,8 +34,6 @@ function AwardCard ({awardData, setAwardData, isEditingList, setIsEditingList, a
         }
     }
 
-    
-
     return (
         <Form className="mb-4" style={{ textAlign: "left", paddingLeft: '20px' }}>
             <Row>
@@ -43,17 +41,20 @@ function AwardCard ({awardData, setAwardData, isEditingList, setIsEditingList, a
                     <div>{getData.award}</div>
                     <div>{getData.detail}</div>
                 </Col>
-                <Col xs={2} sm={{ span: 20 }}>
-                    {/* 편집 및 삭제버튼 */}
-                <img 
-                    src={Edit} 
+                            {/* 편집 및 삭제버튼 */}
+        {isEditable &&
+                    (<Col xs={2} sm={{ span: 20 }}>
+                
+                    <img 
+                    src="https://img.icons8.com/external-tanah-basah-detailed-outline-tanah-basah/32/000000/external-edit-user-interface-tanah-basah-detailed-outline-tanah-basah-2.png" 
                     type="button"
-                    style={{marginRight: 5}} 
+                    style={{marginRight:'10px'}} 
                     onClick={openEdit} />
-                    <img src={Delete}
+                    
+                    <img src='https://img.icons8.com/external-anggara-outline-color-anggara-putra/26/000000/external-delete-user-interface-anggara-outline-color-anggara-putra-3.png'
                    type="submit"  variant="outline-info" size="sm"
                     onClick={deleteForm}/>
-                </Col>  
+                </Col> )}  
             </Row>
         </Form>
     )

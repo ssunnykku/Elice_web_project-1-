@@ -39,19 +39,21 @@ function EducationCard ({educationData, setEducationData, isEditingList, setIsEd
         <Form className="mb-4" style={{ textAlign: "left", paddingLeft: '20px' }}>
             <Row>
                 <Col xs={10} >
-                    <div>{getData.school}</div>
-                    <div>{getData.major} ({getData.degree})</div>
+                    <h6>{getData.school}</h6>
+                    <p>{getData.major} ({getData.degree})</p>
                 </Col>
-                <Col xs={2} sm={{ span: 20 }} >
-                {/* 편집 및 삭제버튼 */}
+                {isEditable && 
+                  {/* 편집 및 삭제버튼 */}
+                (<Col xs={2} sm={{ span: 20 }} >
+              
                 <img 
-                    src={Edit} 
+                    src="https://img.icons8.com/external-tanah-basah-detailed-outline-tanah-basah/32/000000/external-edit-user-interface-tanah-basah-detailed-outline-tanah-basah-2.png" 
                     type="button"
-                   style={{marginRight: 5}} onClick={openEdit} />
+                   style={{marginRight: '10px'}} onClick={openEdit} />
                 <img 
-                    src={Delete}
+                    src="https://img.icons8.com/external-anggara-outline-color-anggara-putra/26/000000/external-delete-user-interface-anggara-outline-color-anggara-putra-3.png"
                     type="submit"   variant="outline-info" size="sm"  onClick={deleteForm} /> 
-                </Col>  
+                </Col>  )}
 
             </Row>
         </Form>

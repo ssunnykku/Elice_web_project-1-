@@ -7,7 +7,7 @@ import * as Api from "../../api";
 import Edit from '../icon/edit.png'
 import Delete from '../icon/delete.png'
 
-function Project({ project, setProjects, projects, portfolioOwnerId }){
+function Project({ project, setProjects, projects, portfolioOwnerId, isEditable }){
 
     const [isEditing, setIsEditing] = useState(false)
 
@@ -45,37 +45,29 @@ function Project({ project, setProjects, projects, portfolioOwnerId }){
                     <p className="mb-2 text-muted">{project.description}</p>
                     <p className="mb-2 text-muted">{project.from} ~ {project.to}</p>
                 </Col>
-                <Col xs={2} sm={{ span: 20 }} >
+        
+          {/* 수정, 삭제버튼 */}
+            { isEditable && 
+                (<Col xs={2} sm={{ span: 20 }} >
                   <img 
-                    src={Edit}
+                    src="https://img.icons8.com/external-tanah-basah-detailed-outline-tanah-basah/32/000000/external-edit-user-interface-tanah-basah-detailed-outline-tanah-basah-2.png"
                     type="button"
-                    style={{marginRight: 5}}
+                    style={{marginRight: '10px'}}
                     onClick={()=>{
                       setIsEditing(true)
                   }}
                     />
-
-                  {/* 수정, 삭제버튼 */}
-
-                   {/* <Button 
-                   variant="outline-info" size="sm" 
-                   style={{marginRight: 5}}
-                   >편집</Button> */}
-                   {/* https://img.icons8.com/parakeet/48/000000/experimental-delete-parakeet.png */}
-                   <img src={Delete}
+                   <img src="https://img.icons8.com/external-anggara-outline-color-anggara-putra/26/000000/external-delete-user-interface-anggara-outline-color-anggara-putra-3.png"
                    type="submit" variant="outline-info" size="sm"
                    onClick={deletePost}
                    />
-                   {/* <Button 
-                   type="submit" variant="outline-info" size="sm" 
-                   onClick={deletePost}>삭제</Button> */}
-                </Col>
+                </Col>) }
 
             </Row>
-        </Form>
+        </Form>}
+       
+        </div>)
         }
-        </div>
-    )
-}
+
 
 export default Project;
