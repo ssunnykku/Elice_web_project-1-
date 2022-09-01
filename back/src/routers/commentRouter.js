@@ -47,6 +47,24 @@ commentRouter.post(
   }
 );
 
+commentRouter.delete("/:Id", login_required, async function (req, res, next) {
+  try {
+    const deletedComment = await CommentModel.remove({
+      _id: req.params.Id,
+    });
+
+    if (!deletedComment) {
+      throw new Error(deletedComment.errorMessage);
+    }
+
+    res.status(200).json({
+      message: "It's deleted!",
+    });
+  } catch (error) {
+    next(error);
+  }
+});
+
 // jwt 토큰 기능 확인용, 삭제해도 되는 라우터임.
 commentRouter.get("/afterlogin", login_required, function (req, res, next) {
   res
