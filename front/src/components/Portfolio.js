@@ -5,8 +5,8 @@ import { Container, Col, Row, Card, Button } from "react-bootstrap";
 import { UserStateContext } from "../App";
 import * as Api from "../api";
 import User from "./user/User";
-import Comment from "./comment/Comment";
 
+import Comment from "./comment/Comment";
 import Education from "./education/Education";
 import Award from "./award/Award";
 import Projects from "./project/Projects"
@@ -66,9 +66,10 @@ function Portfolio() {
             isEditable={portfolioOwner.id === userState.user?.id}
           />
           <Comment
-            portfolioOwnerId={portfolioOwner.id}
-            myId={userState.user?.id}
-            myName={userState.user?.name}/>
+            // portfolioOwnerId={portfolioOwner.id}
+            // myId={userState.user?.id}
+            // myName={userState.user?.name}
+            />
         </Col>
     
         <Col>
