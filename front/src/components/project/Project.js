@@ -50,14 +50,14 @@ function Project({ project, setProjects, projects, portfolioOwnerId, isEditable 
             { isEditable && 
                 (<Col xs={2} sm={{ span: 20 }} >
                   <img 
-                    src="https://img.icons8.com/external-tanah-basah-detailed-outline-tanah-basah/32/000000/external-edit-user-interface-tanah-basah-detailed-outline-tanah-basah-2.png"
+                    src={Edit}
                     type="button"
                     style={{marginRight: '10px'}}
                     onClick={()=>{
                       setIsEditing(true)
                   }}
                     />
-                   <img src="https://img.icons8.com/external-anggara-outline-color-anggara-putra/26/000000/external-delete-user-interface-anggara-outline-color-anggara-putra-3.png"
+                   <img src={Delete}
                    type="submit" variant="outline-info" size="sm"
                    onClick={deletePost}
                    />
