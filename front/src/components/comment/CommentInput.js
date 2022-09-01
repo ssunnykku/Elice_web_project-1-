@@ -50,7 +50,7 @@ function CommentForm({commentList, setCommentList, myId, portfolioOwnerId, myNam
         onChange={(e) => setComment(e.target.value)}
       />
 
-      <button type="button" class="btn btn-dark mt-3" onClick={handleSubmit}>
+      <button type="button" class="btn btn-dark mt-3" style={{ marginLeft: "40%"}} onClick={handleSubmit}>
         등록
       </button>
     </Card.Body>
