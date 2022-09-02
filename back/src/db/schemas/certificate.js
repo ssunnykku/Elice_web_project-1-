@@ -1,6 +1,6 @@
-import { Schema, model } from "mongoose"
+import { Schema, model } from "mongoose";
 
-const ProjectSchema = new Schema(
+const CertificateSchema = new Schema(
     {
         user_id: {
             type: String,
@@ -13,13 +13,9 @@ const ProjectSchema = new Schema(
         description: {
             type: String,
             required: false,
-            default: "프로젝트 내용을 생성해주세요.",
+            default: "상세 내역",
         },
-        from: {
-            type: String,
-            required: true,
-        },
-        to: {
+        date: {
             type: String,
             required: true,
         },
@@ -29,6 +25,6 @@ const ProjectSchema = new Schema(
     }
 );
 
-const ProjectModel = model("Project", ProjectSchema)
+const CertificateModel = model("Certificate", CertificateSchema)
 
-export { ProjectModel };
+export { CertificateModel };

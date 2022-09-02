@@ -38,6 +38,9 @@ function RegisterForm() {
   const isFormValid =
     isEmailValid && isPasswordValid && isPasswordSame && isNameValid;
 
+  //이메일 중복시 알려줌
+  const [isEmailDuplicate, setIsEmailDuplicate] = useState(false)
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -53,6 +56,7 @@ function RegisterForm() {
       navigate("/login");
     } catch (err) {
       console.log("회원가입에 실패하였습니다.", err);
+      setIsEmailDuplicate(true) //이미 가입된 이메일이라고 알려주기
     }
   };
 
@@ -63,15 +67,22 @@ function RegisterForm() {
           <Form onSubmit={handleSubmit}>
             <Form.Group controlId="registerEmail">
               <Form.Label>이메일 주소</Form.Label>
-              <Form.Control
+              <Form.Control 
                 type="email"
                 autoComplete="off"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                className={(isEmailDuplicate && "form-control is-invalid")}
               />
               {!isEmailValid && (
-                <Form.Text className="text-success">
+                <Form.Text 
+                style={{color: 'tomato', fontWeight: 'bolder'}}>
                   이메일 형식이 올바르지 않습니다.
+                </Form.Text>
+              )}
+              {isEmailDuplicate && (
+                <Form.Text style={{color: 'tomato', fontWeight: 'bolder'}}>
+                  이미 사용중인 이메일입니다.
                 </Form.Text>
               )}
             </Form.Group>
@@ -85,7 +96,7 @@ function RegisterForm() {
                 onChange={(e) => setPassword(e.target.value)}
               />
               {!isPasswordValid && (
-                <Form.Text className="text-success">
+                <Form.Text style={{color: 'tomato', fontWeight: 'bolder'}}>
                   비밀번호는 4글자 이상으로 설정해 주세요.
                 </Form.Text>
               )}
@@ -115,7 +126,7 @@ function RegisterForm() {
                 onChange={(e) => setName(e.target.value)}
               />
               {!isNameValid && (
-                <Form.Text className="text-success">
+                <Form.Text style={{color: 'tomato', fontWeight: 'bolder'}}>
                   이름은 2글자 이상으로 설정해 주세요.
                 </Form.Text>
               )}

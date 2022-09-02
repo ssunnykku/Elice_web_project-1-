@@ -31,6 +31,9 @@ function LoginForm() {
   // 이메일과 비밀번호 조건이 동시에 만족되는지 확인함.
   const isFormValid = isEmailValid && isPasswordValid;
 
+  // 로그인실패 알려줌
+  const [loginFailed, setLoginFailed] = useState(false)
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -56,6 +59,7 @@ function LoginForm() {
       navigate("/", { replace: true });
     } catch (err) {
       console.log("로그인에 실패하였습니다.\n", err);
+      setLoginFailed(true) //로그인 실패 알려주기
     }
   };
 
@@ -73,7 +77,8 @@ function LoginForm() {
                 onChange={(e) => setEmail(e.target.value)}
               />
               {!isEmailValid && (
-                <Form.Text className="text-success">
+                <Form.Text 
+                style={{color: 'tomato', fontWeight: 'bolder'}}>
                   이메일 형식이 올바르지 않습니다.
                 </Form.Text>
               )}
@@ -88,12 +93,22 @@ function LoginForm() {
                 onChange={(e) => setPassword(e.target.value)}
               />
               {!isPasswordValid && (
-                <Form.Text className="text-success">
+                <Form.Text 
+                style={{color: 'tomato', fontWeight: 'bolder'}}
+                >
                   비밀번호는 4글자 이상입니다.
                 </Form.Text>
               )}
-            </Form.Group>
 
+            </Form.Group>
+            <Form.Group className="mt-3 form-center">
+              {loginFailed && (
+                <Form.Text className="text-danger text-left">
+                  이메일 또는 비밀번호를 잘못 입력했습니다.<br />
+                  입력하신 내용을 다시 확인해주세요.
+                </Form.Text>
+              )}
+            </Form.Group>
             <Form.Group as={Row} className="mt-3 text-center">
               <Col sm={{ span: 20 }}>
                 <Button variant="primary" type="submit" disabled={!isFormValid}>

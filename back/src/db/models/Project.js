@@ -17,6 +17,7 @@ class Project {
         return projects;
     }
 
+    //update를 통해 newValue 값으로 바꿔줌
     static async update({ prj_id, fieldToUpdate, newValue }) {
         const filter = { _id: prj_id };
         const update = { [fieldToUpdate]: newValue };

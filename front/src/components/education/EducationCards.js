@@ -1,41 +1,37 @@
-import React,{useState} from "react"
-import EducationCard from "./EducationCard"
-import EducationEditForm from "./EducationEditForm"
+import React, { useState } from "react";
+import EducationCard from "./EducationCard";
+import EducationEditForm from "./EducationEditForm";
 import * as Api from "../../api";
 
-function EducationCards () {
+function EducationCards({ educationData, setEducationData, isEditable }) {
+  //객체의 _id값을 이용해 편집 상태 관리할 배열 만들기 => ex) IsEditingList = {1: false, 213123: false, 1231: false}
+  let IsEditingList = {};
+  educationData.map((edu) => (IsEditingList[edu._id] = false));
 
-    //get 불러오기
-    //Api.get('', )
-    const educationlist = [{
-                        school: "ㅇㅇ대",
-                        major: "컴공",
-                        degree: "재학중",
-                        isEditing: false
-                        },
-                        {    
-                        school: "ㅁㅁ대",
-                        major: "미술",
-                        degree: "재학중",
-                        isEditing: true
-                        }
-                        ]
-                        
-    return educationlist.map((i) => (i.isEditing ? (
-                                    <EducationEditForm 
-                                        IsEditing={i.isEditing}
-                                        School = {i.school}
-                                        Major = {i.major}
-                                        Degree = {i.degree}
-                                    />
-                                ) : (
-                                    <EducationCard 
-                                        IsEditing={i.isEditing}
-                                        School = {i.school}
-                                        Major = {i.major}
-                                        Degree = {i.degree}
-                                    />
-    )))
-    
+  const [isEditingList, setIsEditingList] = useState(IsEditingList);
+
+  return educationData.map((edu) =>
+                              isEditingList[edu._id] ? (
+                                <EducationEditForm
+                                  educationData={educationData}
+                                  setEducationData={setEducationData}
+                                  isEditingList={isEditingList}
+                                  setIsEditingList={setIsEditingList}
+                                  educationId={edu._id}
+                                  key={edu._id}
+                                />
+                              ) : (
+                                <EducationCard
+                                  educationData={educationData}
+                                  setEducationData={setEducationData}
+                                  isEditingList={isEditingList}
+                                  setIsEditingList={setIsEditingList}
+                                  educationId={edu._id}
+                                  key={edu._id}
+                                  isEditable={isEditable}
+                                />
+                              )
+                            );
 }
-    export default EducationCards
+
+export default EducationCards;

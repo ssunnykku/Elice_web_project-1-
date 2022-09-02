@@ -1,77 +1,73 @@
-import React, { useState } from "react";
-import { Card, Button, Form, Row, Col } from "react-bootstrap";
+import React, { useState } from 'react';
+import { Button, Form, Row, Col } from "react-bootstrap";
 import ProjectEditForm from "./ProjectEditForm"
-import ProjectForm from "./ProjectForm"
+import * as Api from "../../api";
 
-function ProjectCard() {
-    const [isEditing, setIsEditing] = useState(false);
+//icon 
+import Edit from '../icon/edit.png'
+import Delete from '../icon/delete.png'
 
-    const [isEditing2, setIsEditing2] = useState(false);
+function Project({ project, setProjects, projects, portfolioOwnerId, isEditable }){
 
-    const [projectList, setProjectList] = useState([
-      {
-      title : "웹프로젝트",
-      description : "포트폴리오 웹사이트 제작",
-      from : "2022-08-23",
-      to : "2022-09-12",
-      },
-     {
-      title : "웹프로젝트",
-      description : "포트폴리오 웹사이트 제작",
-      from : "2022-08-23",
-      to : "2022-09-12",
-      },
-    
-    ]);  
-    // let a = useSelector((state) => state.user ) 
-    // console.log(a)
-    console.log(projectList)
-    return <>
+    const [isEditing, setIsEditing] = useState(false)
 
-     <Card style={{ width: '40rem' }}>
-      <Card.Body>
-        <h5>프로젝트</h5>
-        {
-          isEditing ? <ProjectEditForm 
-                      IsEditing={isEditing}
-                      setIsEditing={setIsEditing}
-                      setProjectList={setProjectList}
-                      projectList={projectList}/> 
-          : 
-            (projectList.map((x,i) => {
+    const deletePost = async(e) => {
+      e.preventDefault()
+      const confirmDelete = window.confirm("정말로 삭제하시겠습니까?")
+      if (confirmDelete == true){
+      const res = await Api.delete(`project`,project._id);
+      
+        if (res.data.message === "It's deleted!") {
+          alert("삭제되었습니다")
+      
+        await Api.get(`project/projects`, portfolioOwnerId)
+        .then((res) => setProjects(res.data)); 
+        }  
+      }
 
-              return(
-            <Form style={{ textAlign: "left" }}>
-              <Row>
-              <Col xs={11} class="align-self-center col-xs-6">
-                <h6>{projectList[i].title}</h6>
-                <p className="mb-2 text-muted">{projectList[i].description}</p>
-                <p className="mb-2 text-muted">{projectList[i].from} ~ {projectList[i].to}</p>
-                  </Col>
-                  <Col xs={1} class="align-self-center col-xs-6">
-                  <Button variant="outline-info" size="sm" onClick={()=>{
+      }
+
+    return(
+        <div>
+          {isEditing === true
+            ?    <ProjectEditForm  
+                       setIsEditing={setIsEditing}
+                        projects={projects}
+                        setProjects={setProjects}
+                        project={project}
+                        portfolioOwnerId={portfolioOwnerId}
+                       /> 
+           : 
+             <Form style={{ textAlign: "left", paddingLeft: '20px' }}>
+               <Row>
+                <Col xs={10} className="d-flex flex-column mb-3">
+                    <h6>{project.title}</h6>
+                    <p className="mb-2 text-muted">{project.description}</p>
+                    <p className="mb-2 text-muted">{project.from} ~ {project.to}</p>
+                </Col>
+        
+          {/* 수정, 삭제버튼 */}
+            { isEditable && 
+                (<Col xs={2} sm={{ span: 20 }} >
+                  <img 
+                    src={Edit}
+                    type="button"
+                    style={{marginRight: '10px'}}
+                    onClick={()=>{
                       setIsEditing(true)
-                  }}>편집</Button>
-                  </Col>
-                </Row>
-              </Form>
-                  )
-            } ))
-          }
+                  }}
+                    />
+                   <img src={Delete}
+                   type="submit" variant="outline-info" size="sm"
+                   onClick={deletePost}
+                   />
+                </Col>) }
 
-        {isEditing2 == true ? 
-        <ProjectForm 
-              projectList={projectList} 
-              setProjectList={setProjectList}
-              setIsEditing={setIsEditing2} /> : null}
-        <Form.Group className="mt-3 text-center">
-        <Button variant="primary" className="mt-3" onClick={()=>{
-          setIsEditing2(true) 
-        }}>+</Button>
-        </Form.Group>
-      </Card.Body>
-    </Card>
-    </>
-}
+            </Row>
+        </Form>}
+       
+        </div>)
+        }
 
-export default ProjectCard;
+
+export default Project;

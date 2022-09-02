@@ -1,18 +1,14 @@
 import { Project } from "../db/models/Project";
-import mongoose from "mongoose";
+
 
 class projectService {
   static async addProject({ user_id, title, description, from, to }) {
-    
-    // 세부의 id를 만들어 주어야함
-        
-        const newProject = { user_id, title, description, from, to };
-        
-        const createdProject = await Project.create({ newProject });
-        
-        return createdProject
+      const newProject = { user_id, title, description, from, to };
+      const createdProject = await Project.create({ newProject });
+      return createdProject
     }
     
+    //project 세부 내용 불러오기 (API 사용안함)
     static async getProjectInfo({ prj_id }) {
       const project = await Project.findById({ prj_id });
   
@@ -23,16 +19,15 @@ class projectService {
       }
   
       return project;
-  
     }
-    //수정 필요
+    
+    //해당 유저가 생성한 project 모두 보여주기
     static async getProjects({ user_id }) {
       const projects = await Project.find({ user_id });
       return projects;
     }
 
     static async setProject({ prj_id, toUpdate }) {
-      // 우선 해당 id 의 유저가 db에 존재하는지 여부 확인
       let project = await Project.findById({ prj_id });
       
         // db에서 찾지 못한 경우, 에러 메시지 반환
@@ -42,18 +37,17 @@ class projectService {
           return { errorMessage };
         }
     
-        // 업데이트 대상에 name이 있다면, 즉 name 값이 null 이 아니라면 업데이트 진행
+        // 업데이트 대상에 title, description, from, to가 null이 아니라면 아래의 if 문을 실행
         if (toUpdate.title) {
           const fieldToUpdate = "title";
           const newValue = toUpdate.title;
           project = await Project.update({ prj_id, fieldToUpdate, newValue });
         }
     
-        if (toUpdate.description) {
-            const fieldToUpdate = "description";
-            const newValue = toUpdate.description;
-            project = await Project.update({ prj_id, fieldToUpdate, newValue });
-        }
+        //description 값은 필수가 아니기 때문에 ""으로 아무값이 들어오지 않아도 수정될수있게 null값이어도 실행
+        const fieldToUpdate = "description";
+        const newValue = toUpdate.description;
+        project = await Project.update({ prj_id, fieldToUpdate, newValue });
     
         if (toUpdate.from) {
           const fieldToUpdate = "from";

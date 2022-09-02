@@ -6,8 +6,13 @@ import { UserStateContext } from "../App";
 import * as Api from "../api";
 import User from "./user/User";
 
-import Project from "./project/Project"
+import Comment from "./comment/Comment";
 import Education from "./education/Education";
+import Award from "./award/Award";
+import Projects from "./project/Projects"
+import Certificate from "./certificate/Certificate";
+
+import "./../styles.css";
 
 function Portfolio() {
   const navigate = useNavigate();
@@ -62,14 +67,32 @@ function Portfolio() {
             portfolioOwnerId={portfolioOwner.id}
             isEditable={portfolioOwner.id === userState.user?.id}
           />
+          <Comment
+            portfolioOwnerId={portfolioOwner.id}
+            myId={userState.user?.id}
+            myName={userState.user?.name}
+            />
         </Col>
     
         <Col>
 
           <div style={{ textAlign: "center" }}>
-            학력 목록, 수상이력 목록, 프로젝트 목록, 자격증 목록 만들기
-            <Education />
-            <Project />
+            <Education 
+              portfolioOwnerId={portfolioOwner.id}
+              isEditable={portfolioOwner.id === userState.user?.id}
+              />
+            <Award 
+              portfolioOwnerId={portfolioOwner.id}
+              isEditable={portfolioOwner.id === userState.user?.id}
+              />
+            <Projects 
+              portfolioOwnerId={portfolioOwner.id}
+              isEditable={portfolioOwner.id === userState.user?.id}
+              />
+            <Certificate 
+              portfolioOwnerId={portfolioOwner.id}
+              isEditable={portfolioOwner.id === userState.user?.id}
+              />
           </div>
           
           
