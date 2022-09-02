@@ -77,7 +77,7 @@ function EducationAddForm({educationData, setEducationData, setIsAddingEducation
                             type="radio"
                             value={radio}
                             onChange={(e) => setDegree(e.target.value)}
-                            defaultChecked={radio == "재학중"}
+                            defaultChecked={radio == "재학중"} //재학중 radio버튼 기본선택하기
                             />;
                         })}
       </Form.Group>

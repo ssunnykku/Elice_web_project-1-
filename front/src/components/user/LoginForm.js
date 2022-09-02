@@ -59,7 +59,7 @@ function LoginForm() {
       navigate("/", { replace: true });
     } catch (err) {
       console.log("로그인에 실패하였습니다.\n", err);
-      setLoginFailed(true)
+      setLoginFailed(true) //로그인 실패 알려주기
     }
   };
 

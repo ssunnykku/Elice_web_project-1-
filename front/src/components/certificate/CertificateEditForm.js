@@ -39,7 +39,7 @@ function CertificateEditForm ({certificateData, setCertificateData, isEditingLis
         const newCertificateData = [...certificateData]
         const findObj = newCertificateData.findIndex((obj) => obj._id == certificateId); //_id로 해당 객체 위치 찾기
         newCertificateData[findObj] = editData //해당 객체 데이터 바꿔주기
-        setCertificateData(newCertificateData); //전체 데이터 바꿔주기
+        setCertificateData(newCertificateData); //전체 데이터에 넣어주기
         
                         
         closeEdit();
