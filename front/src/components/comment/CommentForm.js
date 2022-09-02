@@ -9,18 +9,17 @@ function CommentForm({ commentList, setCommentList, commentId, myId }) {
   //내가 입력한 댓글만 삭제버튼 보이기
   const canDelete = myId == getComment.user_id;
 
-  function deleteForm() {
+  //삭제하는 함수
+  async function deleteForm() {
     const comfirmDelete = window.confirm("댓글을 삭제하시겠습니까?");
     if (comfirmDelete == true) {
-      // const res = await Api.delete('comment',commentId)
-      const resdata = {
-        message: "It's deleted!",
-      };
+      const res = await Api.delete('comment',commentId)
+      // const resdata = {
+      //   message: "It's deleted!",
+      // };
 
-      if (resdata.message === "It's deleted!") {
-        const newCommentList = commentList.filter(
-          (cmt) => cmt._id !== commentId
-        );
+      if (res.data.message === "It's deleted!") {
+        const newCommentList = commentList.filter((cmt) => cmt._id !== commentId);
         setCommentList(newCommentList);
 
         alert("삭제되었습니다");
