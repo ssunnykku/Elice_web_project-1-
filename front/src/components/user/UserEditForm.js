@@ -54,7 +54,7 @@ function UserEditForm({ user, setIsEditing, setUser }) {
             </Form.Text>)}
           </Form.Group>
 
-          <Form.Group controlId="userEditEmail" className="mb-3">
+          <Form.Group controlId="userEditEmail" className="mb-3" >
             <Form.Control
               type="email"
               placeholder="이메일"
@@ -62,13 +62,16 @@ function UserEditForm({ user, setIsEditing, setUser }) {
               onChange={(e) => setEmail(e.target.value)}
             />
             {!isEmailValid && (
-                <Form.Text 
-                style={{color: 'tomato', fontWeight: 'bolder' }}>
-                  수정사항을 입력해주세요.
+                <Form.Text
+                style={{color: 'tomato', fontWeight: 'bolder'}} >
+                   수정사항을 입력해주세요.
             </Form.Text>)}
           </Form.Group>
 
-          <Form.Group controlId="userEditDescription">
+          <Form.Group 
+          className="mb-3"
+          controlId="userEditDescription"
+          >
             <Form.Control
               type="text"
               placeholder="정보, 인사말"
@@ -77,14 +80,15 @@ function UserEditForm({ user, setIsEditing, setUser }) {
             />
             {!isDescriptionValid && (
                 <Form.Text 
-                style={{color: 'tomato', fontWeight: 'bolder' }}>
+                style={{color: 'tomato', fontWeight: 'bolder' 
+                }}>
                   수정사항을 입력해주세요.
             </Form.Text>)}
           </Form.Group>
 
           <Form.Group as={Row} className="mt-3 text-center">
             <Col sm={{ span: 20 }}>
-              <Button variant="primary" type="submit" className="me-3"
+              <Button variant="primary" type="submit" className="me-1"
               disabled={!isFormValid} >
                 확인
               </Button>

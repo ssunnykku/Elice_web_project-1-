@@ -20,10 +20,10 @@ function Certificate ({portfolioOwnerId, isEditable}) {
     
     return (
         <>
-            <Card className="mb-2 ms-3 mr-5" style={{padding: '0.6px'}}>
+            <Card className="mb-2 ms-3 mr-5">
                 <Card.Body>
                     <Card.Title
-                        style={{paddingBottom: '35px', fontWeight: "bolder"}}>자격증</Card.Title>
+                        style={{padding: '35px', fontWeight: "bolder"}}>자격증</Card.Title>
             
                     <CertificateCards
                     certificateData={certificateData}
@@ -34,7 +34,8 @@ function Certificate ({portfolioOwnerId, isEditable}) {
                     {isEditable && (
                         <img 
                             src={Plus}
-                            type="button" onClick={() => setIsAddingCertificate(true)}/>
+                            type="button" onClick={() => setIsAddingCertificate(true)}
+                            style={{margin: '0 0 35px 10px' }}/>
                     )}
                     {isAddingCertificate && (
                         <CertificateAddForm
