@@ -13,7 +13,7 @@ class Comment {
   }
   //한 유저(pageOwner)의 댓글을 전부다 가지고 올때 씀
   static async findAll({ pageOwner }) {
-    const pageAllComments = await CommentModel.find({ user_id: pageOwner });
+    const pageAllComments = await CommentModel.find({ pageOwner : pageOwner });
     return pageAllComments;
   }
 

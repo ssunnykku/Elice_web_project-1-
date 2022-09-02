@@ -20,9 +20,9 @@ function Projects({
 
     return <>
 
-     <Card className="mb-2 ms-3 mr-5" style={{padding: '0.6px'}}>
+     <Card className="mb-2 ms-3 mr-5">
       <Card.Body>
-      <Card.Title style={{paddingBottom: '35px', fontWeight: "bolder"}}>프로젝트</Card.Title>
+      <Card.Title style={{padding: '35px', fontWeight: "bolder"}}>프로젝트</Card.Title>
 
         {/* 편집Form 설정 : isEditing이 False면 편집창이 닫힘 */}
 
@@ -50,6 +50,7 @@ function Projects({
            onClick={()=>{
             setIsEditing(true) 
           }}
+          style={{margin: '0 0 35px 10px' }}
            />
         </Form.Group>
         )}
