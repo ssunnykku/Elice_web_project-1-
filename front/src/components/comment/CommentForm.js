@@ -28,7 +28,7 @@ function CommentForm({ commentList, setCommentList, commentId, myId, portfolioOw
   return (
     <Form className="mb=4">
       <Row className="ms-1">
-        <Col xs={2}>{getComment.userName}:</Col>
+        <Col xs={2} style={{ width: "5rem" }}>{getComment.userName}:</Col>
         <Col>{getComment.comment}</Col>
         <Col xs={2}>
           {canDelete && (
