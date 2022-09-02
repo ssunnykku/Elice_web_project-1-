@@ -1,4 +1,4 @@
-import is, { assert } from "@sindresorhus/is";
+import is from "@sindresorhus/is";
 import { Router } from "express";
 import { CertificateModel } from "../db/schemas/certificate";
 import { login_required } from "../middlewares/login_required";
@@ -86,6 +86,7 @@ certificateRouter.put(
     }
 )
 
+//delete
 certificateRouter.delete(
     "/:certificateId",
     login_required,
