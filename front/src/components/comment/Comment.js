@@ -19,6 +19,14 @@ function Comment({ portfolioOwnerId, myId, myName}) {
       <div className="mb-2 ms-3 mr-5">
         <div class="card-header bg-light" style={{fontWeight: "bolder"}}>VISITS</div>
 
+        <CommentInput
+          setCommentList={setCommentList}
+          commentList={commentList}
+          myId={myId}
+          myName={myName}
+          portfolioOwnerId={portfolioOwnerId}
+        />
+        
         <Card>
           {commentList.map((cmt) => (
             <CommentForm
@@ -33,13 +41,6 @@ function Comment({ portfolioOwnerId, myId, myName}) {
           ))}
         </Card>
 
-        <CommentInput
-          setCommentList={setCommentList}
-          commentList={commentList}
-          myId={myId}
-          myName={myName}
-          portfolioOwnerId={portfolioOwnerId}
-        />
      
       </div>
     </>
