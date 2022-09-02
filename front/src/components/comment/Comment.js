@@ -13,7 +13,7 @@ function Comment({ portfolioOwnerId, myId, myName}) {
 
   // 그 페이지 유저의 코멘트를 전부 불러옴
     useEffect(() => {
-      Api.get("comment/list", portfolioOwnerId).then((res) => setCommentList(res.data));
+      Api.get("comment/list", portfolioOwnerId).then((res) => setCommentList(res.data.reverse()));
     }, [portfolioOwnerId]);
 
   // const CommentList = [
@@ -41,7 +41,7 @@ function Comment({ portfolioOwnerId, myId, myName}) {
   return (
     <>
       <div class="card mb-2">
-        <div class="card-header bg-light">COMMENT</div>
+        <div class="card-header bg-light">댓글</div>
         <CommentInput
           setCommentList={setCommentList}
           commentList={commentList}
@@ -58,6 +58,7 @@ function Comment({ portfolioOwnerId, myId, myName}) {
               key={cmt._id}
               myId={myId}
               myName={myName}
+              portfolioOwnerId={portfolioOwnerId}
             />
           ))}
         </card>

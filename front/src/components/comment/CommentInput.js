@@ -27,7 +27,7 @@ function CommentForm({commentList, setCommentList, myId, portfolioOwnerId, myNam
     // };
 
     const addComment = res.data;
-    const newCommentList = [...commentList, addComment];
+    const newCommentList = [addComment, ...commentList ];
     setCommentList(newCommentList);
 
     setComment("");
