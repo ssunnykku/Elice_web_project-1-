@@ -13,10 +13,13 @@ class commentService {
   static async page_showAllComments({ pageOwner }) {
     const pageAllComments = await Comment.findAll({ pageOwner });
 
+    console.log("pageAllComment:", pageAllComments)
+
     if (!pageAllComments) {
       const errorMessage = '내용이 없습니다.';
       return { errorMessage };
     }
+    
     return pageAllComments;
   }
   //정보 수정할때: 사용자의 한가지댓글 수정하기 위해 고유값, toUpdate위한값

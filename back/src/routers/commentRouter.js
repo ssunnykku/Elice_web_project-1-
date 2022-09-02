@@ -7,9 +7,9 @@ import { userAuthService } from '../services/userService';
 
 const commentRouter = Router();
 
-// 댓글달기: comment/add/:userId로 들어왔을때
+// 댓글달기: comment/add/:pageOwner로 들어왔을때
 commentRouter.post(
-  '/add/:userId',
+  '/add/:pageOwner',
   login_required,
   async function (req, res, next) {
     try {
@@ -17,7 +17,7 @@ commentRouter.post(
         throw new Error('정보를 입력해 주세요');
       }
       //방명록 주인의 아이디
-      const pageOwner = req.params.userId;
+      const pageOwner = req.params.pageOwner;
 
       //writerId=사용자가 로그인할때 쓰는 그 id?
       const user_id = req.currentUserId;
@@ -48,18 +48,21 @@ commentRouter.post(
 
 //방명록 주인의 모든 댓글을 가지고 올때
 commentRouter.get(
-  '/list/:userId',
+  '/list/:pageOwner',
   login_required,
   async function (req, res, next) {
     try {
-      const user_id = req.params.userId;
+      const pageOwner = req.params.pageOwner;
       const allComments = await commentService.page_showAllComments({
-        user_id,
+        pageOwner
       });
 
+      console.log("allComments:", allComments)
+      
       if (allComments.errorMessage) {
         throw new Error(allComments.errorMessage);
       }
+      
       res.status(200).send(allComments);
     } catch (error) {
       next(error);
@@ -67,10 +70,12 @@ commentRouter.get(
   }
 );
 
-commentRouter.delete('/:Id', login_required, async function (req, res, next) {
+//특정 댓글 지우기 :commentId 특정 comment에 해당하는 _id 값 넣어주기
+commentRouter.delete('/:commentId', login_required, async function (req, res, next) {
   try {
+
     const deletedComment = await CommentModel.remove({
-      _id: req.params.Id,
+      _id: req.params.commentId,
     });
 
     if (!deletedComment) {
