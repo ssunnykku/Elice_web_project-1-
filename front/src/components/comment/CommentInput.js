@@ -6,29 +6,28 @@ function CommentForm({commentList, setCommentList, myId, portfolioOwnerId, myNam
   const [comment, setComment] = useState("");
   // const [commentValid, setCommentValid] = useState(true)
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
 
     if (comment == "") {
       alert("댓글을 입력해주세요");
     }
-    // const res = await Api.post(`comment/add,portfolioOwnerId`, {
+    const res = await Api.post(`comment/add/${portfolioOwnerId}`, {
+        comment
+    });
 
-    //     comment
-    // });
+    // const resdata = {
+    //   user_id: "6d54f14a-393b-4510-9d26-29b48e6d4216",
+    //   comment: "코멘트를 수정했습니다.",
+    //   userName: "은정",
+    //   _id: "630ef69429d595081ce8e679",
+    //   createdAt: "2022-08-31T05:50:12.247Z",
+    //   updatedAt: "2022-08-31T05:50:12.247Z",
+    //   __v: 0,
+    // };
 
-    const resdata = {
-      user_id: "6d54f14a-393b-4510-9d26-29b48e6d4216",
-      comment: "코멘트를 수정했습니다.",
-      userName: "은정",
-      _id: "630ef69429d595081ce8e679",
-      createdAt: "2022-08-31T05:50:12.247Z",
-      updatedAt: "2022-08-31T05:50:12.247Z",
-      __v: 0,
-    };
-
-    const addComment = resdata;
-    const newCommentList = [...commentList, addComment];
+    const addComment = res.data;
+    const newCommentList = [addComment, ...commentList ];
     setCommentList(newCommentList);
 
     setComment("");

@@ -68,9 +68,9 @@ function Portfolio() {
             isEditable={portfolioOwner.id === userState.user?.id}
           />
           <Comment
-            // portfolioOwnerId={portfolioOwner.id}
-            // myId={userState.user?.id}
-            // myName={userState.user?.name}
+            portfolioOwnerId={portfolioOwner.id}
+            myId={userState.user?.id}
+            myName={userState.user?.name}
             />
         </Col>
     
