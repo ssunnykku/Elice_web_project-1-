@@ -40,8 +40,8 @@ function Comment({ portfolioOwnerId, myId, myName}) {
 
   return (
     <>
-      <div class="card mb-2">
-        <div class="card-header bg-light">댓글</div>
+      <div className="mb-2 ms-3 mr-5">
+        <div className="card-header bg-light">댓글</div>
         <CommentInput
           setCommentList={setCommentList}
           commentList={commentList}

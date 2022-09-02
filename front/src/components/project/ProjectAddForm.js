@@ -49,8 +49,6 @@ function ProjectAddForm({ setProjects, setIsEditing, portfolioOwnerId }) {
           }
         }
 
-// Api.post로 입력된 데이터 전송하기
-// 모든 값이 입력되어 있지 않다면 "모두 입력해주세요" 안내 띄우기
     const handleSubmit = async (e) => {
       e.preventDefault()
       try{
@@ -60,8 +58,7 @@ function ProjectAddForm({ setProjects, setIsEditing, portfolioOwnerId }) {
           from: from,
           to: to
         })
-        .then((res)=>{
-          
+        .then((res)=>{ 
           let data = res.data
 
          })
@@ -125,6 +122,7 @@ function ProjectAddForm({ setProjects, setIsEditing, portfolioOwnerId }) {
           className="mb-3"
           disabled={!isFormValid}
           >확인</Button>{' '}
+
           {/* 취소버튼 */}
           <Button variant="secondary" className="mb-3" onClick={(e)=>{
             setIsEditing(false)
