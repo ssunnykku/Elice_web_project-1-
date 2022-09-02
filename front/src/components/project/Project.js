@@ -40,7 +40,7 @@ function Project({ project, setProjects, projects, portfolioOwnerId, isEditable 
            : 
              <Form style={{ textAlign: "left", paddingLeft: '20px' }}>
                <Row>
-                <Col xs={10} >
+                <Col xs={10} className="d-flex flex-column mb-3">
                     <h6>{project.title}</h6>
                     <p className="mb-2 text-muted">{project.description}</p>
                     <p className="mb-2 text-muted">{project.from} ~ {project.to}</p>
