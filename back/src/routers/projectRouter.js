@@ -20,9 +20,9 @@ projectRouter.post(
           );
         }
 
+      //로그인된 유저를 토큰 값으로 확인한후 user_id를 받아오기
       const user_id = req.currentUserId;
 
-        // startDate가 endDate보다 클수없다 조건 넣어야함 (보류)
       const title = req.body.title;
       const description = req.body.description;
       const from = req.body.from;
@@ -35,8 +35,6 @@ projectRouter.post(
           from,
           to,
       });
-
-      
 
       if (newProject.errorMessage) {
           throw new Error(newProject.errorMessage)
