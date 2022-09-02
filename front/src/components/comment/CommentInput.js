@@ -33,7 +33,7 @@ function CommentForm({commentList, setCommentList, myId, portfolioOwnerId, myNam
   return (
     <Card.Body>
       <div className="form-inline mb-2" >
-        <label for="replyId" style={{ fontWeight: 'bolder' }}>
+        <label style={{ fontWeight: 'bolder' }}>
            {myName}
         </label>
       </div>

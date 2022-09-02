@@ -17,7 +17,7 @@ function Comment({ portfolioOwnerId, myId, myName}) {
   return (
     <>
       <div className="mb-2 ms-3 mr-5">
-        <div class="card-header bg-light" style={{fontWeight: "bolder"}}>VISITS</div>
+        <div className="card-header bg-light" style={{fontWeight: "bolder"}}>VISITS</div>
 
         <CommentInput
           setCommentList={setCommentList}

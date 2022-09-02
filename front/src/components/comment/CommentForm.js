@@ -29,16 +29,15 @@ function CommentForm({ commentList, setCommentList, commentId, myId, portfolioOw
 
   return (
 
-    <Form className="mb=4" className="visits" style={{ padding: '12px' }}>
-      <Row className="ms-1" className="visits">
-        <Col xs={3} className="visits" style={{fontFamily: 'GmarketsansTTFBold',  width: "5rem" }}>{getComment.userName}:</Col>
+    <Form className="mb=4" style={{ padding: '12px' }}>
+      <Row className="ms-1">
+        <Col xs={3} style={{fontFamily: 'GmarketsansTTFBold',  width: "5rem" }}>{getComment.userName}:</Col>
         <Col className="visits">{getComment.comment}</Col>
-        <Col xs={2} className="visits">
+        <Col xs={2}>
           {canDelete && (
             <CloseButton 
                 className="col-md-5 mx-auto"
                 size="sm" 
-                variant="outline-info" 
                 onClick={deleteForm}
             />
           )}
