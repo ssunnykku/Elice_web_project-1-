@@ -26,11 +26,11 @@ class certificateService {
             certificate = await Certificate.update({ cer_id, fieldToUpdate, newValue });
         }
 
-        if (toUpdate.description) {
-            const fieldToUpdate = "description"
-            const newValue = toUpdate.description
-            certificate = await Certificate.update({ cer_id, fieldToUpdate, newValue });
-        }
+        //description은 필수값이 아니므로 "" 값이 들어왔을때 "" 값으로 수정가능하게 바꿈
+        const fieldToUpdate = "description"
+        const newValue = toUpdate.description
+        certificate = await Certificate.update({ cer_id, fieldToUpdate, newValue });
+        
 
         if (toUpdate.date) {
             const fieldToUpdate = "date"

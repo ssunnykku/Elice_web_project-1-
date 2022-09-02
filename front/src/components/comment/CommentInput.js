@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Form, Button, Col, Row, Card } from "react-bootstrap";
 import * as Api from "../../api";
 
@@ -30,13 +30,13 @@ function CommentForm({commentList, setCommentList, myId, portfolioOwnerId, myNam
 
   return (
     <Card.Body>
-      <div class="form-inline mb-2">
+      <div className="form-inline mb-2">
         <label for="replyId">
           {myName}
         </label>
       </div>
       <textarea
-        class="form-control"
+        className="form-control"
         id="exampleFormControlTextarea1"
         rows="3"
         value={comment}
@@ -44,7 +44,7 @@ function CommentForm({commentList, setCommentList, myId, portfolioOwnerId, myNam
         onChange={(e) => setComment(e.target.value)}
       />
 
-      <button type="button" class="btn btn-dark mt-3" style={{ marginLeft: "40%"}} onClick={handleSubmit}>
+      <button type="button" className="btn btn-dark mt-3" style={{ marginLeft: "40%"}} onClick={handleSubmit}>
         등록
       </button>
     </Card.Body>
