@@ -3,6 +3,8 @@ import { Form, Button, Col, Row } from "react-bootstrap";
 import * as Api from "../../api";
 import CloseButton from 'react-bootstrap/CloseButton';
 
+import "./../../styles.css";
+
 function CommentForm({ commentList, setCommentList, commentId, myId, portfolioOwnerId }) {
   const getComment = commentList.find((cmt) => cmt._id === commentId);
 
@@ -28,11 +30,11 @@ function CommentForm({ commentList, setCommentList, commentId, myId, portfolioOw
   }
 
   return (
-    <Form className="mb=4">
-      <Row className="ms-1">
-        <Col xs={2}>{getComment.userName}:</Col>
-        <Col>{getComment.comment}</Col>
-        <Col xs={2}>
+    <Form className="mb=4" className="visits" style={{ padding: '12px' }}>
+      <Row className="ms-1" className="visits">
+        <Col xs={3} className="visits" style={{fontFamily: 'GmarketsansTTFBold'}}>{getComment.userName}:</Col>
+        <Col className="visits">{getComment.comment}</Col>
+        <Col xs={2} className="visits">
           {canDelete && (
             <CloseButton 
                 className="col-md-5 mx-auto"
