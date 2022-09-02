@@ -5,33 +5,28 @@ import * as Api from "../../api";
 import "./../../styles.css";
 
 function CommentForm({commentList, setCommentList, myId, portfolioOwnerId, myName }) {
+  
   const [comment, setComment] = useState("");
-  // const [commentValid, setCommentValid] = useState(true)
 
   async function handleSubmit(e) {
     e.preventDefault();
 
+    //아무것도 입력 안했을 때 알려주기
     if (comment == "") {
       alert("댓글을 입력해주세요");
     }
+    
+    //입력 댓글 post
     const res = await Api.post(`comment/add/${portfolioOwnerId}`, {
         comment
     });
 
-    // const resdata = {
-    //   user_id: "6d54f14a-393b-4510-9d26-29b48e6d4216",
-    //   comment: "코멘트를 수정했습니다.",
-    //   userName: "은정",
-    //   _id: "630ef69429d595081ce8e679",
-    //   createdAt: "2022-08-31T05:50:12.247Z",
-    //   updatedAt: "2022-08-31T05:50:12.247Z",
-    //   __v: 0,
-    // };
-
+    //commentList 최신화
     const addComment = res.data;
     const newCommentList = [addComment, ...commentList ];
     setCommentList(newCommentList);
 
+    //입력창 비우기
     setComment("");
   }
 

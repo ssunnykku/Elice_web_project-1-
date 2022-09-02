@@ -14,7 +14,7 @@ function Certificate ({portfolioOwnerId, isEditable}) {
     
     //전체 Education 데이터 불러오기
     useEffect(() => {
-        // "users/유저id" 엔드포인트로 GET 요청을 하고, user를 response의 data로 세팅함.
+        // GET 요청을 하고, certificateData를 response의 data로 세팅함.
         Api.get("certificate/certificates", portfolioOwnerId).then((res) => setCertificateData(res.data));
       }, [portfolioOwnerId]);
     

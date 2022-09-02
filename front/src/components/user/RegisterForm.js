@@ -56,7 +56,7 @@ function RegisterForm() {
       navigate("/login");
     } catch (err) {
       console.log("회원가입에 실패하였습니다.", err);
-      setIsEmailDuplicate(true)
+      setIsEmailDuplicate(true) //이미 가입된 이메일이라고 알려주기
     }
   };
 
@@ -82,7 +82,7 @@ function RegisterForm() {
               )}
               {isEmailDuplicate && (
                 <Form.Text style={{color: 'tomato', fontWeight: 'bolder'}}>
-                  이미 사용중이거나 탈퇴한 이메일입니다.
+                  이미 사용중인 이메일입니다.
                 </Form.Text>
               )}
             </Form.Group>

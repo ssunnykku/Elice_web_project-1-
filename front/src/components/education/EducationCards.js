@@ -18,7 +18,7 @@ function EducationCards({ educationData, setEducationData, isEditable }) {
                                   isEditingList={isEditingList}
                                   setIsEditingList={setIsEditingList}
                                   educationId={edu._id}
-                                  key={edu._id} //키값 없으면 에러나서 추가해줌.
+                                  key={edu._id}
                                 />
                               ) : (
                                 <EducationCard
